@@ -3,8 +3,8 @@ name: Publish
 # Controls when the workflow will run
 on:
   workflow_dispatch:
-  # Triggers the workflow pull request events but only for the "main" branch
-  pull_request:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
     branches: ['main']
 
 jobs:
@@ -18,8 +18,8 @@ jobs:
         with:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
-      - run: echo HELLO
-        # - run: npm ci
-        # - run: npm publish
+      - run: npm ci
+      - run: npm run release
+      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
