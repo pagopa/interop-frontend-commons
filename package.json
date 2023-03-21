@@ -5,9 +5,7 @@
   "scripts": {
     "lint": "tsc",
     "build": "vite build",
-    "test": "vitest run --coverage",
-    "ci": "npm run test && npm run lint && npm run build",
-    "release": "npm run ci"
+    "test": "vitest run && npm run lint"
   },
   "devDependencies": {
     "@babel/core": "^7.21.3",
