@@ -1,25 +1,38 @@
-# name: Publish
-# on:
-#   push:
-#     branches:
-#       - 'main'
+name: Publish
 
-# jobs:
-#   publish:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v3
-#       - name: Use Node.js 16.x
-#         uses: actions/setup-node@v3
-#         with:
-#           node-version: 16.x
-#           cache: 'npm'
-#       - run: npm install
-#       - name: Create Release Pull Request or Publish
-#         id: changesets
-#         uses: changesets/action@v1
-#         with:
-#           publish: npm run release
-#         env:
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+# Controls when the workflow will run
+on:
+  workflow_dispatch:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: Main
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: 'npm'
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo 'NPM_TOKEN ${{ secrets.NPM_TOKEN }}'
+
+      - run: npm install
+      - name: Create Release Pull Request or Publish
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: npm run release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+
