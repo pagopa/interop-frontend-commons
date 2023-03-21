@@ -7,7 +7,7 @@
     "build": "vite build",
     "test": "vitest run --coverage",
     "ci": "npm run test && npm run lint && npm run build",
-    "release": "npm run ci && changeset publish"
+    "release": "npm run ci"
   },
   "devDependencies": {
     "@babel/core": "^7.21.3",
