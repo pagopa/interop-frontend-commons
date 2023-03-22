@@ -46,7 +46,8 @@ export const getFiltersFieldsInitialValues = (
         fieldsValues[field.name] = []
         break
       case 'autocomplete-single':
-      // autocomplete single has no need to be in the fields state
+        // autocomplete single has no need to be in the fields state
+        break
       case 'freetext':
       case 'numeric':
         fieldsValues[field.name] = ''
