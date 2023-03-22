@@ -39,6 +39,7 @@ exports[`Filters component > matches the snapshot with more than one active filt
             onFocus={[Function]}
             required={false}
             type="text"
+            value=""
           />
           <button
             className="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeMedium css-ytfocf-MuiButtonBase-root-MuiIconButton-root"
@@ -93,6 +94,7 @@ exports[`Filters component > matches the snapshot with more than one active filt
       <div
         aria-owns={null}
         className="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-4xbbh5-MuiAutocomplete-root"
+        label="Multiple Filter Field"
         onClick={[Function]}
         onKeyDown={[Function]}
         onMouseDown={[Function]}
@@ -367,6 +369,7 @@ exports[`Filters component > matches the snapshot with one active filter 1`] = `
             onFocus={[Function]}
             required={false}
             type="text"
+            value=""
           />
           <button
             className="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeMedium css-ytfocf-MuiButtonBase-root-MuiIconButton-root"
@@ -421,6 +424,7 @@ exports[`Filters component > matches the snapshot with one active filter 1`] = `
       <div
         aria-owns={null}
         className="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-4xbbh5-MuiAutocomplete-root"
+        label="Multiple Filter Field"
         onClick={[Function]}
         onKeyDown={[Function]}
         onMouseDown={[Function]}
@@ -603,6 +607,7 @@ exports[`Filters component > matches the snapshot without active filters 1`] = `
             onFocus={[Function]}
             required={false}
             type="text"
+            value=""
           />
           <button
             className="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeMedium css-ytfocf-MuiButtonBase-root-MuiIconButton-root"
@@ -657,6 +662,7 @@ exports[`Filters component > matches the snapshot without active filters 1`] = `
       <div
         aria-owns={null}
         className="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-4xbbh5-MuiAutocomplete-root"
+        label="Multiple Filter Field"
         onClick={[Function]}
         onKeyDown={[Function]}
         onMouseDown={[Function]}

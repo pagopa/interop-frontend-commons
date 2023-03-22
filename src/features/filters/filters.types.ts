@@ -1,7 +1,13 @@
 export type ActiveFilters = Array<FilterOption & { type: FilterFieldType; filterKey: string }>
-export type FilterFieldValue = Array<FilterOption> | string | (Date | null)
+export type FilterFieldValue = Array<FilterOption> | FilterOption | string | (Date | null)
+
 export type FilterFieldsValues = Record<string, FilterFieldValue>
-export type FilterFieldType = 'autocomplete-multiple' | 'numeric' | 'freetext' | 'datepicker'
+export type FilterFieldType =
+  | 'autocomplete-multiple'
+  | 'autocomplete-single'
+  | 'numeric'
+  | 'freetext'
+  | 'datepicker'
 export type FiltersParams = Record<string, string | string[] | boolean>
 export type FiltersHandlers = {
   fields: FilterFields
@@ -26,9 +32,10 @@ export type NumericFilterFieldOptions<TName extends string = string> = FilterFie
   min?: number
   max?: number
 }
-export type AutocompleteMultipleFilterFieldOptions<TName extends string = string> =
+
+export type AutocompleteFilterFieldOptions<TName extends string = string> =
   FilterFieldCommon<TName> & {
-    type: 'autocomplete-multiple'
+    type: 'autocomplete-multiple' | 'autocomplete-single'
     options: Array<FilterOption>
     onTextInputChange?: (value: string) => void
   }
@@ -37,7 +44,7 @@ export type FilterField<TName extends string = string> =
   | FreetextFilterFieldOptions<TName>
   | DatepickerFilterFieldOptions<TName>
   | NumericFilterFieldOptions<TName>
-  | AutocompleteMultipleFilterFieldOptions<TName>
+  | AutocompleteFilterFieldOptions<TName>
 
 export type FilterFieldCommonProps = {
   field: FilterField

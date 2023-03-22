@@ -1,12 +1,13 @@
 import React from 'react'
 import { Grid } from '@mui/material'
-import { AutocompleteMultipleFilterField } from './AutocompleteMultipleFilterField'
 import type {
   FilterFieldValue,
   FilterFieldsValues,
   FilterFields,
   FiltersHandler,
 } from '../filters.types'
+import { AutocompleteMultipleFilterField } from './AutocompleteMultipleFilterField'
+import { AutocompleteSingleFilterField } from './AutocompleteSingleFilterField'
 import { DatepickerFilterField } from './DatepickerFilterField'
 import { NumericFilterField } from './NumericFilterField'
 import { FreetextFilterField } from './FreetextFilterField'
@@ -39,6 +40,9 @@ export const FiltersFields: React.FC<FiltersFieldsProps> = ({
             {field.type === 'numeric' && <NumericFilterField {...fieldProps} />}
             {field.type === 'autocomplete-multiple' && (
               <AutocompleteMultipleFilterField {...fieldProps} />
+            )}
+            {field.type === 'autocomplete-single' && (
+              <AutocompleteSingleFilterField {...fieldProps} />
             )}
             {field.type === 'datepicker' && <DatepickerFilterField {...fieldProps} />}
           </Grid>

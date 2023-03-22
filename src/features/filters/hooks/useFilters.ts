@@ -1,5 +1,6 @@
 import React from 'react'
 import type {
+  FilterFieldType,
   FilterFields,
   FilterOption,
   FiltersHandler,
@@ -11,6 +12,7 @@ import {
   encodeMultipleFilterFieldValue,
   decodeMultipleFilterFieldValue,
   mapSearchParamsToActiveFiltersAndFilterParams,
+  encodeSingleFilterFieldValue,
 } from '../filters.utils'
 
 export function useFilters<TFiltersParams extends FiltersParams>(
@@ -21,7 +23,18 @@ export function useFilters<TFiltersParams extends FiltersParams>(
   const onChangeActiveFilter = React.useCallback<FiltersHandler>(
     (type, filterKey, value) => {
       const newSearchParams = new URLSearchParams(searchParams)
-      if (value === null || (!(value instanceof Date) && value.length === 0)) {
+
+      let shouldBeRemoved = false
+      if (type === 'datepicker' && value === null) {
+        shouldBeRemoved = true
+      }
+      if (
+        ['freetext', 'autocomplete-multiple', 'numeric'].includes(type) &&
+        (value as string | Array<FilterOption>).length === 0
+      ) {
+        shouldBeRemoved = true
+      }
+      if (shouldBeRemoved) {
         newSearchParams.delete(filterKey)
         setSearchParams(newSearchParams)
         return
@@ -33,8 +46,14 @@ export function useFilters<TFiltersParams extends FiltersParams>(
           newSearchParams.set(filterKey, String(value))
           break
         case 'autocomplete-multiple':
-          const urlParamValue = encodeMultipleFilterFieldValue(value as Array<FilterOption>)
-          newSearchParams.set(filterKey, urlParamValue)
+          const urlParamMultipleFilterValue = encodeMultipleFilterFieldValue(
+            value as Array<FilterOption>
+          )
+          newSearchParams.set(filterKey, urlParamMultipleFilterValue)
+          break
+        case 'autocomplete-single':
+          const urlParamSingleFilterValue = encodeSingleFilterFieldValue(value as FilterOption)
+          newSearchParams.set(filterKey, urlParamSingleFilterValue)
           break
         case 'datepicker':
           newSearchParams.set(filterKey, (value as Date).toISOString())
@@ -55,6 +74,7 @@ export function useFilters<TFiltersParams extends FiltersParams>(
         case 'freetext':
         case 'numeric':
         case 'datepicker':
+        case 'autocomplete-single':
           newSearchParams.delete(filterKey)
           break
         case 'autocomplete-multiple':
