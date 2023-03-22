@@ -4,6 +4,7 @@ import type {
   FilterFields,
   FilterOption,
   FiltersParams,
+  FilterField,
 } from './filters.types'
 
 /** Map passed fields options to the field state default value */
@@ -40,6 +41,7 @@ export const getFiltersFieldsInitialValues = (
         fieldsValues[field.name] = []
         break
       case 'freetext':
+      case 'numeric':
         fieldsValues[field.name] = ''
         break
       case 'datepicker':
@@ -97,6 +99,7 @@ export const mapSearchParamsToActiveFiltersAndFilterParams = (
           activeFilters.push(...decodedFilterValue)
           filtersParams[field.name] = decodedFilterValue.map(({ value }) => value)
           break
+        case 'numeric':
         case 'freetext':
           activeFilters.push({
             value: filterValue,
@@ -115,6 +118,12 @@ export const mapSearchParamsToActiveFiltersAndFilterParams = (
           })
           filtersParams[field.name] = filterValue
           break
+        default:
+          new Error(
+            `Parsing search param value to filterParams/activeFilter not implemented for ${
+              (field as FilterField).type
+            }`
+          )
       }
     }
   })

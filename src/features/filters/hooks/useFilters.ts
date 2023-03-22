@@ -5,13 +5,13 @@ import type {
   FiltersHandler,
   FiltersHandlers,
   FiltersParams,
-} from '@/features/filters/filters.types'
+} from '../filters.types'
 import { useSearchParams } from 'react-router-dom'
 import {
   encodeMultipleFilterFieldValue,
   decodeMultipleFilterFieldValue,
   mapSearchParamsToActiveFiltersAndFilterParams,
-} from '@/features/filters/filters.utils'
+} from '../filters.utils'
 
 export function useFilters<TFiltersParams extends FiltersParams>(
   fields: FilterFields<Extract<keyof TFiltersParams, string>>
@@ -28,8 +28,9 @@ export function useFilters<TFiltersParams extends FiltersParams>(
       }
 
       switch (type) {
+        case 'numeric':
         case 'freetext':
-          newSearchParams.set(filterKey, value as string)
+          newSearchParams.set(filterKey, String(value))
           break
         case 'autocomplete-multiple':
           const urlParamValue = encodeMultipleFilterFieldValue(value as Array<FilterOption>)
@@ -52,6 +53,7 @@ export function useFilters<TFiltersParams extends FiltersParams>(
 
       switch (type) {
         case 'freetext':
+        case 'numeric':
         case 'datepicker':
           newSearchParams.delete(filterKey)
           break

@@ -1,53 +1,63 @@
 import React from 'react'
 import { Autocomplete, Checkbox, Paper, TextField, Typography } from '@mui/material'
-import type { AutocompleteProps } from '@mui/material'
-import { getLocalizedValue } from '@/utils/common.utils'
+import { getLocalizedValue } from '../../../utils/common.utils'
 import { debounce } from '../filters.utils'
+import {
+  AutocompleteMultipleFilterFieldOptions,
+  FilterFieldCommonProps,
+  FilterFieldsValues,
+  FilterOption,
+} from '../filters.types'
 
-type FilterAutocompleteMultipleProps = Omit<
-  AutocompleteProps<{ label: string; value: string }, true, true, false>,
-  'renderInput' | 'onInputChange'
-> & {
-  name: string
-  label: string
-  onTextInputChange?: (value: string) => void
-}
-
-export const FilterAutocompleteMultiple: React.FC<FilterAutocompleteMultipleProps> = ({
-  label,
-  options,
-  onTextInputChange,
-  ...props
+export const AutocompleteMultipleFilterField: React.FC<FilterFieldCommonProps> = ({
+  field: _field,
+  value,
+  onChangeActiveFilter,
+  onFieldsValuesChange,
 }) => {
-  const defaultNoOptionsText = getLocalizedValue({
+  const field = _field as AutocompleteMultipleFilterFieldOptions
+  const filterKey = field.name
+
+  const debounceRef = React.useRef<NodeJS.Timeout>()
+
+  const noOptionsText = getLocalizedValue({
     it: 'Nessun risultato trovato',
     en: 'No results',
   })
+
+  const handleAutocompleteMultipleChange = (data: FilterFieldsValues['string']) => {
+    onFieldsValuesChange(filterKey, data)
+    clearTimeout(debounceRef.current)
+    debounceRef.current = setTimeout(
+      () => onChangeActiveFilter('autocomplete-multiple', filterKey, data),
+      300
+    )
+  }
 
   const handleAutocompleteInputChange = React.useMemo(
     () =>
       debounce((_: unknown, value: string) => {
         if (value.length >= 3) {
-          onTextInputChange?.(value)
+          field?.onTextInputChange?.(value)
           return
         }
-        onTextInputChange?.('')
+        field?.onTextInputChange?.('')
       }, 300),
-    [onTextInputChange]
+    [field?.onTextInputChange]
   )
 
   return (
-    <Autocomplete<{ label: string; value: string }, true, true, false>
+    <Autocomplete<FilterOption, true, true, false>
       multiple
-      options={options}
+      value={value as FilterOption[]}
+      options={field.options}
       isOptionEqualToValue={(option, { value }) => option.value === value}
-      noOptionsText={props.noOptionsText || defaultNoOptionsText}
+      noOptionsText={noOptionsText}
       disableCloseOnSelect
       disableClearable
       renderTags={() => null}
       PaperComponent={({ children }) => <Paper elevation={4}>{children}</Paper>}
       size="small"
-      {...props}
       onInputChange={handleAutocompleteInputChange}
       onChange={(event, data, reason) => {
         if (
@@ -57,10 +67,10 @@ export const FilterAutocompleteMultiple: React.FC<FilterAutocompleteMultipleProp
         ) {
           return
         }
-        props?.onChange?.(event, data, reason)
+        handleAutocompleteMultipleChange(data)
       }}
       renderInput={(params) => {
-        return <TextField variant="outlined" {...params} label={label} />
+        return <TextField variant="outlined" {...params} label={field.label} />
       }}
       renderOption={(props, option, { selected, index }) => {
         const label = option.label
