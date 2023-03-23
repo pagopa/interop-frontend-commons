@@ -1,6 +1,6 @@
 {
   "name": "@pagopa/interop-fe-commons",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "",
   "scripts": {
     "lint": "tsc",
