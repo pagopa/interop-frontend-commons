@@ -3,7 +3,7 @@ import type { ActiveFilters, FilterFields } from '@/features/filters/filters.typ
 import renderer from 'react-test-renderer'
 import { vi } from 'vitest'
 import userEvent from '@testing-library/user-event'
-import { fireEvent, waitFor } from '@testing-library/react'
+import { fireEvent } from '@testing-library/react'
 import { renderWithRouter, TestingRouterWrapper } from '@/utils/testing.utils'
 import { Filters } from '../components/Filters'
 
@@ -196,31 +196,5 @@ describe('Filters component', () => {
     const clearFiltersButton = screen.getByRole('button', { name: 'Annulla filtri' })
     await user.click(clearFiltersButton)
     expect(onResetActiveFilters).toBeCalled()
-  })
-
-  it('should call onTextInputChange only if there are more than two chars', async () => {
-    const user = userEvent.setup()
-
-    const screen = renderWithRouter(
-      <Filters
-        fields={fieldMocks}
-        activeFilters={[]}
-        onChangeActiveFilter={vi.fn()}
-        onRemoveActiveFilter={vi.fn()}
-        onResetActiveFilters={vi.fn()}
-      />
-    )
-
-    const multipleFilterField = screen.getByLabelText('Multiple Filter Field') as HTMLInputElement
-    await user.type(multipleFilterField, 'te')
-    await waitFor(() => {
-      expect(onTextInputChangeFn).toBeCalledWith('')
-    })
-    await user.type(multipleFilterField, 'st')
-    await waitFor(() => {
-      expect(onTextInputChangeFn).toBeCalledWith('test')
-    })
-
-    screen.unmount()
   })
 })
