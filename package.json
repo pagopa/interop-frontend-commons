@@ -5,7 +5,7 @@
   "scripts": {
     "lint": "tsc",
     "build": "vite build",
-    "test": "vitest run && npm run lint",
+    "test": "npm run lint && vitest run",
     "prepare": "husky install"
   },
   "devDependencies": {
