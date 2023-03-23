@@ -6,6 +6,7 @@
     "lint": "tsc",
     "build": "vite build",
     "test": "npm run lint && vitest run",
+    "prettify": "prettier --write .",
     "prepare": "husky install"
   },
   "devDependencies": {
@@ -41,6 +42,8 @@
     "history": "^5.3.0",
     "husky": "^8.0.3",
     "jsdom": "^21.1.1",
+    "lint-staged": "^13.2.0",
+    "prettier": "^2.8.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.2",
@@ -81,5 +84,8 @@
       "import": "./dist/index.es.js",
       "require": "./dist/index.umd.js"
     }
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
   }
 }

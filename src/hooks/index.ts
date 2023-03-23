@@ -1,1 +1,1 @@
-export * from "./useAutocompleteTextInput";
+export * from './useAutocompleteTextInput'
