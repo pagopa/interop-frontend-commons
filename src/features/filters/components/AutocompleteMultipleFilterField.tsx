@@ -39,15 +39,15 @@ export const AutocompleteMultipleFilterField: React.FC<FilterFieldCommonProps> =
       onChange={(_, data) => {
         handleAutocompleteMultipleChange(data)
       }}
-      renderOption={(props, option, { selected, index }) => {
+      renderOption={(props, option, { selected }) => {
         const label = option.label
         if (!label) return null
 
         return (
-          <Typography component="li" {...props} sx={{ display: 'flex', alignItems: 'center' }}>
-            <Checkbox sx={{ mr: 1 }} key={index} checked={selected} name={label} />
-            <span>{label}</span>
-          </Typography>
+          <li {...props}>
+            <Checkbox key={option.value} checked={selected} name={label} />
+            {label}
+          </li>
         )
       }}
     />

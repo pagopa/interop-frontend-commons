@@ -41,6 +41,7 @@ export const DatepickerFilterField: React.FC<FilterFieldCommonProps> = ({
     <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={adapterLocale}>
       <DesktopDateTimePicker
         ampm={false}
+        value={value as Date | null}
         onChange={handleDatepickerChange}
         label={field.label}
         slotProps={{
