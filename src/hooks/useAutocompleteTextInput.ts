@@ -3,6 +3,8 @@ import { debounce } from '../utils/common.utils'
 
 /**
  * A custom React hook that provides an autocomplete filter input with debouncing functionality.
+ * It should be used when the MUI's autocomplete text input is used as a search query for fetching
+ * autocomplete options.
  * @param {string} initialState - The initial state value for the input. Default is an empty string.
  * @returns {readonly [string, (value: string) => void]} An array with two elements:
  * - The current value of the autocomplete filter input
