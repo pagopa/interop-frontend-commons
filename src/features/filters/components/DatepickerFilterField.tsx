@@ -5,7 +5,7 @@ import { getLocalizedValue } from '../../../utils/common.utils'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { DesktopDateTimePicker } from '@mui/x-date-pickers/DesktopDateTimePicker'
-import { FilterFieldCommonProps } from '../filters.types'
+import type { FilterFieldCommonProps } from '../filters.types'
 import { isValidDate } from '../filters.utils'
 
 export const DatepickerFilterField: React.FC<FilterFieldCommonProps> = ({

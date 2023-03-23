@@ -1,6 +1,6 @@
 import React from 'react'
-import { Checkbox, Typography } from '@mui/material'
-import {
+import { Checkbox } from '@mui/material'
+import type {
   AutocompleteFilterFieldOptions,
   FilterFieldCommonProps,
   FilterFieldsValues,

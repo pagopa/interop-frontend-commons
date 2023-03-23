@@ -2,7 +2,7 @@ import React from 'react'
 import { IconButton, TextField } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import { getLocalizedValue } from '../../../utils/common.utils'
-import { FilterFieldCommonProps, NumericFilterFieldOptions } from '../filters.types'
+import type { FilterFieldCommonProps, NumericFilterFieldOptions } from '../filters.types'
 
 export const NumericFilterField: React.FC<FilterFieldCommonProps> = ({
   field: _field,
