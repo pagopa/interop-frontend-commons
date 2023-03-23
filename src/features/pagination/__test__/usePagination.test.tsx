@@ -2,7 +2,6 @@ import React from 'react'
 import { act, renderHook } from '@testing-library/react'
 import { throws } from 'assert'
 import { createMemoryHistory, type History } from 'history'
-import { URLSearchParams } from 'url'
 import { usePagination } from '../hooks/usePagination'
 import { TestingRouterWrapper } from '@/utils/testing.utils'
 
