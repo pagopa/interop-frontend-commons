@@ -8,11 +8,8 @@ import type {
   FiltersHandlers,
   FilterFieldValue,
   FilterFieldsValues,
-} from '@/features/filters/filters.types'
-import {
-  getFiltersFieldsInitialValues,
-  getFiltersFieldsDefaultValue,
-} from '@/features/filters/filters.utils'
+} from '../filters.types'
+import { getFiltersFieldsInitialValues, getFiltersFieldsDefaultValue } from '../filters.utils'
 import { useSearchParams } from 'react-router-dom'
 
 export type FiltersProps = FiltersHandlers

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Chip, Divider, Stack } from '@mui/material'
-import type { ActiveFilters, FiltersHandler } from '@/features/filters/filters.types'
-import { getLocalizedValue } from '@/utils/common.utils'
+import type { ActiveFilters, FiltersHandler } from '../filters.types'
+import { getLocalizedValue } from '../../../utils/common.utils'
 
 type ActiveFilterChips = {
   activeFilters: ActiveFilters
@@ -16,7 +16,10 @@ export const ActiveFilterChips: React.FC<ActiveFilterChips> = ({
 }) => {
   if (activeFilters.length <= 0) return null
 
-  const cancelFiltersLabel = getLocalizedValue({ it: 'Annulla filtri', en: 'Cancel filters' })
+  const cancelFiltersLabel = getLocalizedValue({
+    it: 'Annulla filtri',
+    en: 'Cancel filters',
+  })
 
   return (
     <>

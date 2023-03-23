@@ -1,11 +1,13 @@
 {
   "name": "@pagopa/interop-fe-commons",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "",
   "scripts": {
     "lint": "tsc",
     "build": "vite build",
-    "test": "vitest run && npm run lint"
+    "test": "npm run lint && vitest run",
+    "prettify": "prettier --write .",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@babel/core": "^7.21.3",
@@ -38,7 +40,10 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "history": "^5.3.0",
+    "husky": "^8.0.3",
     "jsdom": "^21.1.1",
+    "lint-staged": "^13.2.0",
+    "prettier": "^2.8.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.2",
@@ -79,5 +84,8 @@
       "import": "./dist/index.es.js",
       "require": "./dist/index.umd.js"
     }
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
   }
 }

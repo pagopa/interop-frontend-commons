@@ -5,13 +5,14 @@ import type {
   FiltersHandler,
   FiltersHandlers,
   FiltersParams,
-} from '@/features/filters/filters.types'
+} from '../filters.types'
 import { useSearchParams } from 'react-router-dom'
 import {
   encodeMultipleFilterFieldValue,
   decodeMultipleFilterFieldValue,
   mapSearchParamsToActiveFiltersAndFilterParams,
-} from '@/features/filters/filters.utils'
+  encodeSingleFilterFieldValue,
+} from '../filters.utils'
 
 export function useFilters<TFiltersParams extends FiltersParams>(
   fields: FilterFields<Extract<keyof TFiltersParams, string>>
@@ -21,19 +22,37 @@ export function useFilters<TFiltersParams extends FiltersParams>(
   const onChangeActiveFilter = React.useCallback<FiltersHandler>(
     (type, filterKey, value) => {
       const newSearchParams = new URLSearchParams(searchParams)
-      if (value === null || (!(value instanceof Date) && value.length === 0)) {
+
+      let shouldBeRemoved = false
+      if (type === 'datepicker' && value === null) {
+        shouldBeRemoved = true
+      }
+      if (
+        ['freetext', 'autocomplete-multiple', 'numeric'].includes(type) &&
+        (value as string | Array<FilterOption>).length === 0
+      ) {
+        shouldBeRemoved = true
+      }
+      if (shouldBeRemoved) {
         newSearchParams.delete(filterKey)
         setSearchParams(newSearchParams)
         return
       }
 
       switch (type) {
+        case 'numeric':
         case 'freetext':
-          newSearchParams.set(filterKey, value as string)
+          newSearchParams.set(filterKey, String(value))
           break
         case 'autocomplete-multiple':
-          const urlParamValue = encodeMultipleFilterFieldValue(value as Array<FilterOption>)
-          newSearchParams.set(filterKey, urlParamValue)
+          const urlParamMultipleFilterValue = encodeMultipleFilterFieldValue(
+            value as Array<FilterOption>
+          )
+          newSearchParams.set(filterKey, urlParamMultipleFilterValue)
+          break
+        case 'autocomplete-single':
+          const urlParamSingleFilterValue = encodeSingleFilterFieldValue(value as FilterOption)
+          newSearchParams.set(filterKey, urlParamSingleFilterValue)
           break
         case 'datepicker':
           newSearchParams.set(filterKey, (value as Date).toISOString())
@@ -52,7 +71,9 @@ export function useFilters<TFiltersParams extends FiltersParams>(
 
       switch (type) {
         case 'freetext':
+        case 'numeric':
         case 'datepicker':
+        case 'autocomplete-single':
           newSearchParams.delete(filterKey)
           break
         case 'autocomplete-multiple':
