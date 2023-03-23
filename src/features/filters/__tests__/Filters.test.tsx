@@ -11,6 +11,7 @@ const onTextInputChangeFn = vi.fn()
 
 const fieldMocks: FilterFields = [
   { name: 'single-field', type: 'freetext', label: 'Single Filter Field' },
+  { name: 'numeric-field', type: 'numeric', label: 'Numeric Field' },
   {
     name: 'multiple-field',
     type: 'autocomplete-multiple',
@@ -19,6 +20,16 @@ const fieldMocks: FilterFields = [
       { label: 'Option2', value: 'option-2' },
     ],
     label: 'Multiple Filter Field',
+    onTextInputChange: onTextInputChangeFn,
+  },
+  {
+    name: 'autocomplete-single-field',
+    type: 'autocomplete-single',
+    options: [
+      { label: 'Option1', value: 'option-1' },
+      { label: 'Option2', value: 'option-2' },
+    ],
+    label: 'Autocomplete Single Field',
     onTextInputChange: onTextInputChangeFn,
   },
 ]
