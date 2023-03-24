@@ -11,6 +11,15 @@ export interface InformationContainerProps extends Omit<StackProps, 'children'> 
   copyToClipboard?: CopyToClipboardProps
 }
 
+/**
+ * Renders a label and a content in a row or a column.
+ *
+ * If the content is a string, it will be wrapped in a <p> tag.
+ * If the content is a JSX.Element, it will be wrapped in a <div> tag.
+ *
+ * If the copyToClipboard prop is passed, a copy to clipboard button will be rendered.
+ * The copyToClipboard prop will be passed to the CopyToClipboardButton `@pagopa/mui-italia's` component.
+ */
 export function InformationContainer({
   label,
   labelDescription,
