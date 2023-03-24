@@ -15,7 +15,7 @@ npm install @italia/pdnd-interop-commons
 
 ## Componenti
 
-### `useFilters` e `Filters`
+### useFilters e Filters
 Permettono di gestire i filtri di ricerca. Essi vanno utilizzati in coppia.
 
 `useFilters` è un hook che mantiene in sync lo stato dei filtri con i parametri url. Ritorna l'oggetto contenente i dati da passare alla query e ciò che serve al componente `Filters` per renderizzare i campi, i filtri attivi e gestire le interazioni con l'utente.
@@ -87,7 +87,7 @@ const FiltersExample: React.FC = () => {
 }
   ```
 
-## `usePagination` e `Pagination`
+## usePagination e Pagination
 Permettono di gestire la paginazione. Analogamente a `useFilters` e `Filters`, vanno utilizzati in coppia.
 
 `usePagination` è un hook che mantiene in sync lo stato della paginazione con i parametri url. Accetta in input un oggetto con una proprietà `limit` che indica il numero di elementi desiderati per pagina e ritorna un oggetto contente:
@@ -127,7 +127,7 @@ const PaginationExample: React.FC = () => {
 }
 ```
 
-## `Table` e `TableRow`
+## Table e TableRow
 
 `Table` e `TableRow` sono componenti che permettono di renderizzare una tabella. 
 
@@ -176,7 +176,7 @@ export const TableExample: React.FC = () => {
 
 ## Hooks
 
-### `useAutocompleteTextInput`
+### useAutocompleteTextInput
 
 Hook che gestisce il caso in cui ci sia bisogno di effettuare query per filtrare le opzioni di un Autocomplete di `MUI`.
 
@@ -217,7 +217,7 @@ const AutocompleteExample: React.FC = () => {
 
 ## Layouts
 
-### `InformationContainer`
+### InformationContainer
 
 Componente che viene generalmente utilizzato per mostrare un informazione costituita da una label ed un contenuto. Accetta come props:
 
