@@ -1,3 +1,7 @@
+![CI](https://github.com/pagopa/interop-fe-commons/actions/workflows/ci.yml/badge.svg)
+![NPM](https://img.shields.io/npm/v/@pagopa/interop-fe-commons)
+
+
 # PDND Interoperabilità: libreria commons
 
 Raccolta di componenti e funzionalità utilizzati da progetti PDND Interoperabilità.
@@ -39,11 +43,10 @@ I filtri di tipo `numeric`, oltre ai campi obbligatori, accettano opzionalmente,
 Esempio di utilizzo:
 
 ```tsx
-const [autocompleteConsumerIdTextInput, setAutocompleteConsumerIdTextInput] =
-    useAutocompleteTextInput("");
-  const [autocompleteStateTextInput, setAutocompleteStateTextInput] =
-    useAutocompleteTextInput("");
+import React from "react";
+import { useFilters, Filters } from "@pagopa/interop-fe-commons";
 
+const FiltersExample: React.FC = () => {
   const { filtersParams, ...handlers } = useFilters<EServiceListQueryFilters>([
     { name: "q", type: "freetext", label: "Find by name" },
     {
@@ -61,7 +64,7 @@ const [autocompleteConsumerIdTextInput, setAutocompleteConsumerIdTextInput] =
         { value: "option-1", label: "PagoPA S.p.A." },
         { value: "option-2", label: "Agenzia delle Entrate" },
       ],
-      onTextInputChange: setAutocompleteConsumerIdTextInput,
+      onTextInputChange: (value) => console.log(value),
     },
     {
       name: "state",
@@ -71,7 +74,7 @@ const [autocompleteConsumerIdTextInput, setAutocompleteConsumerIdTextInput] =
         { value: "option-1", label: "PagoPA S.p.A." },
         { value: "option-2", label: "Agenzia delle Entrate" },
       ],
-      onTextInputChange: setAutocompleteStateTextInput,
+      onTextInputChange: (value) => console.log(value),
     },
     {
       name: "createdAt",
@@ -81,6 +84,7 @@ const [autocompleteConsumerIdTextInput, setAutocompleteConsumerIdTextInput] =
   ]);
   
   return <Filters {...handlers} />
+}
   ```
 
 ## `usePagination` e `Pagination`
@@ -97,18 +101,128 @@ Esso accetta tutte le props di un componente `Stack` di `MUI` nel caso si voglia
 Esempio di utilizzo:
 
 ```tsx
-const { 
-  paginationParams, 
-  paginationProps, 
-  getTotalPageCount 
-} = usePagination({ limit: 10 });
+import React from "react";
+import { usePagination, Pagination } from "@pagopa/interop-fe-commons";
+import { useQuery } from '@tanstack/react-query'
 
-const totalPages = getTotalPageCount(response.totalCount);
+const PaginationExample: React.FC = () => {
+  const { 
+    paginationParams, 
+    paginationProps, 
+    getTotalPageCount 
+  } = usePagination({ limit: 10 });
 
-return (
-  <Pagination 
-    totalPages={totalPages} 
-    {...paginationProps} 
-  />
-);
+  const { data } = useQuery(
+    ["Records", {...paginationParams }], 
+    /* ... */
+  ) 
+  const totalPages = getTotalPageCount(data.totalCount);
+
+  return (
+    <Pagination 
+      totalPages={totalPages} 
+      {...paginationProps} 
+    />
+  );
+}
 ```
+
+## `Table` e `TableRow`
+
+`Table` e `TableRow` sono componenti che permettono di renderizzare una tabella. 
+
+`Table` accetta come props:
+- `headLabels`: array di stringhe che vanno a comporre l'intestazione della tabella. Il numero di elementi sarà uguale al numero di colonne.
+- `isEmpty`: booleano opzionale che indica se la tabella è vuota. Se è `true`, viene renderizzato una alert di `MUI` con messaggio di avviso.
+- `noDataLabel`: stringa opzionale che indica il messaggio da mostrare nel renderizzato nel caso `isEmpty` sia `true`. Di default è 'La ricerca corrente non ha prodotto risultati' che viene tradotto in base alla lingua impostata (italiano o inglese).
+
+`TableRow`, vanno inserite come `children` del componente `Table`. Accetta come props: 
+- `cellData`: array di stringhe o elementi JSX che vanno a comporre una riga della tabella. **Attenzione: nel caso di elementi JSX, è necessario passare un `key` univoco per ogni elemento.**
+- `children`: opzionale, se viene passato, viene renderizzato come ultima colonna della tabella, allineata a destra. Può essere usato per renderizzare un azione (es. un bottone) per ogni riga.
+
+Esempio di utilizzo:
+
+```tsx
+import React from "react";
+import { Table, TableRow } from "@pagopa/interop-fe-commons";
+import { Button, Chip } from "@mui/material";
+
+const tableData = [
+  { name: "e-service 1", state: "ACTIVE" },
+  { name: "e-service 2", state: "SUSPENDED" },
+  { name: "e-service 3", state: "ARCHIVED" },
+];
+
+export const TableExample: React.FC = () => {
+  const headLabels = ["Nome", "Stato", ""];
+  const isEmpty = tableData.length === 0;
+
+  return (
+    <Table isEmpty={isEmpty} headLabels={headLabels}>
+      {tableData.map((data) => (
+        <TableRow
+          key={data.name}
+          cellData={[data.name, <Chip key={data.name} label={data.state} />]}
+        >
+          <Button size="small" variant="outlined">
+            Ispeziona
+          </Button>
+        </TableRow>
+      ))}
+    </Table>
+  );
+};
+```
+
+## Hooks
+
+### `useAutocompleteTextInput`
+
+Hook che gestisce il caso in cui ci sia bisogno di effettuare query per filtrare le opzioni di un Autocomplete di `MUI`.
+
+Per il filtraggio dinamico delle opzioni utilizziamo la seguente logica:
+
+- se il valore del campo di testo contiene meno di 3 caratteri, dal backend ci tornano tutte le opzioni (max 50) ed il filtraggio delle opzioni avviene client-side (svolto in automatico dall'Autocomplete di `MUI`).
+- se il valore del campo di testo contiene almeno 3 caratteri, il filtraggio delle opzioni avviene tramite query al backend.
+
+L'hook si comporta analogamente a `useState` di React, l'unica differenza è la funzione di `setState` che implementa il comportamento descritto sopra, applicando un debounce di 300ms al cambio di stato.
+
+Esempio di utilizzo:
+
+```tsx
+import React from "react";
+import { useAutocompleteTextInput } from "@pagopa/interop-fe-commons";
+import { Autocomplete } from "@mui/material";
+import { useQuery } from "@tanstack/react-query";
+
+const AutocompleteExample: React.FC = () => {
+  const [optionsSearchQuery, setInputTextValue] = useAutocompleteTextInput();
+
+  const { data: options } = useQuery(
+    ["Options", { q: optionsSearchQuery }],
+    /* ... */
+  )
+
+  return (
+    <Autocomplete
+      value={value}
+      options={options}
+      onInputChange={setInputTextValue}
+      {/** ... */}
+    />
+  );
+};
+```
+
+
+## Layouts
+
+### `InformationContainer`
+
+Componente che viene generalmente utilizzato per mostrare un informazione costituita da una label ed un contenuto. Accetta come props:
+
+- `label`: stringa che indica il titolo da mostrare.
+- `labelDescription`: stringa opzionale che indica una descrizione del titolo.
+- `content`: stringa o elemento JSX che indica il contenuto da mostrare.
+- `copyToClipboard`: opzionale, prende un oggetto con le props del componente `CopyToClipboard` di `@pagopa/mui-italia` che vengono passate al componente stesso. Se non viene passato, il componente non viene renderizzato.
+
