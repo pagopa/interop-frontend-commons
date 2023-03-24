@@ -55,6 +55,9 @@ export function InformationContainer({
   )
 }
 
+/**
+ * Renders a skeleton for the InformationContainer component.
+ */
 export const InformationContainerSkeleton: React.FC = () => {
   return (
     <Stack spacing={4} direction="row">
