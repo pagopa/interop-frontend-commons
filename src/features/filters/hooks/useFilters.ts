@@ -14,6 +14,54 @@ import {
   encodeSingleFilterFieldValue,
 } from '../filters.utils'
 
+/**
+ * @description
+ * This hook is used to manage the filters state keeping it in sync with the url params.
+ * @param fields - The filters fields
+ * @returns The filters params and the handlers to pass to the `Filter` component.
+ * @example
+ * const { filterParams, ...handlers } = useFilters([
+ *  {
+ *     name: 'name',
+ *     type: 'freetext',
+ *     label: 'Name',
+ *  },
+ *  {
+ *     name: 'category',
+ *     type: 'autocomplete-multiple',
+ *     label: 'Category',
+ *     options: [
+ *       { label: 'Category 1', value: 'category-1' },
+ *       { label: 'Category 2', value: 'category-2' },
+ *       { label: 'Category 3', value: 'category-3' },
+ *     ],
+ *  },
+ *  {
+ *     name: 'date',
+ *     type: 'datepicker',
+ *     label: 'Date',
+ *  },
+ *  {
+ *     name: 'price',
+ *     type: 'numeric',
+ *     label: 'Price',
+ *  },
+ *  {
+ *     name: 'status',
+ *     type: 'autocomplete-single',
+ *     label: 'Status',
+ *     options: [
+ *       { label: 'Status 1', value: 'status-1' },
+ *       { label: 'Status 2', value: 'status-2' },
+ *       { label: 'Status 3', value: 'status-3' },
+ *     ],
+ *  },
+ * ])
+ *
+ * return (
+ *    <Filter {...handlers} />
+ * )
+ */
 export function useFilters<TFiltersParams extends FiltersParams>(
   fields: FilterFields<Extract<keyof TFiltersParams, string>>
 ): FiltersHandlers & { filtersParams: TFiltersParams } {
