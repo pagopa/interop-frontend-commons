@@ -10,6 +10,9 @@ export interface PaginationProps extends StackProps {
   onPageChange: (numPage: number) => void
 }
 
+/**
+ * Renders a pagination component, here should be passed the `paginationProps` property returned from the `usePagination` hook.
+ */
 export const Pagination: React.FC<PaginationProps> = ({
   totalPages,
   onPageChange,
