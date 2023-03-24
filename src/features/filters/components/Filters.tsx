@@ -14,6 +14,9 @@ import { useSearchParams } from 'react-router-dom'
 
 export type FiltersProps = FiltersHandlers
 
+/**
+ * Takes the filters handlers returned from the useFilters hook and renders the filters fields and the active filters chips.
+ */
 export const Filters: React.FC<FiltersProps> = ({
   activeFilters,
   onChangeActiveFilter,
