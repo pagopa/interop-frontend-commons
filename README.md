@@ -90,7 +90,7 @@ const FiltersExample: React.FC = () => {
 ## usePagination e Pagination
 L'hook `usePagination` ed il componente `Pagination` gestiscono il sistema di paginatione.
 
-`usePagination`che mantiene lo stato della paginazione in sync con i parametri url. Accetta in input un oggetto con una proprietà `limit` che indica il numero di elementi desiderati per pagina e ritorna un oggetto contente:
+`usePagination` è un hook che mantiene lo stato della paginazione in sync con i parametri url. Accetta in input un oggetto con una proprietà `limit` che indica il numero di elementi desiderati per pagina e ritorna un oggetto contente:
 - `paginationParams`: oggetto contenente i parametri da passare alla query.
 - `paginatinoProps`: oggetto contenente le props da passare al componente `Pagination`.
 - `getTotalPageCount`: funzione che prende in input il numero totale di elementi e ritorna il numero totale di pagine.
