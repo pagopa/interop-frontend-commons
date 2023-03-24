@@ -13,9 +13,7 @@ npm install @italia/pdnd-interop-commons
 ```
 > ⚠️ Accertarsi di avere installato tutte le `peerDependencies` richieste.
 
-## Componenti
-
-### useFilters e Filters
+## useFilters e Filters
 L'hook `useFilters` ed il componente `Filters` gestiscono il sistema di filtri.
 
 `useFilters` mantiene lo stato dei filtri in sync con i parametri url. Ritorna l'oggetto contenente i dati da passare alla query e ciò che serve al componente `Filters` per renderizzare i campi, i filtri attivi e gestire le interazioni con l'utente.
