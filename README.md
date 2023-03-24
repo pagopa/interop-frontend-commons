@@ -16,11 +16,11 @@ npm install @italia/pdnd-interop-commons
 ## Componenti
 
 ### useFilters e Filters
-Permettono di gestire i filtri di ricerca. Essi vanno utilizzati in coppia.
+L'hook `useFilters` ed il componente `Filters` gestiscono il sistema di filtri.
 
-`useFilters` è un hook che mantiene in sync lo stato dei filtri con i parametri url. Ritorna l'oggetto contenente i dati da passare alla query e ciò che serve al componente `Filters` per renderizzare i campi, i filtri attivi e gestire le interazioni con l'utente.
+`useFilters` mantiene lo stato dei filtri in sync con i parametri url. Ritorna l'oggetto contenente i dati da passare alla query e ciò che serve al componente `Filters` per renderizzare i campi, i filtri attivi e gestire le interazioni con l'utente.
 
-L'hook accetta un array di oggetti che descrivono i filtri disponibili. Ogni oggetto deve avere i seguenti campi obbligatori:
+L'hook accetta un array di oggetti che descrivono i filtri disponibili. Ogni oggetto deve essere costituito dai seguenti campi obbligatori:
 - `label`: Etichetta del filtro
 - `name`: Nome del filtro, usato internamente per identificare il filtro e per costruire i parametri url.
 - `type`: Tipo del filto. Può essere 
@@ -88,9 +88,9 @@ const FiltersExample: React.FC = () => {
   ```
 
 ## usePagination e Pagination
-Permettono di gestire la paginazione. Analogamente a `useFilters` e `Filters`, vanno utilizzati in coppia.
+L'hook `usePagination` ed il componente `Pagination` gestiscono il sistema di paginatione.
 
-`usePagination` è un hook che mantiene in sync lo stato della paginazione con i parametri url. Accetta in input un oggetto con una proprietà `limit` che indica il numero di elementi desiderati per pagina e ritorna un oggetto contente:
+`usePagination`che mantiene lo stato della paginazione in sync con i parametri url. Accetta in input un oggetto con una proprietà `limit` che indica il numero di elementi desiderati per pagina e ritorna un oggetto contente:
 - `paginationParams`: oggetto contenente i parametri da passare alla query.
 - `paginatinoProps`: oggetto contenente le props da passare al componente `Pagination`.
 - `getTotalPageCount`: funzione che prende in input il numero totale di elementi e ritorna il numero totale di pagine.
