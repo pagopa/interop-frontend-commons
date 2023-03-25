@@ -1,8 +1,5 @@
 import React from 'react'
-import {
-  InformationContainer,
-  InformationContainerSkeleton,
-} from '../components/InformationContainer'
+import { InformationContainer, InformationContainerSkeleton } from '../InformationContainer'
 import renderer from 'react-test-renderer'
 
 describe('InformationContainer component', () => {
