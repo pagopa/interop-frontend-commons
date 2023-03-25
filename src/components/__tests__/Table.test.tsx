@@ -1,8 +1,8 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import { Button, Chip } from '@mui/material'
-import { TableRow } from '@/features/table/components/TableRow'
-import { Table } from '@/features/table/components/Table'
+import { TableRow } from '../TableRow'
+import { Table } from '../Table'
 
 const tableInputs = {
   standard: {
