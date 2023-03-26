@@ -3,8 +3,8 @@ import type { ComponentMeta } from '@storybook/react'
 import { FiltersExample } from './FiltersExample'
 
 export default {
-  title: 'Filters/Example',
+  title: 'Features/Filters',
   component: FiltersExample,
 } as ComponentMeta<typeof FiltersExample>
 
-export const Example = () => <FiltersExample />
+export const Filters = () => <FiltersExample />
