@@ -1,8 +1,7 @@
 import React from 'react'
-import { Filters, useAutocompleteTextInput, useFilters } from '../../..'
-import { Box, Button, Container, Paper, Stack, Typography } from '@mui/material'
+import { CodeBlock, Filters, useAutocompleteTextInput, useFilters } from '../../..'
+import { Box, Button, Container, Stack, Typography } from '@mui/material'
 import { RouterProvider, createBrowserRouter, useLocation } from 'react-router-dom'
-import { CopyToClipboardButton } from '@pagopa/mui-italia'
 
 type EServiceListQueryFilters = {
   q?: string
@@ -90,7 +89,7 @@ const _FiltersExample: React.FC = () => {
               <CodeBlock code={handlers.activeFilters} />
             </Box>
           </Stack>
-        )}{' '}
+        )}
       </Container>
     </>
   )
@@ -99,28 +98,4 @@ const _FiltersExample: React.FC = () => {
 const router = createBrowserRouter([{ path: '*', element: <_FiltersExample /> }])
 export const FiltersExample: React.FC = () => {
   return <RouterProvider router={router} />
-}
-
-const CodeBlock: React.FC<{ code: unknown }> = ({ code }) => {
-  const stringifiedCode = typeof code === 'object' ? JSON.stringify(code, null, 2) : String(code)
-  return (
-    <Box>
-      <Paper
-        sx={{
-          p: 2,
-          position: 'relative',
-          backgroundColor: 'background.default',
-          whiteSpace: 'pre-wrap',
-          maxHeight: 520,
-          overflowY: 'auto',
-          fontSize: 'small',
-        }}
-      >
-        <Box sx={{ position: 'absolute', top: 8, right: 8 }}>
-          <CopyToClipboardButton value={stringifiedCode} />
-        </Box>
-        <code>{stringifiedCode}</code>
-      </Paper>
-    </Box>
-  )
 }
