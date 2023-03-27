@@ -2,7 +2,7 @@
 ![NPM](https://img.shields.io/npm/v/@pagopa/interop-fe-commons)
 
 
-# PDND Interoperabilità: libreria commons
+# PDND Interoperabilità: commons
 
 Raccolta di componenti e funzionalità utilizzati da progetti PDND Interoperabilità.
 
@@ -11,6 +11,7 @@ Raccolta di componenti e funzionalità utilizzati da progetti PDND Interoperabil
 - [Componenti](#componenti)
   - [Table e TableRow](#table-e-tablerow)
   - [InformationContainer](#informationcontainer)
+  - [CodeBlock](#codeblock)
 - [Hooks](#hooks)
   - [useAutocompleteTextInput](#useautocompletetextinput)
 
