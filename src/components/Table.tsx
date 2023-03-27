@@ -12,8 +12,20 @@ import { getLocalizedValue } from '@/utils/common.utils'
 
 export interface TableProps {
   children: React.ReactNode
+  /**
+   * The labels for the table's header, the length of this array will be the number of columns.
+   * */
   headLabels: Array<string>
+  /**
+   * If true, the table will display a message saying that the current search returned no results.
+   * The message will be localized.
+   */
   isEmpty?: boolean
+  /**
+   * The message to display when the current search returned no results.
+   * @default 'La ricerca corrente non ha prodotto risultati' (it)
+   * @default 'Your current search returned no results' (en)
+   * */
   noDataLabel?: string
 }
 
