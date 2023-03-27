@@ -7,6 +7,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers'
 import { DesktopDateTimePicker } from '@mui/x-date-pickers/DesktopDateTimePicker'
 import type { FilterFieldCommonProps } from '../filters.types'
 import { isValidDate } from '../filters.utils'
+import SearchIcon from '@mui/icons-material/Search'
+import { IconButton, InputAdornment } from '@mui/material'
 
 export const DatepickerFilterField: React.FC<FilterFieldCommonProps> = ({
   field,
@@ -16,8 +18,9 @@ export const DatepickerFilterField: React.FC<FilterFieldCommonProps> = ({
 }) => {
   const filterKey = field.name
   const adapterLocale = getLocalizedValue({ it: itLocale, en: enLocale })
+  const searchIconAriaLabel = getLocalizedValue({ it: 'Filtra', en: 'Filter' })
 
-  const enableDatepickerFilter = (filterKey: string) => {
+  const enableDatepickerFilter = () => {
     if (!value || !isValidDate(value as Date)) return
 
     onChangeActiveFilter('datepicker', filterKey, value)
@@ -30,7 +33,7 @@ export const DatepickerFilterField: React.FC<FilterFieldCommonProps> = ({
     if (target.type === 'button') return
 
     target.blur()
-    enableDatepickerFilter(field.name)
+    enableDatepickerFilter()
   }
 
   const handleDatepickerChange = (data: Date | null) => {
@@ -44,6 +47,20 @@ export const DatepickerFilterField: React.FC<FilterFieldCommonProps> = ({
         value={value as Date | null}
         onChange={handleDatepickerChange}
         label={field.label}
+        slots={{
+          inputAdornment: (inputAdornmentProps) => (
+            <>
+              <InputAdornment {...inputAdornmentProps} />
+              <IconButton
+                onClick={enableDatepickerFilter}
+                disabled={!value}
+                sx={{ mr: -1.5, ml: 1 }}
+              >
+                <SearchIcon aria-label={searchIconAriaLabel} />
+              </IconButton>
+            </>
+          ),
+        }}
         slotProps={{
           textField: { size: 'small', onKeyDown: handleDatepickerKeyDown },
         }}
