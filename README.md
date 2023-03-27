@@ -6,13 +6,13 @@
 
 Raccolta di componenti e funzionalità utilizzati da progetti PDND Interoperabilità.
 
-- [useFilters e Filters](#usefilters-e-filters)
-- [usePagination e Pagination](#usepagination-e-pagination)
-- [Table e TableRow](#table-e-tablerow)
+- [Filtri](#filtri)
+- [Paginazione](#paginazione)
+- [Componenti](#componenti)
+  - [Table e TableRow](#table-e-tablerow)
+  - [InformationContainer](#informationcontainer)
 - [Hooks](#hooks)
   - [useAutocompleteTextInput](#useautocompletetextinput)
-- [Layouts](#layouts)
-  - [InformationContainer](#informationcontainer)
 
 ## Installazione
 
@@ -21,8 +21,8 @@ npm install @italia/pdnd-interop-commons
 ```
 > ⚠️ Accertarsi di avere installato tutte le `peerDependencies` richieste.
 
-## useFilters e Filters
-L'hook `useFilters` ed il componente `Filters` gestiscono il sistema di filtri.
+## Filtri
+I filtri vengono gestiti attraverso un hook, `useFilters`, e un componente `Filters`.
 
 `useFilters` mantiene lo stato dei filtri in sync con i parametri url. Ritorna l'oggetto contenente i dati da passare alla query e ciò che serve al componente `Filters` per renderizzare i campi, i filtri attivi e gestire le interazioni con l'utente.
 
@@ -93,8 +93,8 @@ const FiltersExample: React.FC = () => {
 }
   ```
 
-## usePagination e Pagination
-L'hook `usePagination` ed il componente `Pagination` gestiscono il sistema di paginatione.
+## Paginazione
+La paginazione viene gestita attraverso un hook, `usePagination`, e un componente `Pagination`.
 
 `usePagination` è un hook che mantiene lo stato della paginazione in sync con i parametri url. Accetta in input un oggetto con una proprietà `limit` che indica il numero di elementi desiderati per pagina e ritorna un oggetto contente:
 - `paginationParams`: oggetto contenente i parametri da passare alla query.
@@ -133,7 +133,8 @@ const PaginationExample: React.FC = () => {
 }
 ```
 
-## Table e TableRow
+## Componenti
+### Table e TableRow
 
 `Table` e `TableRow` sono componenti che permettono di renderizzare una tabella. 
 
@@ -180,6 +181,38 @@ export const TableExample: React.FC = () => {
 };
 ```
 
+### InformationContainer
+
+Componente che viene generalmente utilizzato per mostrare un informazione costituita da una label ed un contenuto. Accetta come props:
+
+- `label`: stringa che indica il titolo da mostrare.
+- `labelDescription`: stringa opzionale che indica una descrizione del titolo.
+- `content`: stringa o elemento JSX che indica il contenuto da mostrare.
+- `copyToClipboard`: opzionale, prende un oggetto con le props del componente `CopyToClipboard` di `@pagopa/mui-italia` che vengono passate al componente stesso. Se non viene passato, il componente non viene renderizzato.
+
+Esempio di utilizzo:
+
+```tsx
+import React from "react";
+import { InformationContainer } from "@pagopa/interop-fe-commons";
+
+const InformationContainerExample: React.FC = () => {
+  return (
+    <InformationContainer
+      label="E-Service"
+      labelDescription="This is the e-service name"
+      content="Service"
+    />
+  )
+}
+```
+
+### CodeBlock
+
+Componente che permette di mostrare un blocco di codice. Accetta come props:
+- `code`: stringa che indica il codice da mostrare. Se viene passato un oggetto, viene serializzato tramite `JSON.stringify`.
+- `hideCopyButton`: booleano opzionale che indica se il bottone per copiare il codice deve essere nascosto. Di default viene mostrato.
+
 ## Hooks
 
 ### useAutocompleteTextInput
@@ -219,15 +252,3 @@ const AutocompleteExample: React.FC = () => {
   );
 };
 ```
-
-## Layouts
-
-### InformationContainer
-
-Componente che viene generalmente utilizzato per mostrare un informazione costituita da una label ed un contenuto. Accetta come props:
-
-- `label`: stringa che indica il titolo da mostrare.
-- `labelDescription`: stringa opzionale che indica una descrizione del titolo.
-- `content`: stringa o elemento JSX che indica il contenuto da mostrare.
-- `copyToClipboard`: opzionale, prende un oggetto con le props del componente `CopyToClipboard` di `@pagopa/mui-italia` che vengono passate al componente stesso. Se non viene passato, il componente non viene renderizzato.
-
