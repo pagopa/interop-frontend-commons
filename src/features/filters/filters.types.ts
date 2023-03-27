@@ -18,7 +18,14 @@ export type FiltersHandlers = {
 }
 
 type FilterFieldCommon<TName extends string = string> = {
+  /**
+   * The name of the filter field.
+   * It will be used as the key in the URL search params and as the key in the `filtersParams` returned object.
+   */
   name: TName
+  /**
+   * The label of the filter field.
+   */
   label: string
 }
 
@@ -29,14 +36,28 @@ export type DatepickerFilterFieldOptions<TName extends string = string> =
   FilterFieldCommon<TName> & { type: 'datepicker' }
 export type NumericFilterFieldOptions<TName extends string = string> = FilterFieldCommon<TName> & {
   type: 'numeric'
+  /**
+   * The minimum value of the numeric filter.
+   */
   min?: number
+  /**
+   * The maximum value of the numeric filter.
+   */
   max?: number
 }
 
 export type AutocompleteFilterFieldOptions<TName extends string = string> =
   FilterFieldCommon<TName> & {
     type: 'autocomplete-multiple' | 'autocomplete-single'
+    /**
+     * The options of the autocomplete filter.
+     * The values must be unique.
+     */
     options: Array<FilterOption>
+    /**
+     * Callback called when the user types in the autocomplete input.
+     * @param value The value of the input.
+     */
     onTextInputChange?: (value: string) => void
   }
 
