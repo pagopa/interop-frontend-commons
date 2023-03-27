@@ -120,7 +120,7 @@ const PaginationExample: React.FC = () => {
   } = usePagination({ limit: 10 });
 
   const { data } = useQuery(
-    ["Records", {...paginationParams }], 
+    ["Records", paginationParams], 
     /* ... */
   ) 
   const totalPages = getTotalPageCount(data.totalCount);
