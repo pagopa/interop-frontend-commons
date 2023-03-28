@@ -18,9 +18,13 @@ Raccolta di componenti e funzionalità utilizzati da progetti PDND Interoperabil
 ## Installazione
 
 ```bash
-npm install @italia/pdnd-interop-commons
+npm install @pagopa/interop-fe-commons
 ```
 > ⚠️ Accertarsi di avere installato tutte le `peerDependencies` richieste.
+```bash
+npm install @pagopa/mui-italia @mui/material @mui/lab @mui/icons-material @emotion/react @emotion/styled date-fns @mui/x-date-pickers react-router-dom
+```
+
 
 ## Filtri
 I filtri vengono gestiti attraverso un hook, `useFilters`, e un componente `Filters`.
