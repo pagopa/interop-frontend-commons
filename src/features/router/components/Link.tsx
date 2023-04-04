@@ -13,7 +13,7 @@ import {
 import type { ExtractRouteParams, Routes } from '../router.types'
 import { omit } from '../routes.utils'
 
-interface RouterLinkOptions extends NavigateOptions {
+export interface RouterLinkOptions extends NavigateOptions {
   urlParams: Record<string, string>
 }
 
