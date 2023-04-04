@@ -1,10 +1,10 @@
 import React from 'react'
-import type { ComponentMeta } from '@storybook/react'
+import type { Meta, StoryFn } from '@storybook/react'
 import { FiltersExample } from './FiltersExample'
 
 export default {
   title: 'Features/Filters',
   component: FiltersExample,
-} as ComponentMeta<typeof FiltersExample>
+} as Meta<typeof FiltersExample>
 
-export const Filters = () => <FiltersExample />
+export const Filters: StoryFn = () => <FiltersExample />

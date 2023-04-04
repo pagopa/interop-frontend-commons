@@ -1,7 +1,6 @@
 import React from 'react'
 import type { ComponentStory, ComponentMeta } from '@storybook/react'
 import { CodeBlock as _CodeBlock } from '../CodeBlock'
-import { Container } from '@mui/material'
 
 export default {
   title: 'Components/CodeBlock',
@@ -18,8 +17,4 @@ export default {
   },
 } as ComponentMeta<typeof _CodeBlock>
 
-export const CodeBlock: ComponentStory<typeof _CodeBlock> = (args) => (
-  <Container sx={{ p: 8, bgcolor: 'white' }}>
-    <_CodeBlock {...args} />
-  </Container>
-)
+export const CodeBlock: ComponentStory<typeof _CodeBlock> = (args) => <_CodeBlock {...args} />

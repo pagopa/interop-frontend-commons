@@ -1,7 +1,6 @@
 import React from 'react'
-import type { ComponentStory, ComponentMeta } from '@storybook/react'
+import type { Meta, StoryFn } from '@storybook/react'
 import { InformationContainer as _InformationContainer } from '../InformationContainer'
-import { Container } from '@mui/material'
 
 export default {
   title: 'Components/InformationContainer',
@@ -26,14 +25,10 @@ export default {
       defaultValue: 'value',
     },
   },
-} as ComponentMeta<typeof _InformationContainer>
+} as Meta<typeof _InformationContainer>
 
-const Template: ComponentStory<typeof _InformationContainer> = (args) => {
-  return (
-    <Container sx={{ p: 8, bgcolor: 'white' }}>
-      <_InformationContainer {...args} />
-    </Container>
-  )
+const Template: StoryFn<typeof _InformationContainer> = (args) => {
+  return <_InformationContainer {...args} />
 }
 
 export const DirectionRow = Template.bind({})
