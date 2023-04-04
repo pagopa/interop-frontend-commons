@@ -13,7 +13,7 @@ import {
 import type { ExtractRouteParams, Routes } from '../router.types'
 import { omit } from '../routes.utils'
 
-export interface RouterLinkOptions extends NavigateOptions {
+export interface LinkOptions extends NavigateOptions {
   urlParams: Record<string, string>
 }
 
@@ -21,7 +21,7 @@ export function generateTypedLink<TRoutes extends Routes>(routes: TRoutes) {
   function Link<RouteKey extends keyof TRoutes = keyof TRoutes>(
     props: {
       to: RouteKey
-      options?: RouterLinkOptions
+      options?: LinkOptions
     } & (ExtractRouteParams<TRoutes[RouteKey]['path']> extends undefined
       ? object
       : { params: ExtractRouteParams<TRoutes[RouteKey]['path']> }) &
