@@ -10,7 +10,8 @@ import { generateUseAuthGuard } from './hooks/useAuthGuard'
 
 export function generateTypedReactRoutedDOM<
   AuthLevel extends string,
-  const TRoutes extends Routes<AuthLevel> = Routes<AuthLevel>
+  // const TRoutes extends Routes<AuthLevel> = Routes<AuthLevel>
+  TRoutes extends Routes<AuthLevel> = Routes<AuthLevel>
 >(routes: TRoutes) {
   return {
     reactRouterDOMRoutes: generateRRDRouteObject(routes),
