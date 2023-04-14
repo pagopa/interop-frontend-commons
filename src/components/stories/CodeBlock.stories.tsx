@@ -1,5 +1,5 @@
 import React from 'react'
-import type { ComponentStory, ComponentMeta } from '@storybook/react'
+import type { StoryFn, Meta } from '@storybook/react'
 import { CodeBlock as _CodeBlock } from '../CodeBlock'
 
 export default {
@@ -15,6 +15,6 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof _CodeBlock>
+} as Meta<typeof _CodeBlock>
 
-export const CodeBlock: ComponentStory<typeof _CodeBlock> = (args) => <_CodeBlock {...args} />
+export const CodeBlock: StoryFn<typeof _CodeBlock> = (args) => <_CodeBlock {...args} />
