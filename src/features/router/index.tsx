@@ -10,7 +10,6 @@ import { generateUseAuthGuard } from './hooks/useAuthGuard'
 
 export function generateTypedReactRoutedDOM<
   AuthLevel extends string,
-  // eslint-disable-next-line prettier/prettier
   const TRoutes extends Routes<AuthLevel> = Routes<AuthLevel>
 >(routes: TRoutes) {
   return {

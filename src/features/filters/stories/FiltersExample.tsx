@@ -67,9 +67,7 @@ const _FiltersExample: React.FC = () => {
 
   return (
     <>
-      <Container sx={{ bgcolor: 'white', pt: 4, pb: 2 }}>
-        <Filters {...handlers} />
-      </Container>
+      <Filters {...handlers} />
       <Container sx={{ bgcolor: debug ? 'white' : 'initial', mt: 4, py: 4 }}>
         <Button variant="naked" onClick={() => setDebug(!debug)}>
           {debug ? 'Hide' : 'Show'} debug values
