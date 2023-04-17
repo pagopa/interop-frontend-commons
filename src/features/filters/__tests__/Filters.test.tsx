@@ -102,6 +102,42 @@ describe('Filters component', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  it('matches the snapshot with one active filter and a right content', () => {
+    const tree = renderer
+      .create(
+        <TestingRouterWrapper>
+          <Filters
+            fields={fieldMocks}
+            activeFilters={[activeFiltersMocks[0]]}
+            onChangeActiveFilter={vi.fn()}
+            onRemoveActiveFilter={vi.fn()}
+            onResetActiveFilters={vi.fn()}
+            rightContent={<div>Right Content</div>}
+          />
+        </TestingRouterWrapper>
+      )
+      .toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('matches the snapshot with more than one active filters and right content', () => {
+    const tree = renderer
+      .create(
+        <TestingRouterWrapper>
+          <Filters
+            fields={fieldMocks}
+            activeFilters={activeFiltersMocks}
+            onChangeActiveFilter={vi.fn()}
+            onRemoveActiveFilter={vi.fn()}
+            onResetActiveFilters={vi.fn()}
+            rightContent={<div>Right Content</div>}
+          />
+        </TestingRouterWrapper>
+      )
+      .toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
   it('should correctly add a filter using single filter field', async () => {
     const user = userEvent.setup()
     const onChangeActiveFilterFn = vi.fn()
