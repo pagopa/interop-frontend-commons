@@ -12,7 +12,7 @@ import type {
 import { getFiltersFieldsInitialValues, getFiltersFieldsDefaultValue } from '../filters.utils'
 import { useSearchParams } from 'react-router-dom'
 
-export type FiltersProps = FiltersHandlers
+export type FiltersProps = FiltersHandlers & { rightContent?: React.ReactNode }
 
 /**
  * Takes the filters handlers returned from the useFilters hook and renders the filters fields and the active filters chips.
@@ -23,6 +23,7 @@ export const Filters: React.FC<FiltersProps> = ({
   onRemoveActiveFilter,
   onResetActiveFilters,
   fields,
+  rightContent,
 }) => {
   const [searchParams] = useSearchParams()
   const [fieldsValues, setFieldsValues] = React.useState<FilterFieldsValues>(() =>
@@ -61,6 +62,7 @@ export const Filters: React.FC<FiltersProps> = ({
         activeFilters={activeFilters}
         onRemoveActiveFilter={handleRemoveActiveFilter}
         onResetActiveFilters={handleResetActiveFilters}
+        rightContent={rightContent}
       />
     </Stack>
   )
