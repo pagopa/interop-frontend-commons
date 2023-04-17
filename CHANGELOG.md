@@ -10,7 +10,7 @@ All notable changes to this project will be documented in this file. The format 
 
 ### Changed
 
-- Storybook bumped to v7
+-
 
 ### Deprecated
 
@@ -27,6 +27,16 @@ All notable changes to this project will be documented in this file. The format 
 ### Security
 
 -
+
+## v1.0.0 - 17-04-2023
+
+### Added
+
+- `rightContent` prop to `Filters` component.
+
+### Changed
+
+- Storybook bumped to v7
 
 ## v0.1.0 - 27-03-2023
 
