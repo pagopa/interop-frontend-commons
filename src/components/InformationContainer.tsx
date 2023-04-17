@@ -4,7 +4,7 @@ import type { StackProps } from '@mui/material'
 import { CopyToClipboardButton } from '@pagopa/mui-italia'
 import type { CopyToClipboardProps } from '@pagopa/mui-italia'
 
-export interface InformationContainerProps extends Omit<StackProps, 'children'> {
+export interface InformationContainerProps extends Omit<StackProps, 'children' | 'content'> {
   label: string
   labelDescription?: string
   content: JSX.Element | string
