@@ -10,7 +10,9 @@ All notable changes to this project will be documented in this file. The format 
 
 ### Changed
 
--
+- `InferRouteKey` type utility that infers the `RouteKey` type from the route object.
+- Moved `generateTypedReactRoutedDOM` declaration.
+- Renamed `generateTypedReactRoutedDOM` to `generateTypedRoutes`
 
 ### Deprecated
 
@@ -22,7 +24,7 @@ All notable changes to this project will be documented in this file. The format 
 
 ### Fixed
 
--
+- Missing initial forward slash in `RouteKey`'s generated paths.
 
 ### Security
 
@@ -32,11 +34,16 @@ All notable changes to this project will be documented in this file. The format 
 
 ### Added
 
-- `rightContent` prop to `Filters` component.
+- Added `CodeBlock` component.
+- Added `rightContent` prop to `Filters` component.
 
 ### Changed
 
 - Storybook bumped to v7
+
+### Fixed
+
+- Fixed router typing declarations.
 
 ## v0.1.0 - 27-03-2023
 
