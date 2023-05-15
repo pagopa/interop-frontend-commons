@@ -18,10 +18,9 @@ export type Routes<AuthLevel extends string = string> = Readonly<
     string,
     {
       path: string
-      Component: React.FC
       public: boolean
       authLevels: readonly AuthLevel[]
-    }
+    } & ({ element: React.ReactNode } | { redirect: string })
   >
 >
 
@@ -51,3 +50,5 @@ export type TypedUseNavigate<TRoutes extends Routes> = () => TypedNavigate<TRout
 export type TypedUseParams<TRoutes extends Routes> = <
   RouteKey extends keyof TRoutes = keyof TRoutes
 >() => ExtractRouteParams<TRoutes[RouteKey]['path']>
+
+export type InferRouteKey<TRoutes extends Routes> = Extract<keyof TRoutes, string>

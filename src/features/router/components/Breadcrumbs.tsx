@@ -1,8 +1,8 @@
 import React from 'react'
 import type { Routes } from '../router.types'
 import { Breadcrumbs as MUIBreadcrumbs, Link as MUILink } from '@mui/material'
-import { getParentRoutes, memoize, splitPath } from '../routes.utils'
-import { useLocation, useParams, matchPath, Link as RRDLink } from 'react-router-dom'
+import { generateTypedGetParentRoutes, getRouteKeyFromPath, splitPath } from '../routes.utils'
+import { useLocation, useParams, Link as RRDLink } from 'react-router-dom'
 
 export function generateBreadcrumbs<
   TRoutes extends Routes,
@@ -12,21 +12,14 @@ export function generateBreadcrumbs<
     routeLabels: Record<RouteKey, string>
   }
 
-  const wrappedGetParentRoutes = memoize(getParentRoutes.bind(null, routes))
+  const getParentRoutes = generateTypedGetParentRoutes(routes)
 
   return function Breadcrumbs({ routeLabels }: BreadcrumbProps) {
     const params = useParams()
     const location = useLocation()
 
     const currentRouteKey = React.useMemo(() => {
-      const currentRouteKey = Object.entries(routes).find(([_, { path }]) =>
-        matchPath(location.pathname, path)
-      )?.[0]
-
-      if (!currentRouteKey)
-        throw new Error(`Pathname ${location.pathname} has no associated routeKey.`)
-
-      return currentRouteKey
+      return getRouteKeyFromPath(location.pathname, routes)
     }, [location.pathname])
 
     const toDynamicPath = (routeKey: RouteKey) => {
@@ -44,7 +37,7 @@ export function generateBreadcrumbs<
       return `/${dynamicSplit.join('/')}`
     }
 
-    const parentRoutes = wrappedGetParentRoutes(currentRouteKey)
+    const parentRoutes = getParentRoutes(currentRouteKey)
     const links = ([...parentRoutes, currentRouteKey] as Array<RouteKey>).map((r: RouteKey) => ({
       label: routeLabels[r],
       // Remap dynamic parts of the path to their current value

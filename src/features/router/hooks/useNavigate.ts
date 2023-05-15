@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
 import { generatePath, useNavigate as useRRDNavigate } from 'react-router-dom'
 import type { TypedNavigate, Routes, TypedUseNavigate } from '../router.types'
+import { prefixPathnameWithSlash } from '../routes.utils'
 
 export function generateTypedUseNavigate<TRoutes extends Routes>(
   routes: TRoutes
@@ -22,6 +23,8 @@ export function generateTypedUseNavigate<TRoutes extends Routes>(
         if (config[0]?.urlParams) {
           generatedPath = `${generatedPath}?${new URLSearchParams(config[0].urlParams).toString()}`
         }
+
+        generatedPath = prefixPathnameWithSlash(generatedPath)
 
         rrdNavigate(generatedPath, config[0])
       },

@@ -11,7 +11,7 @@ import {
   type LinkProps as MUILinkProps,
 } from '@mui/material'
 import type { ExtractRouteParams, Routes } from '../router.types'
-import { omit } from '../routes.utils'
+import { omit, prefixPathnameWithSlash } from '../routes.utils'
 
 export interface LinkOptions extends NavigateOptions {
   urlParams: Record<string, string>
@@ -34,7 +34,7 @@ export function generateTypedLink<TRoutes extends Routes>(routes: TRoutes) {
       ),
     ref: React.Ref<HTMLButtonElement> | React.Ref<HTMLAnchorElement>
   ) {
-    let url = routes[props.to].path
+    let url = prefixPathnameWithSlash(routes[props.to].path)
 
     if ('params' in props) {
       url = rrdGeneratePath(url, props.params)

@@ -5,6 +5,7 @@ import {
   useNavigate,
 } from 'react-router-dom'
 import type { ExtractRouteParams, Routes } from '../router.types'
+import { prefixPathnameWithSlash } from '../routes.utils'
 
 export function generateTypedRedirect<TRoutes extends Routes>(routes: TRoutes) {
   return function Redirect<RouteKey extends keyof TRoutes = keyof TRoutes>(
@@ -27,7 +28,7 @@ export function generateTypedRedirect<TRoutes extends Routes>(routes: TRoutes) {
         url = `${url}?${new URLSearchParams(props.urlParams).toString()}`
       }
 
-      navigate(url, props.options)
+      navigate(prefixPathnameWithSlash(url), props.options)
     }, [navigate, props])
 
     return null

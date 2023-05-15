@@ -19,7 +19,10 @@ export default defineConfig({
       // This is needed because the dts plugin does not support TypeScript 5.0 yet.
       // Will be removed when it does.
       afterBuild() {
-        const indexDtsRouterPath = path.resolve(__dirname, 'dist/features/router/index.d.ts')
+        const indexDtsRouterPath = path.resolve(
+          __dirname,
+          'dist/features/router/generate-typed-routes.d.ts'
+        )
         const indexDtsRouter = fs.readFileSync(indexDtsRouterPath, 'utf8')
         const indexDtsRouterLines = indexDtsRouter.split('\n')
         indexDtsRouterLines[2] = indexDtsRouterLines[2].replace(
