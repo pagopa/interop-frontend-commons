@@ -37,9 +37,83 @@ exports[`Spinner component > Renders correctly with label and column direction 1
 </div>
 `;
 
+exports[`Spinner component > Renders correctly with label and column-reverse direction 1`] = `
+<div
+  className="MuiStack-root css-1d1cvhx-MuiStack-root"
+>
+  <span
+    className="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorPrimary css-18lrjg1-MuiCircularProgress-root"
+    role="progressbar"
+    style={
+      {
+        "height": 40,
+        "width": 40,
+      }
+    }
+  >
+    <svg
+      className="MuiCircularProgress-svg css-1idz92c-MuiCircularProgress-svg"
+      viewBox="22 22 44 44"
+    >
+      <circle
+        className="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate css-176wh8e-MuiCircularProgress-circle"
+        cx={44}
+        cy={44}
+        fill="none"
+        r={20.2}
+        strokeWidth={3.6}
+        style={{}}
+      />
+    </svg>
+  </span>
+  <p
+    className="MuiTypography-root MuiTypography-body2 css-1mzt6m4-MuiTypography-root"
+  >
+    test-title
+  </p>
+</div>
+`;
+
 exports[`Spinner component > Renders correctly with label and row direction 1`] = `
 <div
   className="MuiStack-root css-1m9ibdo-MuiStack-root"
+>
+  <span
+    className="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorPrimary css-18lrjg1-MuiCircularProgress-root"
+    role="progressbar"
+    style={
+      {
+        "height": 40,
+        "width": 40,
+      }
+    }
+  >
+    <svg
+      className="MuiCircularProgress-svg css-1idz92c-MuiCircularProgress-svg"
+      viewBox="22 22 44 44"
+    >
+      <circle
+        className="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate css-176wh8e-MuiCircularProgress-circle"
+        cx={44}
+        cy={44}
+        fill="none"
+        r={20.2}
+        strokeWidth={3.6}
+        style={{}}
+      />
+    </svg>
+  </span>
+  <p
+    className="MuiTypography-root MuiTypography-body2 css-1mzt6m4-MuiTypography-root"
+  >
+    test-title
+  </p>
+</div>
+`;
+
+exports[`Spinner component > Renders correctly with label and row-reverse direction 1`] = `
+<div
+  className="MuiStack-root css-1m3kcif-MuiStack-root"
 >
   <span
     className="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorPrimary css-18lrjg1-MuiCircularProgress-root"
@@ -106,9 +180,73 @@ exports[`Spinner component > Renders correctly without label and column directio
 </div>
 `;
 
+exports[`Spinner component > Renders correctly without label and column-reverse direction 1`] = `
+<div
+  className="MuiStack-root css-1d1cvhx-MuiStack-root"
+>
+  <span
+    className="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorPrimary css-18lrjg1-MuiCircularProgress-root"
+    role="progressbar"
+    style={
+      {
+        "height": 40,
+        "width": 40,
+      }
+    }
+  >
+    <svg
+      className="MuiCircularProgress-svg css-1idz92c-MuiCircularProgress-svg"
+      viewBox="22 22 44 44"
+    >
+      <circle
+        className="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate css-176wh8e-MuiCircularProgress-circle"
+        cx={44}
+        cy={44}
+        fill="none"
+        r={20.2}
+        strokeWidth={3.6}
+        style={{}}
+      />
+    </svg>
+  </span>
+</div>
+`;
+
 exports[`Spinner component > Renders correctly without label and row direction 1`] = `
 <div
   className="MuiStack-root css-1m9ibdo-MuiStack-root"
+>
+  <span
+    className="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorPrimary css-18lrjg1-MuiCircularProgress-root"
+    role="progressbar"
+    style={
+      {
+        "height": 40,
+        "width": 40,
+      }
+    }
+  >
+    <svg
+      className="MuiCircularProgress-svg css-1idz92c-MuiCircularProgress-svg"
+      viewBox="22 22 44 44"
+    >
+      <circle
+        className="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate css-176wh8e-MuiCircularProgress-circle"
+        cx={44}
+        cy={44}
+        fill="none"
+        r={20.2}
+        strokeWidth={3.6}
+        style={{}}
+      />
+    </svg>
+  </span>
+</div>
+`;
+
+exports[`Spinner component > Renders correctly without label and row-reverse direction 1`] = `
+<div
+  className="MuiStack-root css-1m3kcif-MuiStack-root"
 >
   <span
     className="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorPrimary css-18lrjg1-MuiCircularProgress-root"
