@@ -2,8 +2,18 @@ import React from 'react'
 import { CircularProgress, Stack, type StackProps, type SxProps, Typography } from '@mui/material'
 
 type SpinnerProps = {
+  /**
+   * The label of the spinner.
+   */
   label?: string | null
+  /**
+   * The direction of the spinner and label.
+   * @default 'column'
+   */
   direction?: StackProps['direction']
+  /**
+   * The sx props of the spinner. It is used to customize the style of the Stack component that wraps the spinner and the label.
+   * */
   sx?: SxProps
 }
 
