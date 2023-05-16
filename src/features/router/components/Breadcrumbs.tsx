@@ -1,25 +1,40 @@
 import React from 'react'
-import type { Routes } from '../router.types'
+import type { GenerateRoutesOptions, Routes } from '../router.types'
 import { Breadcrumbs as MUIBreadcrumbs, Link as MUILink } from '@mui/material'
-import { generateTypedGetParentRoutes, getRouteKeyFromPath, splitPath } from '../routes.utils'
+import {
+  getRouteKeyFromPath,
+  prefixPathnameWithLang,
+  removeLanguageSubpathFromPathname,
+  splitPath,
+} from '../router.utils'
 import { useLocation, useParams, Link as RRDLink } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 export function generateBreadcrumbs<
   TRoutes extends Routes,
   RouteKey extends keyof TRoutes = keyof TRoutes
->(routes: TRoutes) {
+>(
+  routes: TRoutes,
+  getParentRoutes: (input: RouteKey) => RouteKey[],
+  options?: GenerateRoutesOptions
+) {
   type BreadcrumbProps = {
     routeLabels: Record<RouteKey, string>
   }
-
-  const getParentRoutes = generateTypedGetParentRoutes(routes)
+  const languages = options?.languages ?? []
+  const hasLanguages = !!options?.languages && options.languages.length > 0
 
   return function Breadcrumbs({ routeLabels }: BreadcrumbProps) {
     const params = useParams()
     const location = useLocation()
+    const { i18n } = useTranslation()
+    const currentLang = hasLanguages ? i18n.language : undefined
 
     const currentRouteKey = React.useMemo(() => {
-      return getRouteKeyFromPath(location.pathname, routes)
+      return getRouteKeyFromPath(
+        removeLanguageSubpathFromPathname(location.pathname, languages),
+        routes
+      ) as RouteKey
     }, [location.pathname])
 
     const toDynamicPath = (routeKey: RouteKey) => {
@@ -34,7 +49,7 @@ export function generateBreadcrumbs<
         return pathFragment
       })
 
-      return `/${dynamicSplit.join('/')}`
+      return prefixPathnameWithLang(`/${dynamicSplit.join('/')}`, currentLang)
     }
 
     const parentRoutes = getParentRoutes(currentRouteKey)
