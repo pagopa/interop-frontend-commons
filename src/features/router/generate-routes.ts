@@ -11,15 +11,16 @@ import { generateTypeduseGeneratePath } from './hooks/useGeneratePath'
 import { generateUseSwitchPathLang } from './hooks/useSwitchPathLang'
 
 export function generateRoutes<
+  Language extends string,
   AuthLevel extends string,
   const TRoutes extends Routes<AuthLevel> = Routes<AuthLevel>
->(routes: TRoutes, options?: GenerateRoutesOptions) {
+>(routes: TRoutes, options?: GenerateRoutesOptions<Language>) {
   const useNavigate = generateTypedUseNavigate(routes, options)
   const useGeneratePath = generateTypeduseGeneratePath(routes, options)
   const useLocation = generateTypedUseLocation(routes, options)
   const useAuthGuard = generateUseAuthGuard(routes, useLocation)
   const useParams = generateTypedUseParams<TRoutes>()
-  const useSwitchPathLang = generateUseSwitchPathLang(options)
+  const useSwitchPathLang = generateUseSwitchPathLang<Language>(options)
 
   const Link = generateTypedLink(routes, options)
   const Redirect = generateTypedRedirect(routes, options)

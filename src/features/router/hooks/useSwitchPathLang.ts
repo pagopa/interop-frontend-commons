@@ -2,7 +2,7 @@ import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import type { GenerateRoutesOptions } from '../router.types'
 
-export function generateUseSwitchPathLang(options?: GenerateRoutesOptions) {
+export function generateUseSwitchPathLang<T extends string>(options?: GenerateRoutesOptions) {
   const languages = options?.languages
 
   return function useSwitchPathLang() {
@@ -10,7 +10,7 @@ export function generateUseSwitchPathLang(options?: GenerateRoutesOptions) {
     const navigate = useNavigate()
 
     const switchPathLang = React.useCallback(
-      (toLang: string) => {
+      (toLang: T) => {
         const path = location.pathname
         const firstBit = path.split('/')[1]
 
