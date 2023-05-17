@@ -9,31 +9,56 @@ export function generateRRDRouteObject(
   Redirect: React.FC<any>,
   options?: GenerateRoutesOptions
 ): RouteObject[] {
-  const languages = options?.languages
+  const languages = options?.languages ?? []
 
-  const result = Object.values(routes).map((route) => {
+  const result = Object.values(routes).reduce((prev, route) => {
     if ('redirect' in route) {
-      return {
-        path: route.path,
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        element: <Redirect to={route.redirect} />,
+      if (languages.length > 0) {
+        return [
+          ...prev,
+          ...languages.map((lang) => ({
+            path: prefixPathnameWithLang(route.path, lang),
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            element: <Redirect to={route.redirect} />,
+          })),
+        ]
       }
+
+      return [
+        ...prev,
+        {
+          path: route.path,
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          element: <Redirect to={route.redirect} />,
+        },
+      ]
     }
 
-    return {
-      path: route.path,
-      element: route.element,
+    if (languages.length > 0) {
+      return [
+        ...prev,
+        ...languages.map((lang) => ({
+          path: prefixPathnameWithLang(route.path, lang),
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          element: route.element,
+        })),
+      ]
     }
-  })
 
-  if (languages) {
-    const children = languages.map((lang) => ({
-      path: `/${lang}/`,
-      children: result,
-    }))
+    return [
+      ...prev,
+      {
+        path: route.path,
+        element: route.element,
+      },
+    ]
+  }, [] as RouteObject[])
 
-    return [{ element: <SyncLangWithRoute languages={languages} />, children }]
+  if (languages.length > 0) {
+    return [{ element: <SyncLangWithRoute languages={languages} />, children: result }]
   }
 
   return result

@@ -42,78 +42,68 @@ exports[`router.utils > generateRRDRouteObject > should match the snapshot on lo
   {
     "children": [
       {
-        "children": [
-          {
-            "element": <EmptyElement />,
-            "path": "/",
-          },
-          {
-            "element": <EmptyElement />,
-            "path": "/page-1",
-          },
-          {
-            "element": <EmptyElement />,
-            "path": "/page-2",
-          },
-          {
-            "element": <Redirect
-              to="PAGE_1"
-            />,
-            "path": "/redirect-1",
-          },
-          {
-            "element": <Redirect
-              to="PAGE_2"
-            />,
-            "path": "/redirect-2",
-          },
-          {
-            "element": <EmptyElement />,
-            "path": "/page-1/:id",
-          },
-          {
-            "element": <EmptyElement />,
-            "path": "/page-2/:id",
-          },
-        ],
+        "element": <EmptyElement />,
         "path": "/it/",
       },
       {
-        "children": [
-          {
-            "element": <EmptyElement />,
-            "path": "/",
-          },
-          {
-            "element": <EmptyElement />,
-            "path": "/page-1",
-          },
-          {
-            "element": <EmptyElement />,
-            "path": "/page-2",
-          },
-          {
-            "element": <Redirect
-              to="PAGE_1"
-            />,
-            "path": "/redirect-1",
-          },
-          {
-            "element": <Redirect
-              to="PAGE_2"
-            />,
-            "path": "/redirect-2",
-          },
-          {
-            "element": <EmptyElement />,
-            "path": "/page-1/:id",
-          },
-          {
-            "element": <EmptyElement />,
-            "path": "/page-2/:id",
-          },
-        ],
+        "element": <EmptyElement />,
         "path": "/en/",
+      },
+      {
+        "element": <EmptyElement />,
+        "path": "/it/page-1",
+      },
+      {
+        "element": <EmptyElement />,
+        "path": "/en/page-1",
+      },
+      {
+        "element": <EmptyElement />,
+        "path": "/it/page-2",
+      },
+      {
+        "element": <EmptyElement />,
+        "path": "/en/page-2",
+      },
+      {
+        "element": <Redirect
+          to="PAGE_1"
+        />,
+        "path": "/it/redirect-1",
+      },
+      {
+        "element": <Redirect
+          to="PAGE_1"
+        />,
+        "path": "/en/redirect-1",
+      },
+      {
+        "element": <Redirect
+          to="PAGE_2"
+        />,
+        "path": "/it/redirect-2",
+      },
+      {
+        "element": <Redirect
+          to="PAGE_2"
+        />,
+        "path": "/en/redirect-2",
+      },
+      {
+        "element": <EmptyElement />,
+        "path": "/it/page-1/:id",
+      },
+      {
+        "element": <EmptyElement />,
+        "path": "/en/page-1/:id",
+      },
+      {
+        "element": <EmptyElement />,
+        "path": "/it/page-2/:id",
+      },
+      {
+        "element": <EmptyElement />,
+        "path": "/en/page-2/:id",
       },
     ],
     "element": <SyncLangWithRoute
