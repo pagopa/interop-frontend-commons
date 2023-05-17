@@ -53,7 +53,8 @@ export type TypedUseParams<TRoutes extends Routes> = <
 
 export type TypedUseGeneratePath<TRoutes extends Routes> = () => TypedGeneratePath<TRoutes>
 
-export type GenerateRoutesOptions = {
-  languages: readonly string[]
-}
+export type GenerateRoutesOptions = Readonly<{
+  languages: readonly [string, ...string[]]
+}>
+
 export type InferRouteKey<TRoutes extends Routes> = Extract<keyof TRoutes, string>

@@ -1,6 +1,7 @@
 import React from 'react'
 import { type RouteObject, matchPath } from 'react-router-dom'
 import type { GenerateRoutesOptions, Routes } from './router.types'
+import { SyncLangWithRoute } from './components/SyncLangWithRoute'
 
 export function generateRRDRouteObject(
   routes: Routes,
@@ -27,10 +28,12 @@ export function generateRRDRouteObject(
   })
 
   if (languages) {
-    return languages.map((lang) => ({
+    const children = languages.map((lang) => ({
       path: `/${lang}/`,
       children: result,
     }))
+
+    return [{ element: <SyncLangWithRoute languages={languages} />, children }]
   }
 
   return result

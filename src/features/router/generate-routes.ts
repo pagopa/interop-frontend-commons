@@ -8,6 +8,7 @@ import { generateBreadcrumbs } from './components/Breadcrumbs'
 import { generateTypedUseLocation } from './hooks/useLocation'
 import { generateUseAuthGuard } from './hooks/useAuthGuard'
 import { generateTypeduseGeneratePath } from './hooks/useGeneratePath'
+import { generateUseSwitchPathLang } from './hooks/useSwitchPathLang'
 
 export function generateRoutes<
   AuthLevel extends string,
@@ -18,6 +19,7 @@ export function generateRoutes<
   const useLocation = generateTypedUseLocation(routes, options)
   const useAuthGuard = generateUseAuthGuard(routes, useLocation)
   const useParams = generateTypedUseParams<TRoutes>()
+  const useSwitchPathLang = generateUseSwitchPathLang(options)
 
   const Link = generateTypedLink(routes, options)
   const Redirect = generateTypedRedirect(routes, options)
@@ -37,6 +39,7 @@ export function generateRoutes<
       useLocation,
       useAuthGuard,
       useParams,
+      useSwitchPathLang,
     },
     components: {
       Link,

@@ -37,81 +37,93 @@ exports[`router.utils > generateRRDRouteObject > should match the snapshot 1`] =
 ]
 `;
 
-exports[`router.utils > generateRRDRouteObject > should match the snapshot 2`] = `
+exports[`router.utils > generateRRDRouteObject > should match the snapshot on localized routes 1`] = `
 [
   {
     "children": [
       {
-        "element": <EmptyElement />,
-        "path": "/",
+        "children": [
+          {
+            "element": <EmptyElement />,
+            "path": "/",
+          },
+          {
+            "element": <EmptyElement />,
+            "path": "/page-1",
+          },
+          {
+            "element": <EmptyElement />,
+            "path": "/page-2",
+          },
+          {
+            "element": <Redirect
+              to="PAGE_1"
+            />,
+            "path": "/redirect-1",
+          },
+          {
+            "element": <Redirect
+              to="PAGE_2"
+            />,
+            "path": "/redirect-2",
+          },
+          {
+            "element": <EmptyElement />,
+            "path": "/page-1/:id",
+          },
+          {
+            "element": <EmptyElement />,
+            "path": "/page-2/:id",
+          },
+        ],
+        "path": "/it/",
       },
       {
-        "element": <EmptyElement />,
-        "path": "/page-1",
-      },
-      {
-        "element": <EmptyElement />,
-        "path": "/page-2",
-      },
-      {
-        "element": <Redirect
-          to="PAGE_1"
-        />,
-        "path": "/redirect-1",
-      },
-      {
-        "element": <Redirect
-          to="PAGE_2"
-        />,
-        "path": "/redirect-2",
-      },
-      {
-        "element": <EmptyElement />,
-        "path": "/page-1/:id",
-      },
-      {
-        "element": <EmptyElement />,
-        "path": "/page-2/:id",
+        "children": [
+          {
+            "element": <EmptyElement />,
+            "path": "/",
+          },
+          {
+            "element": <EmptyElement />,
+            "path": "/page-1",
+          },
+          {
+            "element": <EmptyElement />,
+            "path": "/page-2",
+          },
+          {
+            "element": <Redirect
+              to="PAGE_1"
+            />,
+            "path": "/redirect-1",
+          },
+          {
+            "element": <Redirect
+              to="PAGE_2"
+            />,
+            "path": "/redirect-2",
+          },
+          {
+            "element": <EmptyElement />,
+            "path": "/page-1/:id",
+          },
+          {
+            "element": <EmptyElement />,
+            "path": "/page-2/:id",
+          },
+        ],
+        "path": "/en/",
       },
     ],
-    "path": "/it/",
-  },
-  {
-    "children": [
-      {
-        "element": <EmptyElement />,
-        "path": "/",
-      },
-      {
-        "element": <EmptyElement />,
-        "path": "/page-1",
-      },
-      {
-        "element": <EmptyElement />,
-        "path": "/page-2",
-      },
-      {
-        "element": <Redirect
-          to="PAGE_1"
-        />,
-        "path": "/redirect-1",
-      },
-      {
-        "element": <Redirect
-          to="PAGE_2"
-        />,
-        "path": "/redirect-2",
-      },
-      {
-        "element": <EmptyElement />,
-        "path": "/page-1/:id",
-      },
-      {
-        "element": <EmptyElement />,
-        "path": "/page-2/:id",
-      },
-    ],
-    "path": "/en/",
+    "element": <SyncLangWithRoute
+      languages={
+        [
+          "it",
+          "en",
+        ]
+      }
+    />,
   },
 ]
 `;

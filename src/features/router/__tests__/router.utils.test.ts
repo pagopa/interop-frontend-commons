@@ -21,7 +21,8 @@ describe('router.utils', () => {
     it('should match the snapshot', () => {
       expect(generateRRDRouteObject(routes, Redirect)).toMatchSnapshot()
     })
-    it('should match the snapshot', () => {
+
+    it('should match the snapshot on localized routes', () => {
       expect(
         generateRRDRouteObject(routes, Redirect, { languages: ['it', 'en'] })
       ).toMatchSnapshot()

@@ -63,20 +63,47 @@ export const generateTestingRoutes = (options?: GenerateRoutesOptions) => {
   )
 }
 
+// const createRouter = (routes: RouteObject[], history: History, element: React.ReactNode) => {
+//   return (
+//     <Router location={history.location} navigator={history}>
+//       <Routes>
+//         {routes.map((route) => {
+//           if ('children' in route) {
+//             return route?.children?.map((child) => {
+//               const path = route!.path!.slice(0, -1) + child.path
+//               console.log(path)
+//               return <Route key={child.path} path={path} element={element} />
+//             })
+//           }
+//           return <Route key={route.path} path={route.path} element={element} />
+//         })}
+//       </Routes>
+//     </Router>
+//   )
+// }
+
 const createRouter = (routes: RouteObject[], history: History, element: React.ReactNode) => {
+  function generateChildrenRoutes(route: RouteObject, childPath = ''): React.ReactNode {
+    const path = childPath && route.path ? childPath.slice(0, -1) + route.path : route.path
+
+    if (!('children' in route)) {
+      return <Route key={path} path={path} element={element} />
+    }
+
+    if ('element' in route && !route.path && 'children' in route) {
+      return (
+        <Route element={route.element}>
+          {route.children?.map((child) => generateChildrenRoutes(child, path))}
+        </Route>
+      )
+    }
+
+    return route.children?.map((child) => generateChildrenRoutes(child, path))
+  }
+
   return (
     <Router location={history.location} navigator={history}>
-      <Routes>
-        {routes.map((route) => {
-          if ('children' in route) {
-            return route?.children?.map((child) => {
-              const path = route!.path!.slice(0, -1) + child.path
-              return <Route key={child.path} path={path} element={element} />
-            })
-          }
-          return <Route key={route.path} path={route.path} element={element} />
-        })}
-      </Routes>
+      <Routes>{routes.map((route) => generateChildrenRoutes(route))}</Routes>
     </Router>
   )
 }
