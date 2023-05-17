@@ -74,6 +74,7 @@ export declare function generateRoutes<AuthLevel extends string, const TRoutes e
             isUserAuthorized: (userAuth: TRoutes[keyof TRoutes]["authLevels"][number] | TRoutes[keyof TRoutes]["authLevels"][number][]) => boolean;
         };
         useParams: import("./router.types").TypedUseParams<TRoutes>;
+        useSwitchPathLang: () => (toLang: string) => void;
     };
     components: {
         Link: <RouteKey_2 extends keyof TRoutes = keyof TRoutes>(props: {
@@ -101,4 +102,5 @@ export declare function generateRoutes<AuthLevel extends string, const TRoutes e
         getParentRoutes: (input: keyof TRoutes) => (keyof TRoutes)[];
     };
 };
+
 `
