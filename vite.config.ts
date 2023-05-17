@@ -95,7 +95,7 @@ export declare function generateRoutes<AuthLevel extends string, const TRoutes e
             params: import("./router.types").ExtractRouteParams<TRoutes[RouteKey_3]["path"]>;
         })) => null;
         Breadcrumbs: ({ routeLabels }: {
-            routeLabels: Record<keyof TRoutes, string>;
+            routeLabels: { [R in RouteKey]: string | false };
         }) => JSX.Element | null;
     };
     utils: {
