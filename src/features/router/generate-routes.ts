@@ -12,7 +12,6 @@ import { generateTypeduseGeneratePath } from './hooks/useGeneratePath'
 export function generateRoutes<
   AuthLevel extends string,
   const TRoutes extends Routes<AuthLevel> = Routes<AuthLevel>
-  // TRoutes extends Routes<AuthLevel> = Routes<AuthLevel>
 >(routes: TRoutes, options?: GenerateRoutesOptions) {
   const useNavigate = generateTypedUseNavigate(routes, options)
   const useGeneratePath = generateTypeduseGeneratePath(routes, options)
