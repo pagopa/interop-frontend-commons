@@ -19,7 +19,7 @@ export function generateBreadcrumbs<
   options?: GenerateRoutesOptions
 ) {
   type BreadcrumbProps = {
-    routeLabels: Record<RouteKey, string>
+    routeLabels: { [R in RouteKey]: string | false }
   }
   const languages = options?.languages ?? []
   const hasLanguages = !!options?.languages && options.languages.length > 0
@@ -37,7 +37,7 @@ export function generateBreadcrumbs<
       ) as RouteKey
     }, [location.pathname])
 
-    const toDynamicPath = (routeKey: RouteKey) => {
+    const getPathFromRouteKey = (routeKey: RouteKey) => {
       const subpaths = splitPath(routes[routeKey].path)
 
       const dynamicSplit = subpaths.map((pathFragment) => {
@@ -53,21 +53,22 @@ export function generateBreadcrumbs<
     }
 
     const parentRoutes = getParentRoutes(currentRouteKey)
-    const links = ([...parentRoutes, currentRouteKey] as Array<RouteKey>).map((r: RouteKey) => ({
-      label: routeLabels[r],
-      // Remap dynamic parts of the path to their current value
-      path: toDynamicPath(r),
-    }))
+    const breadcrumbSegments = ([...parentRoutes, currentRouteKey] as Array<RouteKey>)
+      .filter((r) => routeLabels[r] !== false)
+      .map((routeKey) => ({
+        label: routeLabels[routeKey],
+        path: getPathFromRouteKey(routeKey),
+      }))
 
     // Don't display breadcrumbs for first level descentants, they are useless
-    if (links.length < 2) {
+    if (breadcrumbSegments.length < 2) {
       return null
     }
 
     return (
       <MUIBreadcrumbs sx={{ mb: 1 }}>
-        {links.map(({ label, path }, i) => {
-          if (i === links.length - 1) {
+        {breadcrumbSegments.map(({ label, path }, i) => {
+          if (i === breadcrumbSegments.length - 1) {
             return <span key={i}>{label}</span>
           }
           return (
