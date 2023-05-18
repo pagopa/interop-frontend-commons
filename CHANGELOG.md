@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file. The format 
 
 ### Changed
 
+- Bumped dev dependencies.
 - Renamed `generateTypedReactRoutedDOM` to `generateRoutes`
 - Moved `generateRoutes` declaration.
 - `generatePath` funcition util returned by `generateRoutes` is now a hook `useGeneratePath`. This is needed to be able to check for the current language.
