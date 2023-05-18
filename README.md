@@ -12,6 +12,7 @@ Raccolta di componenti e funzionalità utilizzati da progetti PDND Interoperabil
   - [Table e TableRow](#table-e-tablerow)
   - [InformationContainer](#informationcontainer)
   - [CodeBlock](#codeblock)
+  - [Spinner](#spinner)
 - [Hooks](#hooks)
   - [useAutocompleteTextInput](#useautocompletetextinput)
 
