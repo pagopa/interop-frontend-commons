@@ -1,0 +1,71 @@
+import { createMemoryHistory } from 'history'
+import { generateTestingRoutes, renderHookInRoutes } from './common.mocks'
+
+const {
+  reactRouterDOMRoutes,
+  hooks: { useSwitchPathLang },
+} = generateTestingRoutes()
+
+const {
+  reactRouterDOMRoutes: reactRouterDOMLocalizedRoutes,
+  hooks: { useSwitchPathLang: useLocalizedSwitchPathLang },
+} = generateTestingRoutes({ languages: ['it', 'en'] })
+
+const renderUseSwitchPathLang = () => {
+  return renderHookInRoutes(() => useSwitchPathLang(), reactRouterDOMRoutes)
+}
+
+const renderLocalizedUseSwitchSwitchPathLang = (initialRoute = '/it/page-1/') => {
+  const history = createMemoryHistory({ initialEntries: [initialRoute] })
+  return renderHookInRoutes(
+    () => useLocalizedSwitchPathLang(),
+    reactRouterDOMLocalizedRoutes,
+    history
+  )
+}
+
+describe('useSwitchPathLang', () => {
+  it('should throw if called in a router without language options', () => {
+    const { result } = renderUseSwitchPathLang()
+    const switchPathLang = result.current
+
+    expect(() => switchPathLang('en')).toThrow()
+  })
+
+  it('should correctly switch lang path', () => {
+    const { result, history } = renderLocalizedUseSwitchSwitchPathLang()
+    const switchPathLang = result.current
+
+    switchPathLang('en')
+    expect(history.location.pathname).toBe('/en/page-1/')
+
+    switchPathLang('it')
+    expect(history.location.pathname).toBe('/it/page-1/')
+  })
+
+  it('should correctly switch lang path keeping the hash', () => {
+    const { result, history } = renderLocalizedUseSwitchSwitchPathLang('/it/page-1/#test')
+    const switchPathLang = result.current
+
+    switchPathLang('en')
+    expect(history.location.pathname).toBe('/en/page-1/')
+    expect(history.location.hash).toBe('#test')
+
+    switchPathLang('it')
+    expect(history.location.pathname).toBe('/it/page-1/')
+    expect(history.location.hash).toBe('#test')
+  })
+
+  it('should correctly switch lang path keeping the search params', () => {
+    const { result, history } = renderLocalizedUseSwitchSwitchPathLang('/it/page-1?test=1')
+    const switchPathLang = result.current
+
+    switchPathLang('en')
+    expect(history.location.pathname).toBe('/en/page-1')
+    expect(history.location.search).toBe('?test=1')
+
+    switchPathLang('it')
+    expect(history.location.pathname).toBe('/it/page-1')
+    expect(history.location.search).toBe('?test=1')
+  })
+})
