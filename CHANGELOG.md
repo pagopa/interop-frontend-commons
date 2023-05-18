@@ -6,11 +6,11 @@ All notable changes to this project will be documented in this file. The format 
 
 ### Added
 
-- `Spinner` component.
+-
 
 ### Changed
 
-- Storybook bumped to v7
+-
 
 ### Deprecated
 
@@ -25,6 +25,20 @@ All notable changes to this project will be documented in this file. The format 
 -
 
 ### Security
+
+-
+
+## v1.1.0 - 18-05-2023
+
+### Added
+
+- `Spinner` component.
+
+### Changed
+
+- Storybook bumped to v7
+
+### Fixed
 
 -
 
