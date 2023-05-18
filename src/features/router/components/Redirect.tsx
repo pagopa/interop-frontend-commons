@@ -4,9 +4,16 @@ import {
   generatePath as rrdGeneratePath,
   useNavigate,
 } from 'react-router-dom'
-import type { ExtractRouteParams, Routes } from '../router.types'
+import type { ExtractRouteParams, GenerateRoutesOptions, Routes } from '../router.types'
+import { prefixPathnameWithLang } from '../router.utils'
+import { useTranslation } from 'react-i18next'
 
-export function generateTypedRedirect<TRoutes extends Routes>(routes: TRoutes) {
+export function generateTypedRedirect<TRoutes extends Routes>(
+  routes: TRoutes,
+  options?: GenerateRoutesOptions
+) {
+  const hasLanguages = !!options?.languages && options.languages.length > 0
+
   return function Redirect<RouteKey extends keyof TRoutes = keyof TRoutes>(
     props: {
       to: RouteKey
@@ -16,6 +23,9 @@ export function generateTypedRedirect<TRoutes extends Routes>(routes: TRoutes) {
       ? object
       : { params: ExtractRouteParams<TRoutes[RouteKey]['path']> })
   ) {
+    const { i18n } = useTranslation()
+    const currentLang = hasLanguages ? i18n.language : undefined
+
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -27,8 +37,8 @@ export function generateTypedRedirect<TRoutes extends Routes>(routes: TRoutes) {
         url = `${url}?${new URLSearchParams(props.urlParams).toString()}`
       }
 
-      navigate(url, props.options)
-    }, [navigate, props])
+      navigate(prefixPathnameWithLang(url, currentLang), props.options)
+    }, [navigate, props, currentLang])
 
     return null
   }
