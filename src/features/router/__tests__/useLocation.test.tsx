@@ -1,7 +1,9 @@
 import { createMemoryHistory } from 'history'
 import { generateTestingRoutes, renderHookInRoutes } from './common.mocks'
+import { expectTypeOf } from 'vitest'
 
 const {
+  routes,
   reactRouterDOMRoutes,
   hooks: { useLocation },
 } = generateTestingRoutes()
@@ -38,5 +40,10 @@ describe('useLocation', () => {
   it('should return the correct routeKey of the actual route when the route is localized', () => {
     const { result } = renderLocalizedUseLocation()
     expect(result.current.routeKey).toBe('HOME')
+  })
+
+  it('should have routeKey property typed correctly', () => {
+    const { result } = renderUseLocation()
+    expectTypeOf(result.current.routeKey).toEqualTypeOf<keyof typeof routes>()
   })
 })

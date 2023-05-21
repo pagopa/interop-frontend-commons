@@ -13,7 +13,7 @@ import { type GenerateRoutesOptions } from '../router.types'
 
 const EmptyElement = () => null
 
-export const generateTestingRoutes = (options?: GenerateRoutesOptions) => {
+export const generateTestingRoutes = <T extends string>(options?: GenerateRoutesOptions<T>) => {
   return generateRoutes(
     {
       HOME: {
@@ -62,25 +62,6 @@ export const generateTestingRoutes = (options?: GenerateRoutesOptions) => {
     options
   )
 }
-
-// const createRouter = (routes: RouteObject[], history: History, element: React.ReactNode) => {
-//   return (
-//     <Router location={history.location} navigator={history}>
-//       <Routes>
-//         {routes.map((route) => {
-//           if ('children' in route) {
-//             return route?.children?.map((child) => {
-//               const path = route!.path!.slice(0, -1) + child.path
-//               console.log(path)
-//               return <Route key={child.path} path={path} element={element} />
-//             })
-//           }
-//           return <Route key={route.path} path={route.path} element={element} />
-//         })}
-//       </Routes>
-//     </Router>
-//   )
-// }
 
 const createRouter = (routes: RouteObject[], history: History, element: React.ReactNode) => {
   function generateChildrenRoutes(route: RouteObject, childPath = ''): React.ReactNode {

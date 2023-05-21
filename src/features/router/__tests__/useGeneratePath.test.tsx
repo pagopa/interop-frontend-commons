@@ -1,7 +1,9 @@
 import { createMemoryHistory } from 'history'
 import { generateTestingRoutes, renderHookInRoutes } from './common.mocks'
+import { expectTypeOf } from 'vitest'
 
 const {
+  routes,
   reactRouterDOMRoutes,
   hooks: { useGeneratePath },
 } = generateTestingRoutes()
@@ -41,5 +43,11 @@ describe('useGeneratePath', () => {
     const { result } = renderLocalizedUseAuthGuard()
     const generatePath = result.current
     expect(generatePath('PAGE_1')).toBe('/it/page-1')
+  })
+
+  it('should return a funciton with the correct param typing', () => {
+    const { result } = renderUseGeneratePath()
+    const generatePath = result.current
+    expectTypeOf<Parameters<typeof generatePath>[0]>().toEqualTypeOf<keyof typeof routes>()
   })
 })

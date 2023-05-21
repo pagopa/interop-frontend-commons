@@ -1,15 +1,18 @@
 import { createMemoryHistory } from 'history'
 import { generateTestingRoutes, renderHookInRoutes } from './common.mocks'
+import { expectTypeOf } from 'vitest'
 
 const {
   reactRouterDOMRoutes,
   hooks: { useSwitchPathLang },
 } = generateTestingRoutes()
 
+const languages = ['it', 'en'] as const
+
 const {
   reactRouterDOMRoutes: reactRouterDOMLocalizedRoutes,
   hooks: { useSwitchPathLang: useLocalizedSwitchPathLang },
-} = generateTestingRoutes({ languages: ['it', 'en'] })
+} = generateTestingRoutes({ languages })
 
 const renderUseSwitchPathLang = () => {
   return renderHookInRoutes(() => useSwitchPathLang(), reactRouterDOMRoutes)
@@ -67,5 +70,10 @@ describe('useSwitchPathLang', () => {
     switchPathLang('it')
     expect(history.location.pathname).toBe('/it/page-1')
     expect(history.location.search).toBe('?test=1')
+  })
+
+  it('should have the language param with correct typing', () => {
+    type LanguageParam = Parameters<ReturnType<typeof useLocalizedSwitchPathLang>>[0]
+    expectTypeOf<LanguageParam>().toMatchTypeOf<(typeof languages)[number]>()
   })
 })

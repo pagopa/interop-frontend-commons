@@ -2,7 +2,11 @@ import React from 'react'
 import { generateTestingRoutes, renderRoutes } from './common.mocks'
 import userEvent from '@testing-library/user-event'
 import { createMemoryHistory } from 'history'
+import { expectTypeOf } from 'vitest'
+import type { ExtractRouteParams } from '../router.types'
+
 const {
+  routes,
   reactRouterDOMRoutes,
   components: { Link },
 } = generateTestingRoutes()
@@ -111,5 +115,20 @@ describe('Link (as button)', () => {
 
     expect(history.location.pathname).toEqual('/page-1/test-id')
     expect(history.location.search).toContain('test=1')
+  })
+
+  it('should have the "to" prop typed correctly', () => {
+    type ToProp = Parameters<typeof Link>['0']['to']
+    expectTypeOf<ToProp>().toMatchTypeOf<keyof typeof routes>()
+  })
+
+  it('should have the "params" prop typed correctly', () => {
+    type DynamicPageOnePathParameters = Parameters<typeof Link<'DYNAMIC_PAGE_1'>>['0']['params']
+    expectTypeOf<DynamicPageOnePathParameters>().toMatchTypeOf<
+      ExtractRouteParams<(typeof routes)['DYNAMIC_PAGE_1']['path']>
+    >()
+
+    type HomePagePathParameters = Parameters<typeof Link<'HOME'>>['0']
+    expectTypeOf<HomePagePathParameters>().not.toMatchTypeOf<{ params: unknown }>()
   })
 })

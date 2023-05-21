@@ -18,8 +18,10 @@ afterEach(() => {
   changeLanguageFn.mockReset()
 })
 
+const languages = ['it', 'en'] as const
+
 const { reactRouterDOMRoutes: reactRouterDOMLocalizedRoutes } = generateTestingRoutes({
-  languages: ['it', 'en'],
+  languages,
 })
 
 describe('SyncLangWithRoute', () => {
