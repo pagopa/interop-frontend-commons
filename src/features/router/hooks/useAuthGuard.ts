@@ -1,10 +1,11 @@
 import { useCallback } from 'react'
 import type { Routes } from '../router.types'
-import { generateTypedUseLocation } from './useLocation'
+import type { generateTypedUseLocation } from './useLocation'
 
-export function generateUseAuthGuard<TRoutes extends Routes>(routes: TRoutes) {
-  const useLocation = generateTypedUseLocation(routes)
-
+export function generateUseAuthGuard<TRoutes extends Routes>(
+  routes: TRoutes,
+  useLocation: ReturnType<typeof generateTypedUseLocation<TRoutes>>
+) {
   type AuthLevel = TRoutes[keyof TRoutes]['authLevels'][number]
 
   return function useAuthGuard<RouteKey extends keyof TRoutes = keyof TRoutes>() {

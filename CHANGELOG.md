@@ -28,15 +28,39 @@ All notable changes to this project will be documented in this file. The format 
 
 -
 
-## v1.0.0 - 17-04-2023
+## v1.1.0 - 18-05-2023
 
 ### Added
 
-- `rightContent` prop to `Filters` component.
+- `Spinner` component.
+- `languages` option to `generateRoutes` function, that allows to generate routes for multiple languages.
+- `InferRouteKey` type utility that infers the `RouteKey` type from the route object.
+- `useSwitchPathLang` hook, returned by `generatePath`. It allows to switch between languages keeping the language path synchronized.
+- Tests for routing.
+- `InferRouteKey` type utility that infers the `RouteKey` type from the route object.
 
 ### Changed
 
 - Storybook bumped to v7
+
+### Fixed
+
+- Missing initial forward slash in `RouteKey`'s generated paths.
+
+## v1.0.0 - 17-04-2023
+
+### Added
+
+- Added `CodeBlock` component.
+- Added `rightContent` prop to `Filters` component.
+
+### Changed
+
+- Storybook bumped to v7
+
+### Fixed
+
+- Fixed router typing declarations.
 
 ## v0.1.0 - 27-03-2023
 

@@ -10,14 +10,20 @@ import {
   Link as MUILink,
   type LinkProps as MUILinkProps,
 } from '@mui/material'
-import type { ExtractRouteParams, Routes } from '../router.types'
-import { omit } from '../routes.utils'
+import type { ExtractRouteParams, GenerateRoutesOptions, Routes } from '../router.types'
+import { omit, prefixPathnameWithLang } from '../router.utils'
+import { useTranslation } from 'react-i18next'
 
 export interface LinkOptions extends NavigateOptions {
   urlParams: Record<string, string>
 }
 
-export function generateTypedLink<TRoutes extends Routes>(routes: TRoutes) {
+export function generateTypedLink<TRoutes extends Routes>(
+  routes: TRoutes,
+  options?: GenerateRoutesOptions
+) {
+  const hasLanguages = !!options?.languages && options.languages.length > 0
+
   function Link<RouteKey extends keyof TRoutes = keyof TRoutes>(
     props: {
       to: RouteKey
@@ -34,7 +40,10 @@ export function generateTypedLink<TRoutes extends Routes>(routes: TRoutes) {
       ),
     ref: React.Ref<HTMLButtonElement> | React.Ref<HTMLAnchorElement>
   ) {
-    let url = routes[props.to].path
+    const { i18n } = useTranslation()
+    const currentLang = hasLanguages ? i18n.language : undefined
+
+    let url = prefixPathnameWithLang(routes[props.to].path, currentLang)
 
     if ('params' in props) {
       url = rrdGeneratePath(url, props.params)

@@ -15,18 +15,16 @@ export default defineConfig({
     visualizer(),
     dts({
       insertTypesEntry: true,
+      skipDiagnostics: true,
       // This is a workaround to force the generated index.d.ts to use the const keyword for the TRoutes generic
       // This is needed because the dts plugin does not support TypeScript 5.0 yet.
       // Will be removed when it does.
       afterBuild() {
-        const indexDtsRouterPath = path.resolve(__dirname, 'dist/features/router/index.d.ts')
-        const indexDtsRouter = fs.readFileSync(indexDtsRouterPath, 'utf8')
-        const indexDtsRouterLines = indexDtsRouter.split('\n')
-        indexDtsRouterLines[2] = indexDtsRouterLines[2].replace(
-          'AuthLevel extends string, TRoutes extends Routes<AuthLevel>',
-          'AuthLevel extends string, const TRoutes extends Routes<AuthLevel>'
+        const indexDtsRouterPath = path.resolve(
+          __dirname,
+          'dist/features/router/generate-routes.d.ts'
         )
-        fs.writeFileSync(indexDtsRouterPath, indexDtsRouterLines.join('\n'))
+        fs.writeFileSync(indexDtsRouterPath, patchedGenerateRoutesDts)
       },
     }),
   ],
@@ -52,3 +50,57 @@ export default defineConfig({
     },
   },
 })
+
+const patchedGenerateRoutesDts = `
+/// <reference types="react" />
+import type { GenerateRoutesOptions, Routes } from './router.types';
+export declare function generateRoutes<Language extends string, AuthLevel extends string, const TRoutes extends Routes<AuthLevel> = Routes<AuthLevel>>(routes: TRoutes, options?: GenerateRoutesOptions<Language>): {
+    routes: TRoutes;
+    reactRouterDOMRoutes: import("react-router").RouteObject[];
+    hooks: {
+        useNavigate: import("./router.types").TypedUseNavigate<TRoutes>;
+        useGeneratePath: import("./router.types").TypedUseGeneratePath<TRoutes>;
+        useLocation: <RouteKey extends keyof TRoutes = keyof TRoutes>() => {
+            routeKey: RouteKey;
+            state: any;
+            key: string;
+            pathname: string;
+            search: string;
+            hash: string;
+        };
+        useAuthGuard: <RouteKey_1 extends keyof TRoutes = keyof TRoutes>() => {
+            isPublic: TRoutes[RouteKey_1]["public"];
+            authLevels: TRoutes[RouteKey_1]["authLevels"];
+            isUserAuthorized: (userAuth: TRoutes[keyof TRoutes]["authLevels"][number] | TRoutes[keyof TRoutes]["authLevels"][number][]) => boolean;
+        };
+        useParams: import("./router.types").TypedUseParams<TRoutes>;
+        useSwitchPathLang: () => (toLang: Language) => void;
+    };
+    components: {
+        Link: <RouteKey_2 extends keyof TRoutes = keyof TRoutes>(props: {
+            to: RouteKey_2;
+            options?: import("./components/Link").LinkOptions | undefined;
+        } & (import("./router.types").ExtractRouteParams<TRoutes[RouteKey_2]["path"]> extends undefined ? object : {
+            params: import("./router.types").ExtractRouteParams<TRoutes[RouteKey_2]["path"]>;
+        }) & (({
+            as?: "link" | undefined;
+        } & Omit<import("@mui/material").LinkProps<import("react").ForwardRefExoticComponent<import("react-router-dom").LinkProps & import("react").RefAttributes<HTMLAnchorElement>>>, "component" | "href" | "to">) | ({
+            as: "button";
+        } & Omit<import("@mui/material").ButtonProps, "onClick" | "component" | "href" | "to" | "LinkComponent">)), ref: ((instance: HTMLAnchorElement | null) => void) | import("react").RefObject<HTMLAnchorElement> | ((instance: HTMLButtonElement | null) => void) | import("react").RefObject<HTMLButtonElement> | null) => import("react/jsx-runtime").JSX.Element;
+        Redirect: <RouteKey_3 extends keyof TRoutes = keyof TRoutes>(props: {
+            to: RouteKey_3;
+            options?: import("react-router").NavigateOptions | undefined;
+            urlParams?: Record<string, string> | undefined;
+        } & (import("./router.types").ExtractRouteParams<TRoutes[RouteKey_3]["path"]> extends undefined ? object : {
+            params: import("./router.types").ExtractRouteParams<TRoutes[RouteKey_3]["path"]>;
+        })) => null;
+        Breadcrumbs: ({ routeLabels }: {
+            routeLabels: { [R in keyof TRoutes]: string | false; };
+        }) => import("react/jsx-runtime").JSX.Element | null;
+    };
+    utils: {
+        getParentRoutes: (input: keyof TRoutes) => (keyof TRoutes)[];
+    };
+};
+
+`

@@ -12,6 +12,7 @@ Raccolta di componenti e funzionalità utilizzati da progetti PDND Interoperabil
   - [Table e TableRow](#table-e-tablerow)
   - [InformationContainer](#informationcontainer)
   - [CodeBlock](#codeblock)
+  - [Spinner](#spinner)
 - [Hooks](#hooks)
   - [useAutocompleteTextInput](#useautocompletetextinput)
 
@@ -141,8 +142,6 @@ const PaginationExample: React.FC = () => {
 ## Componenti
 ### Table e TableRow
 
-`Table` e `TableRow` sono componenti che permettono di renderizzare una tabella. 
-
 `Table` accetta come props:
 - `headLabels`: array di stringhe che vanno a comporre l'intestazione della tabella. Il numero di elementi sarà uguale al numero di colonne.
 - `isEmpty`: booleano opzionale che indica se la tabella è vuota. Se è `true`, viene renderizzato una alert di `MUI` con messaggio di avviso.
@@ -214,9 +213,22 @@ const InformationContainerExample: React.FC = () => {
 
 ### CodeBlock
 
-Componente che permette di mostrare un blocco di codice. Accetta come props:
+Accetta come props:
 - `code`: stringa che indica il codice da mostrare. Se viene passato un oggetto, viene serializzato tramite `JSON.stringify`.
 - `hideCopyButton`: booleano opzionale che indica se il bottone per copiare il codice deve essere nascosto. Di default viene mostrato.
+
+### Spinner
+
+Accetta come props:
+
+- `label`: opzionale, stringa che indica il testo da mostrare vicino lo spinner.
+- `direction`: opzionale, stringa che indica la direzione dello spinner in base al testo. 
+Accetta: 
+  - `row` 
+  - `column` (default)
+  - `row-reverse`
+  - `column-reverse`
+- `sx`: opzionale, oggetto che indica le props `sx` di `MUI` da passare allo spinner. 
 
 ## Hooks
 
