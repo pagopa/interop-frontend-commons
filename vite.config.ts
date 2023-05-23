@@ -54,7 +54,7 @@ export default defineConfig({
 const patchedGenerateRoutesDts = `
 /// <reference types="react" />
 import type { GenerateRoutesOptions, Routes } from './router.types';
-export declare function generateRoutes<AuthLevel extends string, const TRoutes extends Routes<AuthLevel> = Routes<AuthLevel>>(routes: TRoutes, options?: GenerateRoutesOptions): {
+export declare function generateRoutes<Language extends string, AuthLevel extends string, const TRoutes extends Routes<AuthLevel> = Routes<AuthLevel>>(routes: TRoutes, options?: GenerateRoutesOptions<Language>): {
     routes: TRoutes;
     reactRouterDOMRoutes: import("react-router").RouteObject[];
     hooks: {
@@ -74,7 +74,7 @@ export declare function generateRoutes<AuthLevel extends string, const TRoutes e
             isUserAuthorized: (userAuth: TRoutes[keyof TRoutes]["authLevels"][number] | TRoutes[keyof TRoutes]["authLevels"][number][]) => boolean;
         };
         useParams: import("./router.types").TypedUseParams<TRoutes>;
-        useSwitchPathLang: () => (toLang: string) => void;
+        useSwitchPathLang: () => (toLang: Language) => void;
     };
     components: {
         Link: <RouteKey_2 extends keyof TRoutes = keyof TRoutes>(props: {
@@ -84,9 +84,9 @@ export declare function generateRoutes<AuthLevel extends string, const TRoutes e
             params: import("./router.types").ExtractRouteParams<TRoutes[RouteKey_2]["path"]>;
         }) & (({
             as?: "link" | undefined;
-        } & Omit<import("@mui/material").LinkProps<import("react").ForwardRefExoticComponent<import("react-router-dom").LinkProps & import("react").RefAttributes<HTMLAnchorElement>>, {}>, "component" | "href" | "to">) | ({
+        } & Omit<import("@mui/material").LinkProps<import("react").ForwardRefExoticComponent<import("react-router-dom").LinkProps & import("react").RefAttributes<HTMLAnchorElement>>>, "component" | "href" | "to">) | ({
             as: "button";
-        } & Omit<import("@mui/material").ButtonProps<"button", {}>, "onClick" | "component" | "href" | "to" | "LinkComponent">)), ref: ((instance: HTMLAnchorElement | null) => void) | import("react").RefObject<HTMLAnchorElement> | ((instance: HTMLButtonElement | null) => void) | import("react").RefObject<HTMLButtonElement> | null) => JSX.Element;
+        } & Omit<import("@mui/material").ButtonProps, "onClick" | "component" | "href" | "to" | "LinkComponent">)), ref: ((instance: HTMLAnchorElement | null) => void) | import("react").RefObject<HTMLAnchorElement> | ((instance: HTMLButtonElement | null) => void) | import("react").RefObject<HTMLButtonElement> | null) => import("react/jsx-runtime").JSX.Element;
         Redirect: <RouteKey_3 extends keyof TRoutes = keyof TRoutes>(props: {
             to: RouteKey_3;
             options?: import("react-router").NavigateOptions | undefined;
@@ -95,8 +95,8 @@ export declare function generateRoutes<AuthLevel extends string, const TRoutes e
             params: import("./router.types").ExtractRouteParams<TRoutes[RouteKey_3]["path"]>;
         })) => null;
         Breadcrumbs: ({ routeLabels }: {
-            routeLabels: { [R in RouteKey]: string | false };
-        }) => JSX.Element | null;
+            routeLabels: { [R in keyof TRoutes]: string | false; };
+        }) => import("react/jsx-runtime").JSX.Element | null;
     };
     utils: {
         getParentRoutes: (input: keyof TRoutes) => (keyof TRoutes)[];
