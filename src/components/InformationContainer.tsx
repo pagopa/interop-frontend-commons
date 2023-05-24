@@ -58,10 +58,12 @@ export function InformationContainer({
 /**
  * Renders a skeleton for the InformationContainer component.
  */
-export const InformationContainerSkeleton: React.FC = () => {
+export const InformationContainerSkeleton: React.FC<{
+  direction?: 'row' | 'row-reverse' | 'column' | 'column-reverse'
+}> = ({ direction = 'row' }) => {
   return (
-    <Stack spacing={4} direction="row">
-      <Box sx={{ flexShrink: 0, maxWidth: '200px', flex: 1 }}>
+    <Stack spacing={direction === 'column' ? 0 : 4} direction={direction}>
+      <Box sx={{ flexShrink: 0, maxWidth: direction === 'column' ? 'none' : '200px', flex: 1 }}>
         <Skeleton />
       </Box>
       <Box sx={{ flex: 1 }}>
