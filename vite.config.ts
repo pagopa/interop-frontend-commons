@@ -90,7 +90,6 @@ export declare function generateRoutes<AuthLevel extends string, const TRoutes e
         Redirect: <RouteKey_3 extends keyof TRoutes = keyof TRoutes>(props: {
             to: RouteKey_3;
             options?: import("react-router").NavigateOptions | undefined;
-            urlParams?: Record<string, string> | undefined;
         } & (import("./router.types").ExtractRouteParams<TRoutes[RouteKey_3]["path"]> extends undefined ? object : {
             params: import("./router.types").ExtractRouteParams<TRoutes[RouteKey_3]["path"]>;
         })) => null;
