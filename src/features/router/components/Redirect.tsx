@@ -3,6 +3,7 @@ import {
   type NavigateOptions,
   generatePath as rrdGeneratePath,
   useNavigate,
+  useLocation,
 } from 'react-router-dom'
 import type { ExtractRouteParams, GenerateRoutesOptions, Routes } from '../router.types'
 import { prefixPathnameWithLang } from '../router.utils'
@@ -18,27 +19,27 @@ export function generateTypedRedirect<TRoutes extends Routes>(
     props: {
       to: RouteKey
       options?: NavigateOptions
-      urlParams?: Record<string, string>
     } & (ExtractRouteParams<TRoutes[RouteKey]['path']> extends undefined
       ? object
       : { params: ExtractRouteParams<TRoutes[RouteKey]['path']> })
   ) {
     const { i18n } = useTranslation()
     const currentLang = hasLanguages ? i18n.language : undefined
+    const location = useLocation()
 
     const navigate = useNavigate()
 
     useEffect(() => {
       let url = routes[props.to].path
+
       if ('params' in props) {
         url = rrdGeneratePath(url, props.params)
       }
-      if (props.urlParams) {
-        url = `${url}?${new URLSearchParams(props.urlParams).toString()}`
-      }
+
+      url = `${url}${location.search}${location.hash}`
 
       navigate(prefixPathnameWithLang(url, currentLang), props.options)
-    }, [navigate, props, currentLang])
+    }, [navigate, props, currentLang, location])
 
     return null
   }
