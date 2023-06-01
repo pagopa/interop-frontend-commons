@@ -34,13 +34,13 @@ describe('Redirect', () => {
     expect(history.location.pathname).toEqual('/page-1/test-id')
   })
 
-  it('should set url params on redirect', () => {
-    const { history } = renderRoutes(
-      <Redirect to="DYNAMIC_PAGE_1" params={{ id: 'test-id' }} urlParams={{ test: '1' }} />,
-      reactRouterDOMRoutes
-    )
+  it('should keep the hash and query params', () => {
+    const history = createMemoryHistory()
+    history.push('/page-1?test=1#test')
 
-    expect(history.location.pathname).toEqual('/page-1/test-id')
-    expect(history.location.search).toContain('test=1')
+    renderRoutes(<Redirect to="PAGE_2" />, reactRouterDOMRoutes, history)
+    expect(history.location.pathname).toEqual('/page-2')
+    expect(history.location.search).toEqual('?test=1')
+    expect(history.location.hash).toEqual('#test')
   })
 })
