@@ -52,6 +52,9 @@ const _FiltersExample: React.FC = () => {
       name: 'createdAt',
       type: 'datepicker',
       label: 'Find by creation date',
+      minDate: new Date(),
+      // Today plus 1 year
+      maxDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
     },
   ])
 
