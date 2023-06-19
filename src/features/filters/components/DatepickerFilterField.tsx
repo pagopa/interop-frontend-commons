@@ -5,17 +5,18 @@ import { getLocalizedValue } from '../../../utils/common.utils'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { DesktopDateTimePicker } from '@mui/x-date-pickers/DesktopDateTimePicker'
-import type { FilterFieldCommonProps } from '../filters.types'
+import type { DatepickerFilterFieldOptions, FilterFieldCommonProps } from '../filters.types'
 import { isValidDate } from '../filters.utils'
 import SearchIcon from '@mui/icons-material/Search'
 import { IconButton, InputAdornment } from '@mui/material'
 
 export const DatepickerFilterField: React.FC<FilterFieldCommonProps> = ({
-  field,
+  field: _field,
   value,
   onChangeActiveFilter,
   onFieldsValuesChange,
 }) => {
+  const field = _field as DatepickerFilterFieldOptions
   const filterKey = field.name
   const adapterLocale = getLocalizedValue({ it: itLocale, en: enLocale })
   const searchIconAriaLabel = getLocalizedValue({ it: 'Filtra', en: 'Filter' })
@@ -47,6 +48,8 @@ export const DatepickerFilterField: React.FC<FilterFieldCommonProps> = ({
         value={value as Date | null}
         onChange={handleDatepickerChange}
         label={field.label}
+        maxDate={field.maxDate}
+        minDate={field.minDate}
         slots={{
           inputAdornment: (inputAdornmentProps) => (
             <>

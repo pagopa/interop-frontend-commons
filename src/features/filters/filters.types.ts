@@ -32,8 +32,20 @@ type FilterFieldCommon<TName extends string = string> = {
 export type FreetextFilterFieldOptions<TName extends string = string> = FilterFieldCommon<TName> & {
   type: 'freetext'
 }
+
 export type DatepickerFilterFieldOptions<TName extends string = string> =
-  FilterFieldCommon<TName> & { type: 'datepicker' }
+  FilterFieldCommon<TName> & {
+    type: 'datepicker'
+    /**
+     * The minimum selectable date.
+     */
+    minDate?: Date
+    /**
+     * The maximum selectable date.
+     */
+    maxDate?: Date
+  }
+
 export type NumericFilterFieldOptions<TName extends string = string> = FilterFieldCommon<TName> & {
   type: 'numeric'
   /**
