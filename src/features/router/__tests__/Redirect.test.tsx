@@ -1,8 +1,11 @@
 import React from 'react'
 import { generateTestingRoutes, renderRoutes } from './common.mocks'
 import { createMemoryHistory } from 'history'
+import { expectTypeOf } from 'vitest'
+import type { ExtractRouteParams } from '../router.types'
 
 const {
+  routes,
   reactRouterDOMRoutes,
   components: { Redirect },
 } = generateTestingRoutes()
@@ -42,5 +45,20 @@ describe('Redirect', () => {
     expect(history.location.pathname).toEqual('/page-2')
     expect(history.location.search).toEqual('?test=1')
     expect(history.location.hash).toEqual('#test')
+  })
+
+  it('should have the "to" prop typed correctly', () => {
+    type ToProp = Parameters<typeof Redirect>['0']['to']
+    expectTypeOf<ToProp>().toMatchTypeOf<keyof typeof routes>()
+  })
+
+  it('should have the "params" prop typed correctly', () => {
+    type DynamicPageOnePathParameters = Parameters<typeof Redirect<'DYNAMIC_PAGE_1'>>['0']['params']
+    expectTypeOf<DynamicPageOnePathParameters>().toMatchTypeOf<
+      ExtractRouteParams<(typeof routes)['DYNAMIC_PAGE_1']['path']>
+    >()
+
+    type HomePagePathParameters = Parameters<typeof Redirect<'HOME'>>['0']
+    expectTypeOf<HomePagePathParameters>().not.toMatchTypeOf<{ params: unknown }>()
   })
 })

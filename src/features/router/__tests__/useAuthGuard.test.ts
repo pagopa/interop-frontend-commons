@@ -1,7 +1,9 @@
 import { createMemoryHistory } from 'history'
 import { renderHookInRoutes, generateTestingRoutes } from './common.mocks'
+import { expectTypeOf } from 'vitest'
 
 const {
+  routes,
   reactRouterDOMRoutes,
   hooks: { useAuthGuard },
 } = generateTestingRoutes()
@@ -22,6 +24,13 @@ describe('useAuthGuard', () => {
     })
   })
 
+  it("should have the property 'authLevels' typed correctly", () => {
+    const { result } = renderUseAuthGuard('/')
+    expectTypeOf(result.current.authLevels).toEqualTypeOf<
+      (typeof routes)[keyof typeof routes]['authLevels']
+    >()
+  })
+
   describe('isUserAuthorized', () => {
     it('should return true if the route is public', () => {
       const { result } = renderUseAuthGuard('/page-1/test')
@@ -39,6 +48,13 @@ describe('useAuthGuard', () => {
       const { result } = renderUseAuthGuard('/page-2')
 
       expect(result.current.isUserAuthorized(['admin'])).toEqual(false)
+    })
+
+    it('should have the correct typings on the parameter', () => {
+      const { result } = renderUseAuthGuard('/page-2')
+      type IsUserAuthorizedParam = Parameters<typeof result.current.isUserAuthorized>[0]
+      type Result = (typeof routes)[keyof typeof routes]['authLevels'][number]
+      expectTypeOf<IsUserAuthorizedParam>().toEqualTypeOf<Result | Result[]>()
     })
   })
 })

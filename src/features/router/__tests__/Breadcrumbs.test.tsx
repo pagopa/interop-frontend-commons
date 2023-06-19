@@ -2,8 +2,10 @@ import React from 'react'
 import { generateTestingRoutes, renderRoutes } from './common.mocks'
 import { createMemoryHistory } from 'history'
 import userEvent from '@testing-library/user-event'
+import { expectTypeOf } from 'vitest'
 
 const {
+  routes,
   reactRouterDOMRoutes,
   components: { Breadcrumbs },
 } = generateTestingRoutes()
@@ -83,5 +85,11 @@ describe('Breadcrumbs', () => {
     const homeLink = getByRole('link', { name: 'home' })
     await user.click(homeLink)
     expect(history.location.pathname).toEqual('/it/')
+  })
+
+  it('should have the correct routeLabels type', () => {
+    type RouteLabels = Parameters<typeof Breadcrumbs>['0']['routeLabels']
+
+    expectTypeOf<RouteLabels>().toMatchTypeOf<{ [K in keyof typeof routes]: string | false }>()
   })
 })
