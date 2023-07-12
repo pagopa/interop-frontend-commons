@@ -2,6 +2,21 @@ import { deepmerge } from '@mui/utils'
 import { createTheme } from '@mui/material'
 import { theme as muiItaliaTheme } from '@pagopa/mui-italia'
 
+declare module '@mui/material/styles' {
+  interface TypographyVariants {
+    label: React.CSSProperties
+  }
+
+  interface TypographyVariantsOptions {
+    label?: React.CSSProperties
+  }
+}
+declare module '@mui/material/Typography' {
+  interface TypographyPropsVariantOverrides {
+    label: true
+  }
+}
+
 /**
  * It is based on the `@pagopa/mui-italia` theme.
  * It overrides some of the default values.
@@ -9,6 +24,12 @@ import { theme as muiItaliaTheme } from '@pagopa/mui-italia'
 export const theme = createTheme(
   deepmerge(
     {
+      typography: {
+        label: {
+          fontSize: '16px',
+          fontWeight: 600,
+        },
+      },
       components: {
         MuiTooltip: { defaultProps: { placement: 'top' } },
         MuiChip: { defaultProps: { size: 'small' } },
