@@ -22,11 +22,39 @@ export type Route<
   TRedirectKey extends string | number | symbol = string,
 > = Readonly<
   {
+    /**
+     * Unique key of the route
+     */
     key: TKey
+    /**
+     * The route path, e.g. `/users/:userId`
+     */
     path: TPath
+    /**
+     * Whether the route is public or not, i.e. whether it requires authentication
+     */
     public: TPublic
+    /**
+     * The auth levels required to access the route
+     * @example ['user', 'admin']
+     */
     authLevels: readonly TAuthLevel[]
-  } & ({ element: React.ReactNode } | { redirect: TRedirectKey }) &
+  } & (
+    | {
+        /**
+         * The component to render when the route is matched
+         */
+        element: React.ReactNode
+      }
+    | {
+        /**
+         * The route to redirect to when the route is matched.
+         * Must be a route key.
+         * @example 'HOME'
+         */
+        redirect: TRedirectKey
+      }
+  ) &
     TConfigExtension
 >
 
