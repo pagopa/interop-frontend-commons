@@ -5,15 +5,15 @@ import {
   useNavigate,
   useLocation,
 } from 'react-router-dom'
-import type { ExtractRouteParams, GenerateRoutesOptions, Routes } from '../router.types'
+import type { ExtractRouteParams, Routes, RoutesBuilderConfig } from '../router.types'
 import { prefixPathnameWithLang } from '../router.utils'
 import { useTranslation } from 'react-i18next'
 
 export function generateTypedRedirect<TRoutes extends Routes>(
   routes: TRoutes,
-  options?: GenerateRoutesOptions
+  config?: RoutesBuilderConfig
 ) {
-  const hasLanguages = !!options?.languages && options.languages.length > 0
+  const hasLanguages = !!config?.languages && config.languages.length > 0
 
   return function Redirect<RouteKey extends keyof TRoutes = keyof TRoutes>(
     props: {

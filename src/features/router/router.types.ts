@@ -13,22 +13,34 @@ export type RouteParams<TRoutes extends Routes> = ExtractRouteParams<
   TRoutes[Extract<keyof TRoutes, string>]['path']
 >
 
-export type Routes<AuthLevel extends string = string> = Readonly<
-  Record<
-    string,
-    {
-      path: string
-      public: boolean
-      authLevels: readonly AuthLevel[]
-    } & ({ element: React.ReactNode } | { redirect: string })
-  >
+export type Route<
+  TKey extends string = string,
+  TPath extends string = string,
+  TPublic extends boolean = boolean,
+  TAuthLevel extends string = string,
+  TConfigExtension extends Record<string, any> = {},
+  TRedirectKey extends string | number | symbol = string,
+> = Readonly<
+  {
+    key: TKey
+    path: TPath
+    public: TPublic
+    authLevels: readonly TAuthLevel[]
+  } & ({ element: React.ReactNode } | { redirect: TRedirectKey }) &
+    TConfigExtension
 >
+
+export type RoutesBuilderConfig<TLanguage extends string = string> = Readonly<{
+  languages?: readonly [TLanguage, ...TLanguage[]]
+}>
+
+export type Routes = Record<string, Route>
 
 export type ExtendedNavigateOptions = NavigateOptions & { urlParams?: Record<string, string> }
 export type TypedGeneratePath<TRoutes extends Routes> = <
   RouteKey extends keyof TRoutes = keyof TRoutes,
   Path extends TRoutes[RouteKey]['path'] = TRoutes[RouteKey]['path'],
-  RouteParams extends ExtractRouteParams<Path> = ExtractRouteParams<Path>
+  RouteParams extends ExtractRouteParams<Path> = ExtractRouteParams<Path>,
 >(
   routeKey: RouteKey,
   ...params: RouteParams extends undefined ? [] : [RouteParams]
@@ -37,7 +49,7 @@ export type TypedGeneratePath<TRoutes extends Routes> = <
 export type TypedNavigate<TRoutes extends Routes> = <
   RouteKey extends keyof TRoutes = keyof TRoutes,
   Path extends TRoutes[RouteKey]['path'] = TRoutes[RouteKey]['path'],
-  RouteParams extends ExtractRouteParams<Path> = ExtractRouteParams<Path>
+  RouteParams extends ExtractRouteParams<Path> = ExtractRouteParams<Path>,
 >(
   routeKey: RouteKey,
   ...config: RouteParams extends undefined
@@ -48,7 +60,7 @@ export type TypedNavigate<TRoutes extends Routes> = <
 export type TypedUseNavigate<TRoutes extends Routes> = () => TypedNavigate<TRoutes>
 
 export type TypedUseParams<TRoutes extends Routes> = <
-  RouteKey extends keyof TRoutes = keyof TRoutes
+  RouteKey extends keyof TRoutes = keyof TRoutes,
 >() => ExtractRouteParams<TRoutes[RouteKey]['path']>
 
 export type TypedUseGeneratePath<TRoutes extends Routes> = () => TypedGeneratePath<TRoutes>
