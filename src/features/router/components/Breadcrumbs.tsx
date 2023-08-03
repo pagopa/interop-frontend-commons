@@ -1,5 +1,5 @@
 import React from 'react'
-import type { GenerateRoutesOptions, Routes } from '../router.types'
+import type { Routes, RoutesBuilderConfig } from '../router.types'
 import { Breadcrumbs as MUIBreadcrumbs, Link as MUILink } from '@mui/material'
 import {
   getRouteKeyFromPath,
@@ -12,17 +12,13 @@ import { useTranslation } from 'react-i18next'
 
 export function generateBreadcrumbs<
   TRoutes extends Routes,
-  RouteKey extends keyof TRoutes = keyof TRoutes
->(
-  routes: TRoutes,
-  getParentRoutes: (input: RouteKey) => RouteKey[],
-  options?: GenerateRoutesOptions
-) {
+  RouteKey extends keyof TRoutes = keyof TRoutes,
+>(routes: TRoutes, getParentRoutes: (input: RouteKey) => RouteKey[], config?: RoutesBuilderConfig) {
   type BreadcrumbProps = {
     routeLabels: { [R in RouteKey]: string | false }
   }
-  const languages = options?.languages ?? []
-  const hasLanguages = !!options?.languages && options.languages.length > 0
+  const languages = config?.languages ?? []
+  const hasLanguages = !!config?.languages && config.languages.length > 0
 
   return function Breadcrumbs({ routeLabels }: BreadcrumbProps) {
     const params = useParams()

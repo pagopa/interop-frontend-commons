@@ -1,15 +1,14 @@
 import React from 'react'
 import { type RouteObject, matchPath } from 'react-router-dom'
-import type { GenerateRoutesOptions, Routes } from './router.types'
+import type { Routes, RoutesBuilderConfig } from './router.types'
 import { SyncLangWithRoute } from './components/SyncLangWithRoute'
 
 export function generateRRDRouteObject(
   routes: Routes,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   Redirect: React.FC<any>,
-  options?: GenerateRoutesOptions
+  config?: RoutesBuilderConfig
 ): RouteObject[] {
-  const languages = options?.languages ?? []
+  const languages = config?.languages ?? []
 
   const result = Object.values(routes).reduce((prev, route) => {
     if ('redirect' in route) {
@@ -18,8 +17,6 @@ export function generateRRDRouteObject(
           ...prev,
           ...languages.map((lang) => ({
             path: prefixPathnameWithLang(route.path, lang),
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
             element: <Redirect to={route.redirect} />,
           })),
         ]
@@ -29,8 +26,6 @@ export function generateRRDRouteObject(
         ...prev,
         {
           path: route.path,
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
           element: <Redirect to={route.redirect} />,
         },
       ]
@@ -41,8 +36,6 @@ export function generateRRDRouteObject(
         ...prev,
         ...languages.map((lang) => ({
           path: prefixPathnameWithLang(route.path, lang),
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
           element: route.element,
         })),
       ]
@@ -66,7 +59,7 @@ export function generateRRDRouteObject(
 
 export function generateTypedGetParentRoutes<
   TRoutes extends Routes,
-  TRouteKey extends keyof TRoutes = keyof TRoutes
+  TRouteKey extends keyof TRoutes = keyof TRoutes,
 >(routes: TRoutes) {
   const getParentRoutes = memoize((routeKey: TRouteKey) => {
     function isParentRoute(

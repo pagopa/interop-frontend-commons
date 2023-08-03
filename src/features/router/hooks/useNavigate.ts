@@ -1,19 +1,14 @@
 import { useCallback } from 'react'
 import { generatePath, useNavigate as useRRDNavigate } from 'react-router-dom'
-import type {
-  TypedNavigate,
-  Routes,
-  TypedUseNavigate,
-  GenerateRoutesOptions,
-} from '../router.types'
+import type { TypedNavigate, Routes, TypedUseNavigate, RoutesBuilderConfig } from '../router.types'
 import { prefixPathnameWithLang } from '../router.utils'
 import { useTranslation } from 'react-i18next'
 
 export function generateTypedUseNavigate<TRoutes extends Routes>(
   routes: TRoutes,
-  options?: GenerateRoutesOptions
+  config?: RoutesBuilderConfig
 ): TypedUseNavigate<TRoutes> {
-  const hasLanguages = !!options?.languages && options.languages.length > 0
+  const hasLanguages = !!config?.languages && config.languages.length > 0
 
   return function useNavigate() {
     const rrdNavigate = useRRDNavigate()

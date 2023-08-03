@@ -10,7 +10,7 @@ import {
   Link as MUILink,
   type LinkProps as MUILinkProps,
 } from '@mui/material'
-import type { ExtractRouteParams, GenerateRoutesOptions, Routes } from '../router.types'
+import type { ExtractRouteParams, Routes, RoutesBuilderConfig } from '../router.types'
 import { omit, prefixPathnameWithLang } from '../router.utils'
 import { useTranslation } from 'react-i18next'
 
@@ -20,9 +20,9 @@ export interface LinkOptions extends NavigateOptions {
 
 export function generateTypedLink<TRoutes extends Routes>(
   routes: TRoutes,
-  options?: GenerateRoutesOptions
+  config?: RoutesBuilderConfig
 ) {
-  const hasLanguages = !!options?.languages && options.languages.length > 0
+  const hasLanguages = !!config?.languages && config.languages.length > 0
 
   function Link<RouteKey extends keyof TRoutes = keyof TRoutes>(
     props: {
