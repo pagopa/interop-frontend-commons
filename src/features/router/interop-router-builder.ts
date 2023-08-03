@@ -12,7 +12,7 @@ import { generateUseSwitchPathLang } from './hooks/useSwitchPathLang'
 
 export class InteropRouterBuilder<
   TLanguage extends string,
-  AuthLevel extends string = string,
+  AuthLevel extends string = string & {},
   const TConfigExtension extends Record<string, any> = {},
   const TRoutes extends Record<string, any> = {},
 > {
@@ -29,7 +29,7 @@ export class InteropRouterBuilder<
     route: Route<TKey, TPath, TPublic, TAuthLevel, TConfigExtension, keyof TRoutes>
   ): InteropRouterBuilder<
     TLanguage,
-    AuthLevel,
+    AuthLevel | TAuthLevel,
     TConfigExtension,
     TRoutes & Record<TKey, typeof route>
   > {
