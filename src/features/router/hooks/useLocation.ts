@@ -1,13 +1,13 @@
 import { useMemo } from 'react'
 import { useLocation as useRRDLocation } from 'react-router-dom'
-import type { GenerateRoutesOptions, Routes } from '../router.types'
+import type { Routes, RoutesBuilderConfig } from '../router.types'
 import { getRouteKeyFromPath, removeLanguageSubpathFromPathname } from '../router.utils'
 
 export function generateTypedUseLocation<TRoutes extends Routes>(
   routes: TRoutes,
-  options?: GenerateRoutesOptions
+  config?: RoutesBuilderConfig
 ) {
-  const languages = options?.languages ?? []
+  const languages = config?.languages ?? []
 
   return function useLocation<RouteKey extends keyof TRoutes = keyof TRoutes>() {
     const location = useRRDLocation()

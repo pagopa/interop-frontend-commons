@@ -3,17 +3,17 @@ import { generatePath as rrdGeneratePath } from 'react-router-dom'
 import type {
   Routes,
   TypedUseGeneratePath,
-  GenerateRoutesOptions,
   TypedGeneratePath,
+  RoutesBuilderConfig,
 } from '../router.types'
 import { prefixPathnameWithLang } from '../router.utils'
 import { useTranslation } from 'react-i18next'
 
-export function generateTypeduseGeneratePath<TRoutes extends Routes>(
+export function generateTypedUseGeneratePath<TRoutes extends Routes>(
   routes: TRoutes,
-  options?: GenerateRoutesOptions
+  config?: RoutesBuilderConfig
 ): TypedUseGeneratePath<TRoutes> {
-  const hasLanguages = !!options?.languages && options.languages.length > 0
+  const hasLanguages = !!config?.languages && config.languages.length > 0
 
   return function useGeneratePath() {
     const { i18n } = useTranslation()

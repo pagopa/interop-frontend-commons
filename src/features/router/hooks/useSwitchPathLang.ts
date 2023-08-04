@@ -1,9 +1,9 @@
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import type { GenerateRoutesOptions } from '../router.types'
+import type { RoutesBuilderConfig } from '../router.types'
 
-export function generateUseSwitchPathLang<T extends string>(options?: GenerateRoutesOptions) {
-  const languages = options?.languages
+export function generateUseSwitchPathLang<T extends string>(config?: RoutesBuilderConfig) {
+  const languages = config?.languages
 
   return function useSwitchPathLang() {
     const location = useLocation()
@@ -16,7 +16,7 @@ export function generateUseSwitchPathLang<T extends string>(options?: GenerateRo
 
         if (!languages) {
           throw new Error(
-            'useSwitchPathLang requires languages to be defined in generateRoutes options'
+            'useSwitchPathLang requires languages to be defined in generateRoutes config'
           )
         }
 

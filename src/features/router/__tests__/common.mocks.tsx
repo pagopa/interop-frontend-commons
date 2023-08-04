@@ -1,5 +1,4 @@
 import React from 'react'
-import { generateRoutes } from '../generate-routes'
 import {
   type RouteObject,
   RouterProvider as _RouterProvider,
@@ -10,57 +9,62 @@ import {
 import { render, renderHook } from '@testing-library/react'
 import { createMemoryHistory, type History } from 'history'
 import { type GenerateRoutesOptions } from '../router.types'
+import { InteropRouterBuilder } from '../interop-router-builder'
 
 const EmptyElement = () => null
 
 export const generateTestingRoutes = <T extends string>(options?: GenerateRoutesOptions<T>) => {
-  return generateRoutes(
-    {
-      HOME: {
-        path: '/',
-        public: true,
-        authLevels: ['user', 'admin'],
-        element: <EmptyElement />,
-      },
-      PAGE_1: {
-        path: '/page-1',
-        public: false,
-        authLevels: ['user'],
-        element: <EmptyElement />,
-      },
-      PAGE_2: {
-        path: '/page-2',
-        public: false,
-        authLevels: ['user'],
-        element: <EmptyElement />,
-      },
-      REDIRECT_1: {
-        path: '/redirect-1',
-        public: true,
-        authLevels: ['user', 'admin'],
-        redirect: 'PAGE_1',
-      },
-      REDIRECT_2: {
-        path: '/redirect-2',
-        public: true,
-        authLevels: ['user', 'admin'],
-        redirect: 'PAGE_2',
-      },
-      DYNAMIC_PAGE_1: {
-        path: '/page-1/:id',
-        public: true,
-        authLevels: ['admin'],
-        element: <EmptyElement />,
-      },
-      DYNAMIC_PAGE_2: {
-        path: '/page-2/:id',
-        public: true,
-        authLevels: ['admin'],
-        element: <EmptyElement />,
-      },
-    },
-    options
-  )
+  return new InteropRouterBuilder(options)
+    .addRoute({
+      key: 'HOME',
+      path: '/',
+      public: true,
+      authLevels: ['user', 'admin'],
+      element: <EmptyElement />,
+    })
+    .addRoute({
+      key: 'PAGE_1',
+      path: '/page-1',
+      public: false,
+      authLevels: ['user'],
+      element: <EmptyElement />,
+    })
+    .addRoute({
+      key: 'PAGE_2',
+      path: '/page-2',
+      public: false,
+      authLevels: ['user'],
+      element: <EmptyElement />,
+    })
+    .addRoute({
+      key: 'REDIRECT_1',
+      path: '/redirect-1',
+      public: true,
+      authLevels: ['user', 'admin'],
+      redirect: 'PAGE_1',
+    })
+    .addRoute({
+      key: 'REDIRECT_2',
+      path: '/redirect-2',
+      public: true,
+      authLevels: ['user', 'admin'],
+      redirect: 'PAGE_2',
+    })
+    .addRoute({
+      key: 'DYNAMIC_PAGE_1',
+      path: '/page-1/:id',
+      public: true,
+      authLevels: ['admin'],
+      element: <EmptyElement />,
+    })
+    .addRoute({
+      key: 'DYNAMIC_PAGE_2',
+      path: '/page-2/:id',
+      public: true,
+      authLevels: ['admin'],
+      element: <EmptyElement />,
+    })
+    .build()
 }
 
 const createRouter = (routes: RouteObject[], history: History, element: React.ReactNode) => {
