@@ -26,10 +26,16 @@ export function InformationContainer({
   copyToClipboard,
   direction = 'row',
   content,
+  sx,
   ...props
 }: InformationContainerProps) {
   return (
-    <Stack spacing={direction === 'column' ? 0 : 4} direction={direction} {...props}>
+    <Stack
+      spacing={direction === 'column' ? 0 : 4}
+      direction={direction}
+      sx={{ mt: copyToClipboard ? -1 : undefined, ...sx }}
+      {...props}
+    >
       <Box sx={{ flexShrink: 0, maxWidth: direction === 'column' ? 'none' : '200px', flex: 1 }}>
         <Typography sx={{ mt: copyToClipboard ? 1 : undefined }} variant="body2">
           {label}

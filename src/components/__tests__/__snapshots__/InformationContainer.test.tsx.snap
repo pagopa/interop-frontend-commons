@@ -107,7 +107,7 @@ exports[`InformationContainer component > Render correctly with content as tring
 
 exports[`InformationContainer component > Render correctly with copy to clipboard button 1`] = `
 <div
-  className="MuiStack-root css-1xcvc1q-MuiStack-root"
+  className="MuiStack-root css-185s2x1-MuiStack-root"
 >
   <div
     className="MuiBox-root css-iuqs4u"
