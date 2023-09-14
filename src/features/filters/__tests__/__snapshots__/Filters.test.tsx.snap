@@ -5,7 +5,7 @@ exports[`Filters component > matches the snapshot with more than one active filt
   className="MuiStack-root css-1obrysa-MuiStack-root"
 >
   <div
-    className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
+    className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-1q9xed9-MuiGrid-root"
   >
     <div
       className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-3 css-1equabv-MuiGrid-root"
@@ -526,7 +526,7 @@ exports[`Filters component > matches the snapshot with more than one active filt
   className="MuiStack-root css-1obrysa-MuiStack-root"
 >
   <div
-    className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
+    className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-1q9xed9-MuiGrid-root"
   >
     <div
       className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-3 css-1equabv-MuiGrid-root"
@@ -1050,7 +1050,7 @@ exports[`Filters component > matches the snapshot with one active filter 1`] = `
   className="MuiStack-root css-1obrysa-MuiStack-root"
 >
   <div
-    className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
+    className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-1q9xed9-MuiGrid-root"
   >
     <div
       className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-3 css-1equabv-MuiGrid-root"
@@ -1482,7 +1482,7 @@ exports[`Filters component > matches the snapshot with one active filter and a r
   className="MuiStack-root css-1obrysa-MuiStack-root"
 >
   <div
-    className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
+    className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-1q9xed9-MuiGrid-root"
   >
     <div
       className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-3 css-1equabv-MuiGrid-root"
@@ -1917,7 +1917,7 @@ exports[`Filters component > matches the snapshot without active filters 1`] = `
   className="MuiStack-root css-1obrysa-MuiStack-root"
 >
   <div
-    className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
+    className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-1q9xed9-MuiGrid-root"
   >
     <div
       className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-3 css-1equabv-MuiGrid-root"

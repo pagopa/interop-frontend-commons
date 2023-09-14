@@ -26,7 +26,7 @@ export const FiltersFields: React.FC<FiltersFieldsProps> = ({
   onChangeActiveFilter,
 }) => {
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} ml={-2}>
       {fields.map((field) => {
         const fieldProps = {
           field,
