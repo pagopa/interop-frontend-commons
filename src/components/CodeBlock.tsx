@@ -25,8 +25,10 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({ code, hideCopyButton, ...b
           position: 'relative',
           backgroundColor: 'background.default',
           whiteSpace: 'pre-wrap',
+          wordBreak: 'break-word',
           maxHeight: 520,
           overflowY: 'auto',
+          overflowX: 'hidden',
           fontSize: 'small',
         }}
       >
