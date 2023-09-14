@@ -2,7 +2,7 @@
 
 exports[`InformationContainer component > Render correctly with JSX as content 1`] = `
 <div
-  className="MuiStack-root css-19qjufr-MuiStack-root"
+  className="MuiStack-root css-1xcvc1q-MuiStack-root"
 >
   <div
     className="MuiBox-root css-iuqs4u"
@@ -62,7 +62,7 @@ exports[`InformationContainer component > Render correctly with column direction
 
 exports[`InformationContainer component > Render correctly with content as tring 1`] = `
 <div
-  className="MuiStack-root css-19qjufr-MuiStack-root"
+  className="MuiStack-root css-1xcvc1q-MuiStack-root"
 >
   <div
     className="MuiBox-root css-iuqs4u"
@@ -95,7 +95,7 @@ exports[`InformationContainer component > Render correctly with content as tring
 
 exports[`InformationContainer component > Render correctly with copy to clipboard button 1`] = `
 <div
-  className="MuiStack-root css-19qjufr-MuiStack-root"
+  className="MuiStack-root css-1xcvc1q-MuiStack-root"
 >
   <div
     className="MuiBox-root css-iuqs4u"
@@ -159,7 +159,7 @@ exports[`InformationContainer component > Render correctly with copy to clipboar
 
 exports[`InformationContainer component > Renders correctly 1`] = `
 <div
-  className="MuiStack-root css-19qjufr-MuiStack-root"
+  className="MuiStack-root css-1xcvc1q-MuiStack-root"
 >
   <div
     className="MuiBox-root css-iuqs4u"
@@ -184,13 +184,13 @@ exports[`InformationContainer component > Renders correctly 1`] = `
 
 exports[`InformationContainer component > Renders the loading skeleton correctly 1`] = `
 <div
-  className="MuiStack-root css-19qjufr-MuiStack-root"
+  className="MuiStack-root css-1xcvc1q-MuiStack-root"
 >
   <div
     className="MuiBox-root css-iuqs4u"
   >
     <span
-      className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse css-1n7gpw1-MuiSkeleton-root"
+      className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse css-1e1x4vv-MuiSkeleton-root"
       style={
         {
           "height": undefined,
@@ -203,7 +203,7 @@ exports[`InformationContainer component > Renders the loading skeleton correctly
     className="MuiBox-root css-1rr4qq7"
   >
     <span
-      className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse css-1n7gpw1-MuiSkeleton-root"
+      className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse css-1e1x4vv-MuiSkeleton-root"
       style={
         {
           "height": undefined,
@@ -212,7 +212,7 @@ exports[`InformationContainer component > Renders the loading skeleton correctly
       }
     />
     <span
-      className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse css-1n7gpw1-MuiSkeleton-root"
+      className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse css-1e1x4vv-MuiSkeleton-root"
       style={
         {
           "height": undefined,

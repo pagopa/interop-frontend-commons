@@ -2,7 +2,7 @@
 
 exports[`Spinner component > Renders correctly with label and column direction 1`] = `
 <div
-  className="MuiStack-root css-10y7f4i-MuiStack-root"
+  className="MuiStack-root css-wm1qkd-MuiStack-root"
 >
   <span
     className="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorPrimary css-18lrjg1-MuiCircularProgress-root"
@@ -39,7 +39,7 @@ exports[`Spinner component > Renders correctly with label and column direction 1
 
 exports[`Spinner component > Renders correctly with label and column-reverse direction 1`] = `
 <div
-  className="MuiStack-root css-1d1cvhx-MuiStack-root"
+  className="MuiStack-root css-17j10bg-MuiStack-root"
 >
   <span
     className="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorPrimary css-18lrjg1-MuiCircularProgress-root"
@@ -76,7 +76,7 @@ exports[`Spinner component > Renders correctly with label and column-reverse dir
 
 exports[`Spinner component > Renders correctly with label and row direction 1`] = `
 <div
-  className="MuiStack-root css-1m9ibdo-MuiStack-root"
+  className="MuiStack-root css-18ahtx1-MuiStack-root"
 >
   <span
     className="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorPrimary css-18lrjg1-MuiCircularProgress-root"
@@ -113,7 +113,7 @@ exports[`Spinner component > Renders correctly with label and row direction 1`] 
 
 exports[`Spinner component > Renders correctly with label and row-reverse direction 1`] = `
 <div
-  className="MuiStack-root css-1m3kcif-MuiStack-root"
+  className="MuiStack-root css-yf0edl-MuiStack-root"
 >
   <span
     className="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorPrimary css-18lrjg1-MuiCircularProgress-root"
@@ -150,7 +150,7 @@ exports[`Spinner component > Renders correctly with label and row-reverse direct
 
 exports[`Spinner component > Renders correctly without label and column direction 1`] = `
 <div
-  className="MuiStack-root css-10y7f4i-MuiStack-root"
+  className="MuiStack-root css-wm1qkd-MuiStack-root"
 >
   <span
     className="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorPrimary css-18lrjg1-MuiCircularProgress-root"
@@ -182,7 +182,7 @@ exports[`Spinner component > Renders correctly without label and column directio
 
 exports[`Spinner component > Renders correctly without label and column-reverse direction 1`] = `
 <div
-  className="MuiStack-root css-1d1cvhx-MuiStack-root"
+  className="MuiStack-root css-17j10bg-MuiStack-root"
 >
   <span
     className="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorPrimary css-18lrjg1-MuiCircularProgress-root"
@@ -214,7 +214,7 @@ exports[`Spinner component > Renders correctly without label and column-reverse 
 
 exports[`Spinner component > Renders correctly without label and row direction 1`] = `
 <div
-  className="MuiStack-root css-1m9ibdo-MuiStack-root"
+  className="MuiStack-root css-18ahtx1-MuiStack-root"
 >
   <span
     className="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorPrimary css-18lrjg1-MuiCircularProgress-root"
@@ -246,7 +246,7 @@ exports[`Spinner component > Renders correctly without label and row direction 1
 
 exports[`Spinner component > Renders correctly without label and row-reverse direction 1`] = `
 <div
-  className="MuiStack-root css-1m3kcif-MuiStack-root"
+  className="MuiStack-root css-yf0edl-MuiStack-root"
 >
   <span
     className="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorPrimary css-18lrjg1-MuiCircularProgress-root"

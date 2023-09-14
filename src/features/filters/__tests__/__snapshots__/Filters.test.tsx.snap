@@ -2,7 +2,7 @@
 
 exports[`Filters component > matches the snapshot with more than one active filters 1`] = `
 <div
-  className="MuiStack-root css-1m2za9r-MuiStack-root"
+  className="MuiStack-root css-1obrysa-MuiStack-root"
 >
   <div
     className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
@@ -179,7 +179,7 @@ exports[`Filters component > matches the snapshot with more than one active filt
     >
       <div
         aria-owns={null}
-        className="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-4xbbh5-MuiAutocomplete-root"
+        className="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1xnbq41-MuiAutocomplete-root"
         label="Multiple Filter Field"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -280,7 +280,7 @@ exports[`Filters component > matches the snapshot with more than one active filt
     >
       <div
         aria-owns={null}
-        className="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-4xbbh5-MuiAutocomplete-root"
+        className="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1xnbq41-MuiAutocomplete-root"
         label="Autocomplete Single Field"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -387,7 +387,7 @@ exports[`Filters component > matches the snapshot with more than one active filt
       className="MuiStack-root css-1xvxq01-MuiStack-root"
     >
       <div
-        className="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-1q79v3g-MuiButtonBase-root-MuiChip-root"
+        className="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-1mywu95-MuiButtonBase-root-MuiChip-root"
         onBlur={[Function]}
         onContextMenu={[Function]}
         onDragLeave={[Function]}
@@ -422,7 +422,7 @@ exports[`Filters component > matches the snapshot with more than one active filt
         </svg>
       </div>
       <div
-        className="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-1q79v3g-MuiButtonBase-root-MuiChip-root"
+        className="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-1mywu95-MuiButtonBase-root-MuiChip-root"
         onBlur={[Function]}
         onContextMenu={[Function]}
         onDragLeave={[Function]}
@@ -457,7 +457,7 @@ exports[`Filters component > matches the snapshot with more than one active filt
         </svg>
       </div>
       <div
-        className="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-1q79v3g-MuiButtonBase-root-MuiChip-root"
+        className="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-1mywu95-MuiButtonBase-root-MuiChip-root"
         onBlur={[Function]}
         onContextMenu={[Function]}
         onDragLeave={[Function]}
@@ -523,7 +523,7 @@ exports[`Filters component > matches the snapshot with more than one active filt
 
 exports[`Filters component > matches the snapshot with more than one active filters and right content 1`] = `
 <div
-  className="MuiStack-root css-1m2za9r-MuiStack-root"
+  className="MuiStack-root css-1obrysa-MuiStack-root"
 >
   <div
     className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
@@ -700,7 +700,7 @@ exports[`Filters component > matches the snapshot with more than one active filt
     >
       <div
         aria-owns={null}
-        className="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-4xbbh5-MuiAutocomplete-root"
+        className="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1xnbq41-MuiAutocomplete-root"
         label="Multiple Filter Field"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -801,7 +801,7 @@ exports[`Filters component > matches the snapshot with more than one active filt
     >
       <div
         aria-owns={null}
-        className="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-4xbbh5-MuiAutocomplete-root"
+        className="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1xnbq41-MuiAutocomplete-root"
         label="Autocomplete Single Field"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -902,13 +902,13 @@ exports[`Filters component > matches the snapshot with more than one active filt
     className="MuiDivider-root MuiDivider-fullWidth css-1b008ma-MuiDivider-root"
   />
   <div
-    className="MuiStack-root css-guojqh-MuiStack-root"
+    className="MuiStack-root css-1a41st4-MuiStack-root"
   >
     <div
       className="MuiStack-root css-1xvxq01-MuiStack-root"
     >
       <div
-        className="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-1q79v3g-MuiButtonBase-root-MuiChip-root"
+        className="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-1mywu95-MuiButtonBase-root-MuiChip-root"
         onBlur={[Function]}
         onContextMenu={[Function]}
         onDragLeave={[Function]}
@@ -943,7 +943,7 @@ exports[`Filters component > matches the snapshot with more than one active filt
         </svg>
       </div>
       <div
-        className="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-1q79v3g-MuiButtonBase-root-MuiChip-root"
+        className="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-1mywu95-MuiButtonBase-root-MuiChip-root"
         onBlur={[Function]}
         onContextMenu={[Function]}
         onDragLeave={[Function]}
@@ -978,7 +978,7 @@ exports[`Filters component > matches the snapshot with more than one active filt
         </svg>
       </div>
       <div
-        className="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-1q79v3g-MuiButtonBase-root-MuiChip-root"
+        className="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-1mywu95-MuiButtonBase-root-MuiChip-root"
         onBlur={[Function]}
         onContextMenu={[Function]}
         onDragLeave={[Function]}
@@ -1047,7 +1047,7 @@ exports[`Filters component > matches the snapshot with more than one active filt
 
 exports[`Filters component > matches the snapshot with one active filter 1`] = `
 <div
-  className="MuiStack-root css-1m2za9r-MuiStack-root"
+  className="MuiStack-root css-1obrysa-MuiStack-root"
 >
   <div
     className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
@@ -1224,7 +1224,7 @@ exports[`Filters component > matches the snapshot with one active filter 1`] = `
     >
       <div
         aria-owns={null}
-        className="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-4xbbh5-MuiAutocomplete-root"
+        className="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1xnbq41-MuiAutocomplete-root"
         label="Multiple Filter Field"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -1328,7 +1328,7 @@ exports[`Filters component > matches the snapshot with one active filter 1`] = `
     >
       <div
         aria-owns={null}
-        className="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-4xbbh5-MuiAutocomplete-root"
+        className="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1xnbq41-MuiAutocomplete-root"
         label="Autocomplete Single Field"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -1438,7 +1438,7 @@ exports[`Filters component > matches the snapshot with one active filter 1`] = `
       className="MuiStack-root css-1xvxq01-MuiStack-root"
     >
       <div
-        className="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-1q79v3g-MuiButtonBase-root-MuiChip-root"
+        className="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-1mywu95-MuiButtonBase-root-MuiChip-root"
         onBlur={[Function]}
         onContextMenu={[Function]}
         onDragLeave={[Function]}
@@ -1479,7 +1479,7 @@ exports[`Filters component > matches the snapshot with one active filter 1`] = `
 
 exports[`Filters component > matches the snapshot with one active filter and a right content 1`] = `
 <div
-  className="MuiStack-root css-1m2za9r-MuiStack-root"
+  className="MuiStack-root css-1obrysa-MuiStack-root"
 >
   <div
     className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
@@ -1656,7 +1656,7 @@ exports[`Filters component > matches the snapshot with one active filter and a r
     >
       <div
         aria-owns={null}
-        className="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-4xbbh5-MuiAutocomplete-root"
+        className="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1xnbq41-MuiAutocomplete-root"
         label="Multiple Filter Field"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -1760,7 +1760,7 @@ exports[`Filters component > matches the snapshot with one active filter and a r
     >
       <div
         aria-owns={null}
-        className="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-4xbbh5-MuiAutocomplete-root"
+        className="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1xnbq41-MuiAutocomplete-root"
         label="Autocomplete Single Field"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -1864,13 +1864,13 @@ exports[`Filters component > matches the snapshot with one active filter and a r
     className="MuiDivider-root MuiDivider-fullWidth css-1b008ma-MuiDivider-root"
   />
   <div
-    className="MuiStack-root css-guojqh-MuiStack-root"
+    className="MuiStack-root css-1a41st4-MuiStack-root"
   >
     <div
       className="MuiStack-root css-1xvxq01-MuiStack-root"
     >
       <div
-        className="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-1q79v3g-MuiButtonBase-root-MuiChip-root"
+        className="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault css-1mywu95-MuiButtonBase-root-MuiChip-root"
         onBlur={[Function]}
         onContextMenu={[Function]}
         onDragLeave={[Function]}
@@ -1914,7 +1914,7 @@ exports[`Filters component > matches the snapshot with one active filter and a r
 
 exports[`Filters component > matches the snapshot without active filters 1`] = `
 <div
-  className="MuiStack-root css-1m2za9r-MuiStack-root"
+  className="MuiStack-root css-1obrysa-MuiStack-root"
 >
   <div
     className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
@@ -2091,7 +2091,7 @@ exports[`Filters component > matches the snapshot without active filters 1`] = `
     >
       <div
         aria-owns={null}
-        className="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-4xbbh5-MuiAutocomplete-root"
+        className="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1xnbq41-MuiAutocomplete-root"
         label="Multiple Filter Field"
         onClick={[Function]}
         onKeyDown={[Function]}
@@ -2192,7 +2192,7 @@ exports[`Filters component > matches the snapshot without active filters 1`] = `
     >
       <div
         aria-owns={null}
-        className="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-4xbbh5-MuiAutocomplete-root"
+        className="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1xnbq41-MuiAutocomplete-root"
         label="Autocomplete Single Field"
         onClick={[Function]}
         onKeyDown={[Function]}
