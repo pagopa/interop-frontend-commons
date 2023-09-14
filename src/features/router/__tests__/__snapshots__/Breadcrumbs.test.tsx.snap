@@ -13,7 +13,7 @@ exports[`Breadcrumbs > should match the snapshot (localized) 1`] = `
           class="MuiBreadcrumbs-li"
         >
           <a
-            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-4iwwae-MuiTypography-root-MuiLink-root"
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-159dm8u-MuiTypography-root-MuiLink-root"
             href="/it/"
           >
             home
@@ -29,7 +29,7 @@ exports[`Breadcrumbs > should match the snapshot (localized) 1`] = `
           class="MuiBreadcrumbs-li"
         >
           <a
-            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-4iwwae-MuiTypography-root-MuiLink-root"
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-159dm8u-MuiTypography-root-MuiLink-root"
             href="/it/page-1"
           >
             page-1
@@ -67,7 +67,7 @@ exports[`Breadcrumbs > should match the snapshot 1`] = `
           class="MuiBreadcrumbs-li"
         >
           <a
-            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-4iwwae-MuiTypography-root-MuiLink-root"
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-159dm8u-MuiTypography-root-MuiLink-root"
             href="/"
           >
             home
@@ -83,7 +83,7 @@ exports[`Breadcrumbs > should match the snapshot 1`] = `
           class="MuiBreadcrumbs-li"
         >
           <a
-            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-4iwwae-MuiTypography-root-MuiLink-root"
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-159dm8u-MuiTypography-root-MuiLink-root"
             href="/page-1"
           >
             page-1
