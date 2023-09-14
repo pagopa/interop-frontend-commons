@@ -31,7 +31,9 @@ export function InformationContainer({
   return (
     <Stack spacing={direction === 'column' ? 0 : 4} direction={direction} {...props}>
       <Box sx={{ flexShrink: 0, maxWidth: direction === 'column' ? 'none' : '200px', flex: 1 }}>
-        <Typography variant="body2">{label}</Typography>
+        <Typography sx={{ mt: copyToClipboard ? 1 : undefined }} variant="body2">
+          {label}
+        </Typography>
         {labelDescription && (
           <>
             <Divider sx={{ my: 0.5 }} />
@@ -43,11 +45,14 @@ export function InformationContainer({
       </Box>
       <Box sx={{ flex: 1 }}>
         <Typography
+          sx={{ display: 'flex', alignItems: 'start' }}
           component={typeof content === 'string' ? 'p' : 'div'}
           variant="body2"
           fontWeight={600}
         >
-          {content}
+          <Box component="span" sx={{ display: 'block', mt: copyToClipboard ? 1 : undefined }}>
+            {content}
+          </Box>
           {copyToClipboard && <CopyToClipboardButton {...copyToClipboard} />}
         </Typography>
       </Box>
