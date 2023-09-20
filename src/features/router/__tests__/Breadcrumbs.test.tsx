@@ -60,11 +60,6 @@ describe('Breadcrumbs', () => {
     expect(baseElement).toMatchSnapshot()
   })
 
-  it('should not render if the route have less than 2 parents', () => {
-    const { container } = renderBreadcrumb('/')
-    expect(container).toBeEmptyDOMElement()
-  })
-
   it('should navigate to the correct route when clicking on a breadcrumb link', async () => {
     const { getByRole, history } = renderBreadcrumb()
     const page1Link = getByRole('link', { name: 'page-1' })

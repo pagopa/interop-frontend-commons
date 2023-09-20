@@ -80,7 +80,7 @@ exports[`Checks that Table snapshots didn't change > renders Table empty state 1
                 class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rpd3i8-MuiTableCell-root"
               >
                 <div
-                  class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-w66kx-MuiChip-root"
+                  class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-1e8dhvr-MuiChip-root"
                 >
                   <span
                     class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
@@ -138,7 +138,7 @@ exports[`Checks that Table snapshots didn't change > renders Table empty state 1
                 class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rpd3i8-MuiTableCell-root"
               >
                 <div
-                  class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-w66kx-MuiChip-root"
+                  class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-1e8dhvr-MuiChip-root"
                 >
                   <span
                     class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
@@ -196,7 +196,7 @@ exports[`Checks that Table snapshots didn't change > renders Table empty state 1
                 class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rpd3i8-MuiTableCell-root"
               >
                 <div
-                  class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-w66kx-MuiChip-root"
+                  class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-1e8dhvr-MuiChip-root"
                 >
                   <span
                     class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
@@ -335,7 +335,7 @@ exports[`Checks that Table snapshots didn't change > renders Table empty state 1
               class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rpd3i8-MuiTableCell-root"
             >
               <div
-                class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-w66kx-MuiChip-root"
+                class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-1e8dhvr-MuiChip-root"
               >
                 <span
                   class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
@@ -393,7 +393,7 @@ exports[`Checks that Table snapshots didn't change > renders Table empty state 1
               class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rpd3i8-MuiTableCell-root"
             >
               <div
-                class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-w66kx-MuiChip-root"
+                class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-1e8dhvr-MuiChip-root"
               >
                 <span
                   class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
@@ -451,7 +451,7 @@ exports[`Checks that Table snapshots didn't change > renders Table empty state 1
               class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rpd3i8-MuiTableCell-root"
             >
               <div
-                class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-w66kx-MuiChip-root"
+                class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-1e8dhvr-MuiChip-root"
               >
                 <span
                   class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
@@ -647,7 +647,7 @@ exports[`Checks that Table snapshots didn't change > renders a Table with 2 head
                 class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rpd3i8-MuiTableCell-root"
               >
                 <div
-                  class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-w66kx-MuiChip-root"
+                  class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-1e8dhvr-MuiChip-root"
                 >
                   <span
                     class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
@@ -705,7 +705,7 @@ exports[`Checks that Table snapshots didn't change > renders a Table with 2 head
                 class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rpd3i8-MuiTableCell-root"
               >
                 <div
-                  class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-w66kx-MuiChip-root"
+                  class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-1e8dhvr-MuiChip-root"
                 >
                   <span
                     class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
@@ -763,7 +763,7 @@ exports[`Checks that Table snapshots didn't change > renders a Table with 2 head
                 class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rpd3i8-MuiTableCell-root"
               >
                 <div
-                  class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-w66kx-MuiChip-root"
+                  class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-1e8dhvr-MuiChip-root"
                 >
                   <span
                     class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
@@ -868,7 +868,7 @@ exports[`Checks that Table snapshots didn't change > renders a Table with 2 head
               class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rpd3i8-MuiTableCell-root"
             >
               <div
-                class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-w66kx-MuiChip-root"
+                class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-1e8dhvr-MuiChip-root"
               >
                 <span
                   class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
@@ -926,7 +926,7 @@ exports[`Checks that Table snapshots didn't change > renders a Table with 2 head
               class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rpd3i8-MuiTableCell-root"
             >
               <div
-                class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-w66kx-MuiChip-root"
+                class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-1e8dhvr-MuiChip-root"
               >
                 <span
                   class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
@@ -984,7 +984,7 @@ exports[`Checks that Table snapshots didn't change > renders a Table with 2 head
               class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1rpd3i8-MuiTableCell-root"
             >
               <div
-                class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-w66kx-MuiChip-root"
+                class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-1e8dhvr-MuiChip-root"
               >
                 <span
                   class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
