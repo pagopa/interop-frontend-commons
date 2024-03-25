@@ -35,7 +35,7 @@ export const FiltersFields: React.FC<FiltersFieldsProps> = ({
           onFieldsValuesChange,
         }
         return (
-          <Grid item xs={3} key={field.name}>
+          <Grid item xs={12} sm={6} md={3} key={field.name}>
             {field.type === 'freetext' && <FreetextFilterField {...fieldProps} />}
             {field.type === 'numeric' && <NumericFilterField {...fieldProps} />}
             {field.type === 'autocomplete-multiple' && (
