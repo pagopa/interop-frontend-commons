@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid } from '@mui/material'
+import { Box, Stack } from '@mui/material'
 import type {
   FilterFieldValue,
   FilterFieldsValues,
@@ -26,7 +26,7 @@ export const FiltersFields: React.FC<FiltersFieldsProps> = ({
   onChangeActiveFilter,
 }) => {
   return (
-    <Grid container spacing={2}>
+    <Stack gap={2} direction={{ sm: 'row' }}>
       {fields.map((field) => {
         const fieldProps = {
           field,
@@ -35,7 +35,7 @@ export const FiltersFields: React.FC<FiltersFieldsProps> = ({
           onFieldsValuesChange,
         }
         return (
-          <Grid item xs={12} sm={6} md={3} key={field.name}>
+          <Box key={field.name} flex={1}>
             {field.type === 'freetext' && <FreetextFilterField {...fieldProps} />}
             {field.type === 'numeric' && <NumericFilterField {...fieldProps} />}
             {field.type === 'autocomplete-multiple' && (
@@ -45,9 +45,9 @@ export const FiltersFields: React.FC<FiltersFieldsProps> = ({
               <AutocompleteSingleFilterField {...fieldProps} />
             )}
             {field.type === 'datepicker' && <DatepickerFilterField {...fieldProps} />}
-          </Grid>
+          </Box>
         )
       })}
-    </Grid>
+    </Stack>
   )
 }
