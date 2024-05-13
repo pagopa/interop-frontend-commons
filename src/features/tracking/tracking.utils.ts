@@ -39,8 +39,6 @@ export function mixpanelInit(mixpanelToken: string, mixpanelConfig?: Partial<Con
 }
 
 export function areCookiesAccepted(): boolean {
-  if (!window) return false
-
   const OTCookieValue =
     document.cookie.split('; ').find((row) => row.startsWith('OptanonConsent=')) || ''
   const checkValue = `${TARG_COOKIES_GROUP}%3A1`
