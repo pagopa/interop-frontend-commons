@@ -1,11 +1,9 @@
 import mixpanel, { type Config } from 'mixpanel-browser'
 import { areCookiesAccepted, initOneTrust, mixpanelInit } from './tracking.utils'
 import type { MixPanelEvent, UseTrackPageViewEvent, TrackEvent } from './tracking.types'
-import { isMixpanelInitialized, useIsMixpanelInitialized } from './hooks/useIsMixpanelInitialized'
-import { useAreCookiesAccepted } from './hooks/useAreCookiesAccepted'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useSyncExternalStore } from 'react'
 
-type TrackingConfig = {
+export type TrackingConfig = {
   enabled: boolean
   oneTrustScriptUrl: string
   domainScriptUrl: string
@@ -14,48 +12,98 @@ type TrackingConfig = {
   nonce?: string
 }
 
-export function initTracking<TMixPanelEvent extends MixPanelEvent>(config: TrackingConfig) {
-  if (config.enabled) {
-    initOneTrust(config.oneTrustScriptUrl, config.domainScriptUrl, config.nonce)
-    if (areCookiesAccepted()) {
-      mixpanelInit(config.mixpanelToken, config?.mixpanelConfig)
+export function initTracking<TMixPanelEvent extends MixPanelEvent>(
+  config: TrackingConfig
+): {
+  /**
+   * Tracks an event to Mixpanel
+   * It will emit the event if the following conditions are met:
+   * - Tracking is enabled;
+   * - Mixpanel is initialized.
+   *
+   * @param eventName the name of the event
+   * @param properties the properties of the event
+   */
+  trackEvent: TrackEvent<TMixPanelEvent>
+  /**
+   * Emits a page view event to Mixpanel
+   * It will emit the event if the following conditions are met:
+   * - Tracking is enabled;
+   * - Mixpanel is initialized;
+   * - The event has not been emitted yet;
+   * - All properties values are truthy.
+   *
+   * @param eventName the name of the event
+   * @param properties the properties of the event
+   */
+  useTrackPageViewEvent: UseTrackPageViewEvent<TMixPanelEvent>
+} {
+  // If tracking is disabled, return noop functions
+  if (!config.enabled) {
+    return {
+      trackEvent: () => void 0,
+      useTrackPageViewEvent: () => void 0,
     }
   }
 
-  const trackEvent: TrackEvent<TMixPanelEvent> = (eventName, ...properties) => {
-    if (!config.enabled) {
-      return console.warn('Tracking is disabled')
-    }
+  let didMixpanelInit = false
+  const didmixpanelInitListeners: Set<() => void> = new Set()
 
-    if (areCookiesAccepted() && isMixpanelInitialized()) {
-      mixpanel.track(eventName, properties[0])
+  function subscribeToMixpanelInit(listener: () => void) {
+    didmixpanelInitListeners.add(listener)
+    return () => {
+      didmixpanelInitListeners.delete(listener)
     }
+  }
+
+  function notifyMixpanelInitListeners() {
+    didmixpanelInitListeners.forEach((listener) => listener())
+  }
+
+  function emitMixpanelInitialized() {
+    didMixpanelInit = true
+    notifyMixpanelInitListeners()
+  }
+
+  function handleMixpanelInit() {
+    if (areCookiesAccepted() && !didMixpanelInit) {
+      mixpanelInit(config.mixpanelToken, config?.mixpanelConfig)
+      emitMixpanelInitialized()
+    }
+  }
+
+  initOneTrust(config.oneTrustScriptUrl, config.domainScriptUrl, config.nonce)
+  handleMixpanelInit()
+
+  window.addEventListener('consent.onetrust', handleMixpanelInit)
+
+  const trackEvent: TrackEvent<TMixPanelEvent> = (eventName, ...properties) => {
+    if (!didMixpanelInit) return
+
+    mixpanel.track(eventName, properties[0])
   }
 
   const useTrackPageViewEvent: UseTrackPageViewEvent<TMixPanelEvent> = (
     eventName,
     ...properties
   ) => {
-    const areCookiesAccepted = useAreCookiesAccepted()
-    const isMixpanelInitialized = useIsMixpanelInitialized()
-
+    const isMixpanelInitialized = useSyncExternalStore(
+      subscribeToMixpanelInit,
+      () => didMixpanelInit
+    )
     const hasAlreadyTracked = useRef(false)
 
     const eventProperties = properties[0]
 
     useEffect(() => {
-      if (!config.enabled) {
-        return console.warn('Tracking is disabled')
-      }
       if (hasAlreadyTracked.current) return
-      if (!areCookiesAccepted) return
       if (!isMixpanelInitialized) return
 
       if (!Object.values(eventProperties).every(Boolean)) return
 
       mixpanel.track_pageview(eventProperties, { event_name: eventName })
       hasAlreadyTracked.current = true
-    }, [areCookiesAccepted, eventName, isMixpanelInitialized, eventProperties])
+    }, [eventName, isMixpanelInitialized, eventProperties])
   }
 
   return { trackEvent, useTrackPageViewEvent }

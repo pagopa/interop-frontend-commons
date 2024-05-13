@@ -1,7 +1,6 @@
 import mixpanel, { type Config } from 'mixpanel-browser'
-import { TARG_COOKIES_GROUP } from './tracking.constants'
-import { emitMixpanelInitialized } from './hooks/useIsMixpanelInitialized'
 
+const TARG_COOKIES_GROUP = 'C0002'
 declare const OnetrustActiveGroups: string
 
 export function initOneTrust(oneTrustScriptUrl: string, domainScriptUrl: string, nonce?: string) {
@@ -37,8 +36,6 @@ export function mixpanelInit(mixpanelToken: string, mixpanelConfig?: Partial<Con
 
   // TODO Should we call this function?
   mixpanel.identify(mixpanel.get_distinct_id())
-
-  emitMixpanelInitialized()
 }
 
 export function areCookiesAccepted(): boolean {
@@ -50,7 +47,9 @@ export function areCookiesAccepted(): boolean {
 
   const areAlreadyAccepted = OTCookieValue.indexOf(checkValue) > -1
   const areBeingAccepted =
-    OnetrustActiveGroups && OnetrustActiveGroups.indexOf(TARG_COOKIES_GROUP) > -1
+    typeof OnetrustActiveGroups !== 'undefined' &&
+    OnetrustActiveGroups &&
+    OnetrustActiveGroups.indexOf(TARG_COOKIES_GROUP) > -1
 
   return areBeingAccepted || areAlreadyAccepted
 }
