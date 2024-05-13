@@ -12,6 +12,15 @@ export type TrackingConfig = {
   nonce?: string
 }
 
+declare global {
+  interface Window {
+    OptanonWrapper: () => void | undefined
+    OneTrust: {
+      OnConsentChanged: (callback: () => void) => void
+    }
+  }
+}
+
 export function initTracking<TMixPanelEvent extends MixPanelEvent>(
   config: TrackingConfig
 ): {
@@ -79,11 +88,12 @@ export function initTracking<TMixPanelEvent extends MixPanelEvent>(
     }
   }
 
+  window.OptanonWrapper = function () {
+    window.OneTrust.OnConsentChanged(handleMixpanelInit)
+  }
+
   initOneTrust(config.oneTrustScriptUrl, config.domainScriptUrl, config.nonce)
   handleMixpanelInit()
-
-  // Listen to the cookie consent event to initialize Mixpanel in case the user accepts cookies
-  window.addEventListener('consent.onetrust', handleMixpanelInit)
 
   const trackEvent: TrackEvent<TMixPanelEvent> = (eventName, ...properties) => {
     if (!didMixpanelInit) return

@@ -10,6 +10,12 @@ vi.mock('mixpanel-browser', () => ({
   },
 }))
 
+vi.stubGlobal('OneTrust', {
+  OnConsentChanged: (callback: () => void) => {
+    callback()
+  },
+})
+
 const initOneTrustSpy = vi.spyOn(trackingUtils, 'initOneTrust').mockImplementation(() => {})
 const mixpanelInitSpy = vi.spyOn(trackingUtils, 'mixpanelInit').mockImplementation(() => {})
 const mixpanelTrackSpy = vi.spyOn(mixpanel, 'track').mockImplementation(() => {})
@@ -59,7 +65,7 @@ describe('initTracking', () => {
     expect(mixpanelInitSpy).not.toHaveBeenCalled()
 
     vi.spyOn(trackingUtils, 'areCookiesAccepted').mockReturnValue(true)
-    window.dispatchEvent(new Event('consent.onetrust'))
+    window.OptanonWrapper()
     expect(mixpanelInitSpy).toHaveBeenCalledWith(config.mixpanelToken, config.mixpanelConfig)
   })
 
@@ -68,7 +74,7 @@ describe('initTracking', () => {
     initTracking(config)
     expect(mixpanelInitSpy).toHaveBeenCalledTimes(1)
 
-    window.dispatchEvent(new Event('consent.onetrust'))
+    window.OptanonWrapper()
     expect(mixpanelInitSpy).toHaveBeenCalledTimes(1)
   })
 
@@ -84,7 +90,7 @@ describe('initTracking', () => {
     expect(mixpanelInitSpy).not.toHaveBeenCalled()
 
     vi.spyOn(trackingUtils, 'areCookiesAccepted').mockReturnValue(true)
-    window.dispatchEvent(new Event('consent.onetrust'))
+    window.OptanonWrapper()
     expect(mixpanelInitSpy).not.toHaveBeenCalled()
   })
 
@@ -161,7 +167,7 @@ describe('initTracking', () => {
     expect(mixpanelTrackPageViewSpy).not.toHaveBeenCalled()
 
     vi.spyOn(trackingUtils, 'areCookiesAccepted').mockReturnValue(true)
-    window.dispatchEvent(new Event('consent.onetrust'))
+    window.OptanonWrapper()
 
     rerender()
 
@@ -175,8 +181,6 @@ describe('initTracking', () => {
     const { rerender } = renderHook(() => useTrackPageViewEvent('testEvent', { test: 'test' }))
 
     expect(mixpanelTrackPageViewSpy).toHaveBeenCalledTimes(1)
-    window.dispatchEvent(new Event('consent.onetrust'))
-
     rerender()
     expect(mixpanelTrackPageViewSpy).toHaveBeenCalledTimes(1)
   })
