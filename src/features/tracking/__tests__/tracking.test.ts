@@ -180,4 +180,13 @@ describe('initTracking', () => {
     rerender()
     expect(mixpanelTrackPageViewSpy).toHaveBeenCalledTimes(1)
   })
+
+  it('should not call mixpanel.track_pageview function on page view if one of the given event properties is undefined', () => {
+    vi.spyOn(trackingUtils, 'areCookiesAccepted').mockReturnValue(true)
+    const { useTrackPageViewEvent } = initTracking<TrackingEvent>(config)
+
+    renderHook(() => useTrackPageViewEvent('testEvent', { test: undefined }))
+
+    expect(mixpanelTrackPageViewSpy).not.toHaveBeenCalled()
+  })
 })
