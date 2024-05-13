@@ -82,7 +82,7 @@ export function initTracking<TMixPanelEvent extends MixPanelEvent>(
   initOneTrust(config.oneTrustScriptUrl, config.domainScriptUrl, config.nonce)
   handleMixpanelInit()
 
-  // Listen to the consent event to initialize Mixpanel
+  // Listen to the cookie consent event to initialize Mixpanel in case the user accepts cookies
   window.addEventListener('consent.onetrust', handleMixpanelInit)
 
   const trackEvent: TrackEvent<TMixPanelEvent> = (eventName, ...properties) => {
