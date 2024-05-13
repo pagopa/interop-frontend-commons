@@ -46,6 +46,13 @@ export function initTracking<TMixPanelEvent extends MixPanelEvent>(
     }
   }
 
+  /**
+   * We want to synchronize the initialization of Mixpanel with the React lifecycle.
+   * This way, we can call the mixpanel `track_pageview` even if the user navigates
+   * to a page and Mixpanel is initialized after the page has loaded, with the help
+   * of `useEffect`.
+   */
+
   let didMixpanelInit = false
   const didmixpanelInitListeners: Set<() => void> = new Set()
 
@@ -75,6 +82,7 @@ export function initTracking<TMixPanelEvent extends MixPanelEvent>(
   initOneTrust(config.oneTrustScriptUrl, config.domainScriptUrl, config.nonce)
   handleMixpanelInit()
 
+  // Listen to the consent event to initialize Mixpanel
   window.addEventListener('consent.onetrust', handleMixpanelInit)
 
   const trackEvent: TrackEvent<TMixPanelEvent> = (eventName, ...properties) => {
