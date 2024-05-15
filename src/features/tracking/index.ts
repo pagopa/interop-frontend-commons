@@ -117,7 +117,7 @@ export function initTracking<TMixPanelEvent extends MixPanelEvent>(
       if (hasAlreadyTracked.current) return
       if (!isMixpanelInitialized) return
 
-      if (!Object.values(eventProperties).every(Boolean)) return
+      if (!Object.values(eventProperties).every((p) => p !== undefined)) return
 
       mixpanel.track_pageview(eventProperties, { event_name: eventName })
       hasAlreadyTracked.current = true

@@ -1,6 +1,8 @@
+import type { Dict } from 'mixpanel-browser'
+
 export type MixPanelEvent = {
   eventName: string
-  properties: Record<string, string>
+  properties: Dict
 }
 
 export type TrackEvent<TMixPanelEvent extends MixPanelEvent> = <
