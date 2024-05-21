@@ -129,6 +129,19 @@ describe('initTracking', () => {
     expect(mixpanelTrackSpy).not.toHaveBeenCalled()
   })
 
+  it('should  call trackEvent with the default props if passed', () => {
+    vi.spyOn(trackingUtils, 'areCookiesAccepted').mockReturnValue(true)
+    const defaultProp = { defaultProp: 'test' }
+
+    const { trackEvent } = initTracking<TrackingEvent>({
+      ...config,
+      getDefaultProps: () => defaultProp,
+    })
+
+    trackEvent('testEvent', { test: 'test' })
+    expect(mixpanelTrackSpy).toHaveBeenCalledWith('testEvent', { test: 'test', ...defaultProp })
+  })
+
   it('should call mixpanel.track_pageview function on page view', () => {
     vi.spyOn(trackingUtils, 'areCookiesAccepted').mockReturnValue(true)
     const { useTrackPageViewEvent } = initTracking<TrackingEvent>(config)
@@ -192,5 +205,21 @@ describe('initTracking', () => {
     renderHook(() => useTrackPageViewEvent('testEvent', { test: undefined }))
 
     expect(mixpanelTrackPageViewSpy).not.toHaveBeenCalled()
+  })
+
+  it('should call mixpanel.track_pageview function with the passed default props', () => {
+    vi.spyOn(trackingUtils, 'areCookiesAccepted').mockReturnValue(true)
+    const defaultProp = { defaultProp: 'test' }
+    const { useTrackPageViewEvent } = initTracking<TrackingEvent>({
+      ...config,
+      getDefaultProps: () => defaultProp,
+    })
+
+    renderHook(() => useTrackPageViewEvent('testEvent', { test: 'test' }))
+
+    expect(mixpanelTrackPageViewSpy).toHaveBeenCalledWith(
+      { test: 'test', ...defaultProp },
+      { event_name: 'testEvent' }
+    )
   })
 })
