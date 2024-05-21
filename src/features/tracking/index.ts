@@ -1,4 +1,4 @@
-import mixpanel, { type Config } from 'mixpanel-browser'
+import mixpanel, { type Dict, type Config } from 'mixpanel-browser'
 import { areCookiesAccepted, initOneTrust, mixpanelInit } from './tracking.utils'
 import type { MixPanelEvent, UseTrackPageViewEvent, TrackEvent } from './tracking.types'
 import { useEffect, useRef, useSyncExternalStore } from 'react'
@@ -10,6 +10,7 @@ export type TrackingConfig = {
   mixpanelToken: string
   mixpanelConfig?: Partial<Config>
   nonce?: string
+  getDefaultProps?: () => Dict
 }
 
 declare global {
@@ -20,6 +21,8 @@ declare global {
     }
   }
 }
+
+const noop = () => void 0
 
 export function initTracking<TMixPanelEvent extends MixPanelEvent>(
   config: TrackingConfig
@@ -34,6 +37,7 @@ export function initTracking<TMixPanelEvent extends MixPanelEvent>(
    * @param properties the properties of the event
    */
   trackEvent: TrackEvent<TMixPanelEvent>
+
   /**
    * Emits a page view event to Mixpanel
    * It will emit the event if the following conditions are met:
@@ -46,12 +50,25 @@ export function initTracking<TMixPanelEvent extends MixPanelEvent>(
    * @param properties the properties of the event
    */
   useTrackPageViewEvent: UseTrackPageViewEvent<TMixPanelEvent>
+
+  /**
+   * Sets the Mixpanel identifier
+   * @param identifier the identifier to set
+   */
+  setMixpanelIdentifier: (identifier: string) => void
+
+  /**
+   * Resets Mixpanel
+   */
+  resetMixpanel: () => void
 } {
   // If tracking is disabled, return noop functions
   if (!config.enabled) {
     return {
-      trackEvent: () => void 0,
-      useTrackPageViewEvent: () => void 0,
+      trackEvent: noop,
+      useTrackPageViewEvent: noop,
+      setMixpanelIdentifier: noop,
+      resetMixpanel: noop,
     }
   }
 
@@ -97,8 +114,8 @@ export function initTracking<TMixPanelEvent extends MixPanelEvent>(
 
   const trackEvent: TrackEvent<TMixPanelEvent> = (eventName, ...properties) => {
     if (!didMixpanelInit) return
-
-    mixpanel.track(eventName, properties[0])
+    const defaultProperties = config.getDefaultProps?.() ?? {}
+    mixpanel.track(eventName, { ...properties[0], ...defaultProperties })
   }
 
   const useTrackPageViewEvent: UseTrackPageViewEvent<TMixPanelEvent> = (
@@ -119,10 +136,19 @@ export function initTracking<TMixPanelEvent extends MixPanelEvent>(
 
       if (!Object.values(eventProperties).every((p) => p !== undefined)) return
 
-      mixpanel.track_pageview(eventProperties, { event_name: eventName })
+      const defaultProperties = config.getDefaultProps?.() ?? {}
+      mixpanel.track_pageview(
+        { ...eventProperties, ...defaultProperties },
+        { event_name: eventName }
+      )
       hasAlreadyTracked.current = true
     }, [eventName, isMixpanelInitialized, eventProperties])
   }
 
-  return { trackEvent, useTrackPageViewEvent }
+  return {
+    trackEvent,
+    useTrackPageViewEvent,
+    setMixpanelIdentifier: mixpanel.identify,
+    resetMixpanel: mixpanel.reset,
+  }
 }
