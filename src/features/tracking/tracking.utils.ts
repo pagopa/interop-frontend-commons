@@ -33,9 +33,6 @@ export function mixpanelInit(mixpanelToken: string, mixpanelConfig?: Partial<Con
     // track_pageview: 'full-url',
     ...mixpanelConfig,
   })
-
-  // TODO Should we call this function?
-  mixpanel.identify(mixpanel.get_distinct_id())
 }
 
 export function areCookiesAccepted(): boolean {
