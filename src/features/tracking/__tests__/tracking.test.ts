@@ -50,7 +50,11 @@ describe('initTracking', () => {
   it('should call mixpanelInit if cookies are accepted', () => {
     vi.spyOn(trackingUtils, 'areCookiesAccepted').mockReturnValue(true)
     initTracking(config)
-    expect(mixpanelInitSpy).toHaveBeenCalledWith(config.mixpanelToken, config.mixpanelConfig)
+    expect(mixpanelInitSpy).toHaveBeenCalledWith(
+      config.mixpanelToken,
+      undefined,
+      config.mixpanelConfig
+    )
   })
 
   it('should not call mixpanelInit if cookies are not accepted', () => {
@@ -66,7 +70,11 @@ describe('initTracking', () => {
 
     vi.spyOn(trackingUtils, 'areCookiesAccepted').mockReturnValue(true)
     window.OptanonWrapper()
-    expect(mixpanelInitSpy).toHaveBeenCalledWith(config.mixpanelToken, config.mixpanelConfig)
+    expect(mixpanelInitSpy).toHaveBeenCalledWith(
+      config.mixpanelToken,
+      undefined,
+      config.mixpanelConfig
+    )
   })
 
   it('should call mixpanelInit only once', () => {

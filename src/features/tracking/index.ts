@@ -81,6 +81,23 @@ export function initTracking<TMixPanelEvent extends MixPanelEvent>(
 
   let didMixpanelInit = false
   const didmixpanelInitListeners: Set<() => void> = new Set()
+  let mixpanelIdentifier: string | undefined
+
+  function setMixpanelIdentifier(identifier: string) {
+    // If Mixpanel is already initialized, identify the user
+    if (didMixpanelInit) {
+      mixpanel.identify(identifier)
+      return
+    }
+    // ... otherwise, store the identifier to identify the user when Mixpanel is initialized
+    mixpanelIdentifier = identifier
+  }
+
+  function resetMixpanel() {
+    if (didMixpanelInit) {
+      mixpanel.reset()
+    }
+  }
 
   function subscribeToMixpanelInit(listener: () => void) {
     didmixpanelInitListeners.add(listener)
@@ -100,7 +117,7 @@ export function initTracking<TMixPanelEvent extends MixPanelEvent>(
 
   function handleMixpanelInit() {
     if (areCookiesAccepted() && !didMixpanelInit) {
-      mixpanelInit(config.mixpanelToken, config?.mixpanelConfig)
+      mixpanelInit(config.mixpanelToken, mixpanelIdentifier, config?.mixpanelConfig)
       emitMixpanelInitialized()
     }
   }
@@ -148,7 +165,7 @@ export function initTracking<TMixPanelEvent extends MixPanelEvent>(
   return {
     trackEvent,
     useTrackPageViewEvent,
-    setMixpanelIdentifier: mixpanel.identify,
-    resetMixpanel: mixpanel.reset,
+    setMixpanelIdentifier,
+    resetMixpanel,
   }
 }
