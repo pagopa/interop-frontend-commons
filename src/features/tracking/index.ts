@@ -63,7 +63,7 @@ export function initTracking<TMixPanelEvent extends MixPanelEvent>(
   resetMixpanel: () => void
 } {
   // If tracking is disabled, return noop functions
-  if (!config.enabled) {
+  if (!config.enabled || typeof window === 'undefined') {
     return {
       trackEvent: noop,
       useTrackPageViewEvent: noop,
