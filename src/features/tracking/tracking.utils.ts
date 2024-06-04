@@ -1,6 +1,5 @@
 import mixpanel, { type Config } from 'mixpanel-browser'
 
-const STRICTLY_NECESSARY_COOKIES_GROUP = 'C0001'
 const TARG_COOKIES_GROUP = 'C0002'
 declare const OnetrustActiveGroups: string
 
@@ -43,32 +42,9 @@ export function mixpanelInit(
 }
 
 export function areCookiesAccepted(): boolean {
-  const OTCookieValue =
-    document.cookie.split('; ').find((row) => row.startsWith('OptanonConsent=')) || ''
-  console.log(OTCookieValue)
-  const groupsEncoded = OTCookieValue.split('&').find((b) => b.includes('groups')) || ''
-  console.log(groupsEncoded)
-  const groupsDecoded = groupsEncoded
-    .replace('groups=', '')
-    .split(',')
-    .map((g) => decodeURIComponent(g))
-  console.log(groupsDecoded)
-
-  const groups = groupsDecoded
-    // Each group is followed by :1 if accepted, :0 if not. E.g. C0001:1, C0002:0
-    .map((s) => s.replace(/:[0-9]$/, ''))
-  console.log({ groups })
-
-  const hasOnlyStrictlyNecessaryCookies =
-    groups.length === 1 && groups[0] === STRICTLY_NECESSARY_COOKIES_GROUP
-  console.log({ hasOnlyStrictlyNecessaryCookies })
-  if (hasOnlyStrictlyNecessaryCookies) return true
-
-  const areBeingAccepted =
+  return (
     typeof OnetrustActiveGroups !== 'undefined' &&
     Boolean(OnetrustActiveGroups) &&
     OnetrustActiveGroups.includes(TARG_COOKIES_GROUP)
-  console.log({ areBeingAccepted })
-
-  return areBeingAccepted
+  )
 }
