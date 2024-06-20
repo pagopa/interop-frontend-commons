@@ -11,6 +11,7 @@ export type TrackingConfig = {
   mixpanelConfig?: Partial<Config>
   nonce?: string
   getDefaultProps?: () => Dict
+  hasOnlyStrictlyNecessaryCookies?: boolean
 }
 
 declare global {
@@ -116,7 +117,8 @@ export function initTracking<TMixPanelEvent extends MixPanelEvent>(
   }
 
   function handleMixpanelInit() {
-    if (areCookiesAccepted() && !didMixpanelInit) {
+    const doesCookieCheckPass = config.hasOnlyStrictlyNecessaryCookies || areCookiesAccepted()
+    if (doesCookieCheckPass && !didMixpanelInit) {
       mixpanelInit(config.mixpanelToken, mixpanelIdentifier, config?.mixpanelConfig)
       emitMixpanelInitialized()
     }

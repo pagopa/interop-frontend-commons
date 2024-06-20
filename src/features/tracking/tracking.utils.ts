@@ -42,15 +42,9 @@ export function mixpanelInit(
 }
 
 export function areCookiesAccepted(): boolean {
-  const OTCookieValue =
-    document.cookie.split('; ').find((row) => row.startsWith('OptanonConsent=')) || ''
-  const checkValue = `${TARG_COOKIES_GROUP}%3A1`
-
-  const areAlreadyAccepted = OTCookieValue.indexOf(checkValue) > -1
-  const areBeingAccepted =
+  return (
     typeof OnetrustActiveGroups !== 'undefined' &&
-    OnetrustActiveGroups &&
-    OnetrustActiveGroups.indexOf(TARG_COOKIES_GROUP) > -1
-
-  return areBeingAccepted || areAlreadyAccepted
+    Boolean(OnetrustActiveGroups) &&
+    OnetrustActiveGroups.includes(TARG_COOKIES_GROUP)
+  )
 }
