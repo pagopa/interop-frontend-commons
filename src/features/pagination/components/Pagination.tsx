@@ -20,7 +20,15 @@ export const Pagination: React.FC<PaginationProps> = ({
   sx,
   ...stackProps
 }) => {
-  if (totalPages <= 1) return null
+  const totalPagesRef = React.useRef(totalPages)
+
+  if (totalPages !== 0 && totalPagesRef.current !== totalPages) {
+    totalPagesRef.current = totalPages
+  }
+
+  const presistedTotalPages = totalPages || totalPagesRef.current
+
+  if (presistedTotalPages <= 1) return null
   return (
     <Stack
       sx={{ mt: 2, ...sx }}
@@ -32,7 +40,7 @@ export const Pagination: React.FC<PaginationProps> = ({
       <MUIPagination
         color="primary"
         page={pageNum}
-        count={totalPages}
+        count={presistedTotalPages}
         onChange={(_, page) => onPageChange(page)}
       />
     </Stack>

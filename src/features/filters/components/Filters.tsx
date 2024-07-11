@@ -10,7 +10,7 @@ import type {
   FilterFieldsValues,
 } from '../filters.types'
 import { getFiltersFieldsInitialValues, getFiltersFieldsDefaultValue } from '../filters.utils'
-import { useSearchParams } from 'react-router-dom'
+import { useSearch } from '@tanstack/react-router'
 
 export type FiltersProps = FiltersHandlers & { rightContent?: React.ReactNode }
 
@@ -25,7 +25,7 @@ export const Filters: React.FC<FiltersProps> = ({
   fields,
   rightContent,
 }) => {
-  const [searchParams] = useSearchParams()
+  const searchParams = useSearch({ strict: false })
   const [fieldsValues, setFieldsValues] = React.useState<FilterFieldsValues>(() =>
     getFiltersFieldsInitialValues(searchParams, fields)
   )

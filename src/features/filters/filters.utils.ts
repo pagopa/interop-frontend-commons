@@ -3,8 +3,8 @@ import type {
   FilterFieldsValues,
   FilterFields,
   FilterOption,
-  FiltersParams,
   FilterField,
+  FiltersParams,
 } from './filters.types'
 
 /** Map passed fields options to the field state default value */
@@ -31,19 +31,14 @@ export function getFiltersFieldsDefaultValue(fields: FilterFields): FilterFields
  * url search params
  */
 export const getFiltersFieldsInitialValues = (
-  searchParams: URLSearchParams,
+  searchParams: Record<string, any>,
   filtersFields: FilterFields
 ) => {
   const fieldsValues: FilterFieldsValues = {}
   filtersFields.forEach((field) => {
     switch (field.type) {
       case 'autocomplete-multiple':
-        const multipleFilterParamValue = searchParams.get(field.name)
-        if (multipleFilterParamValue) {
-          fieldsValues[field.name] = decodeMultipleFilterFieldValue(multipleFilterParamValue)
-          return
-        }
-        fieldsValues[field.name] = []
+        fieldsValues[field.name] = searchParams[field.name] ?? []
         break
       case 'autocomplete-single':
         // autocomplete single has no need to be in the fields state
@@ -92,18 +87,18 @@ export const decodeMultipleFilterFieldValue = (urlParamValue: string): Array<Fil
  * - filtersParams: the filters that should be passed as url params to the query request.
  */
 export const mapSearchParamsToActiveFiltersAndFilterParams = (
-  searchParams: URLSearchParams,
+  searchParams: Record<string, any>,
   filtersFields: FilterFields
 ) => {
   const activeFilters: ActiveFilters = []
   const filtersParams: FiltersParams = {}
 
   filtersFields.forEach((field) => {
-    const filterValue = searchParams.get(field.name)
+    const filterValue = searchParams[field.name]
     if (filterValue) {
       switch (field.type) {
         case 'autocomplete-multiple':
-          const decodedFilterValue = decodeMultipleFilterFieldValue(filterValue)
+          const decodedFilterValue = (filterValue as Array<FilterOption>)
             .sort((a, b) => a.label.toLowerCase().localeCompare(b.label.toLowerCase()))
             .map((option) => ({
               ...option,
@@ -117,13 +112,12 @@ export const mapSearchParamsToActiveFiltersAndFilterParams = (
           filtersParams[field.name] = decodedFilterValue.map(({ value }) => value)
           break
         case 'autocomplete-single':
-          const decodedValue = decodeSingleFilterFieldValue(filterValue)
           activeFilters.push({
-            ...decodedValue,
+            ...filterValue,
             type: field.type,
             filterKey: field.name,
           })
-          filtersParams[field.name] = decodedValue.value
+          filtersParams[field.name] = filterValue.value
           break
         case 'numeric':
         case 'freetext':

@@ -6,13 +6,8 @@ import type {
   FiltersHandlers,
   FiltersParams,
 } from '../filters.types'
-import { useSearchParams } from 'react-router-dom'
-import {
-  encodeMultipleFilterFieldValue,
-  decodeMultipleFilterFieldValue,
-  mapSearchParamsToActiveFiltersAndFilterParams,
-  encodeSingleFilterFieldValue,
-} from '../filters.utils'
+import { mapSearchParamsToActiveFiltersAndFilterParams } from '../filters.utils'
+import { useNavigate, useSearch } from '@tanstack/react-router'
 
 /**
  * @description
@@ -65,95 +60,82 @@ import {
 export function useFilters<TFiltersParams extends FiltersParams>(
   fields: FilterFields<Extract<keyof TFiltersParams, string>>
 ): FiltersHandlers & { filtersParams: TFiltersParams } {
-  const [searchParams, setSearchParams] = useSearchParams()
+  const navigate = useNavigate()
+  const searchParams = useSearch({ strict: false })
 
   const onChangeActiveFilter = React.useCallback<FiltersHandler>(
     (type, filterKey, value) => {
-      setSearchParams((searchParams) => {
-        let shouldBeRemoved = false
-        if (type === 'datepicker' && value === null) {
-          shouldBeRemoved = true
-        }
-        if (
-          ['freetext', 'autocomplete-multiple', 'numeric'].includes(type) &&
-          (value as string | Array<FilterOption>).length === 0
-        ) {
-          shouldBeRemoved = true
-        }
-        if (shouldBeRemoved) {
-          searchParams.delete(filterKey)
-          return searchParams
-        }
+      navigate({
+        search: (searchParams: Record<string, any>) => {
+          let shouldBeRemoved = false
+          if (type === 'datepicker' && value === null) {
+            shouldBeRemoved = true
+          }
+          if (
+            ['freetext', 'autocomplete-multiple', 'numeric'].includes(type) &&
+            (value as string | Array<FilterOption>).length === 0
+          ) {
+            shouldBeRemoved = true
+          }
+          if (shouldBeRemoved) {
+            return { ...searchParams, [filterKey]: undefined }
+          }
 
-        switch (type) {
-          case 'numeric':
-          case 'freetext':
-            searchParams.set(filterKey, String(value))
-            break
-          case 'autocomplete-multiple':
-            const urlParamMultipleFilterValue = encodeMultipleFilterFieldValue(
-              value as Array<FilterOption>
-            )
-            searchParams.set(filterKey, urlParamMultipleFilterValue)
-            break
-          case 'autocomplete-single':
-            const urlParamSingleFilterValue = encodeSingleFilterFieldValue(value as FilterOption)
-            searchParams.set(filterKey, urlParamSingleFilterValue)
-            break
-          case 'datepicker':
-            searchParams.set(filterKey, (value as Date).toISOString())
-            break
-        }
-        searchParams.delete('offset')
-        return searchParams
+          return { ...searchParams, [filterKey]: value, offset: undefined }
+        },
+        replace: true,
       })
     },
-    [setSearchParams]
+    [navigate]
   )
 
   const onRemoveActiveFilter = React.useCallback<FiltersHandler>(
     (type, filterKey, value) => {
-      setSearchParams((searchParams) => {
-        switch (type) {
-          case 'freetext':
-          case 'numeric':
-          case 'datepicker':
-          case 'autocomplete-single':
-            searchParams.delete(filterKey)
-            break
-          case 'autocomplete-multiple':
-            const urlParamsValue = searchParams.get(filterKey)
-            if (urlParamsValue) {
-              const values = decodeMultipleFilterFieldValue(urlParamsValue)
-              const filteredValues = values.filter((option) => option.value !== value)
-              if (filteredValues.length === 0) {
-                searchParams.delete(filterKey)
-              } else {
-                searchParams.set(filterKey, encodeMultipleFilterFieldValue(filteredValues))
+      navigate({
+        search: (searchParams: Record<string, any>) => {
+          switch (type) {
+            case 'freetext':
+            case 'numeric':
+            case 'datepicker':
+            case 'autocomplete-single':
+              return { ...searchParams, [filterKey]: undefined, offset: undefined }
+            case 'autocomplete-multiple':
+              const urlParamsValue = searchParams[filterKey]
+              if (urlParamsValue) {
+                const filteredValues = urlParamsValue.filter(
+                  (option: FilterOption) => option.value !== value
+                )
+                return {
+                  ...searchParams,
+                  [filterKey]: filteredValues.length === 0 ? undefined : filteredValues,
+                  offset: undefined,
+                }
               }
-            }
-            break
-        }
-        searchParams.delete('offset')
-        return searchParams
+          }
+          return searchParams
+        },
+        replace: true,
       })
     },
-    [setSearchParams]
+    [navigate]
   )
 
   const onResetActiveFilters = React.useCallback(() => {
-    setSearchParams((searchParams) => {
-      const paramKeys = [...searchParams.keys()]
-      paramKeys.forEach((paramKey) => {
-        // Only delete the params that are related to filters
-        const isFilterKey = fields.some((field) => field.name === paramKey)
-        if (isFilterKey) {
-          searchParams.delete(paramKey)
-        }
-      })
-      return searchParams
+    navigate({
+      search: (searchParams: Record<string, any>) => {
+        const paramKeys = Object.keys(searchParams)
+        paramKeys.forEach((paramKey) => {
+          // Only delete the params that are related to filters
+          const isFilterKey = fields.some((field) => field.name === paramKey)
+          if (isFilterKey) {
+            delete searchParams[paramKey]
+          }
+        })
+        return searchParams
+      },
+      replace: true,
     })
-  }, [setSearchParams, fields])
+  }, [navigate, fields])
 
   const { activeFilters, filtersParams } = mapSearchParamsToActiveFiltersAndFilterParams(
     searchParams,
